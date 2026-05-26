@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Katrina Engelsted × Noovo — Project Manager application</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,900;1,500&family=DM+Mono:wght@400;500;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:    #f4ecd4;
+    --paper-2:  #ede2bf;
+    --ink:      #1a1a1a;
+    --ink-soft: #3a3a3a;
+    --riso-red: #ff4d2e;
+    --riso-blue:#2e4ad0;
+    --riso-yellow:#f5c526;
+    --riso-mint:#7fd1b4;
+    --noovo:    #2e4ad0;   /* design-forward blue accent for this app */
+    --road:     #c8501e;   /* desert/road clay accent */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    overflow-x: hidden;
+    position: relative;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: radial-gradient(circle, var(--ink) 0.6px, transparent 0.6px);
+    background-size: 5px 5px; opacity: 0.06; pointer-events: none; z-index: 1;
+  }
+  body::after {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1, 0 0 0 0 0.1, 0 0 0 0 0.1, 0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    pointer-events: none; z-index: 1; mix-blend-mode: multiply; opacity: 0.5;
+  }
+  main, header, footer, section { position: relative; z-index: 2; }
+
+  /* TOPBAR */
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 5vw;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .topbar .crumbs { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .topbar .crumbs a { color: var(--ink-soft); text-decoration: none; }
+  .topbar .crumbs a:hover { color: var(--road); }
+  .topbar .crumbs .sep { color: var(--ink-soft); opacity: 0.5; }
+  .topbar .crumbs .here { color: var(--ink); font-weight: 700; }
+  .topbar .stamp {
+    background: var(--road); color: var(--paper);
+    padding: 4px 12px; border-radius: 3px; font-weight: 700;
+    transform: rotate(-1deg);
+  }
+
+  /* HERO */
+  .hero { padding: 5vh 5vw 6vh; position: relative; overflow: hidden; }
+  .hero-meta {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    margin-bottom: 28px; color: var(--ink-soft);
+  }
+  .hero-meta .pill {
+    background: var(--paper-2); border: 1px solid var(--ink);
+    padding: 4px 10px; border-radius: 20px;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .hero-meta .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--road); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: 0.4; } }
+
+  .hero h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(38px, 6.8vw, 92px);
+    font-weight: 900; line-height: 0.92;
+    letter-spacing: -2.5px; margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic; font-weight: 500;
+    color: var(--road); font-family: 'DM Sans', sans-serif;
+  }
+  .hero h1 .stamp {
+    font-style: normal; background: var(--noovo); color: var(--paper);
+    padding: 0 12px 4px; display: inline-block; transform: rotate(-1.5deg);
+  }
+
+  .hero-sub {
+    font-size: clamp(17px, 1.7vw, 21px); max-width: 720px;
+    line-height: 1.5; color: var(--ink-soft); margin-bottom: 32px;
+  }
+  .hero-sub b { color: var(--ink); }
+  .hero-sub .hl { background: var(--riso-yellow); padding: 0 4px; }
+
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 22px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid var(--ink); background: var(--ink); color: var(--paper);
+    border-radius: 4px; cursor: pointer;
+    transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+  }
+  .btn:hover { background: var(--road); border-color: var(--road); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .btn.ghost:hover { background: var(--riso-yellow); color: var(--ink); border-color: var(--ink); }
+
+  .hero-blob { position: absolute; top: -80px; right: -100px; width: 400px; height: 400px; background: var(--noovo); border-radius: 50%; mix-blend-mode: multiply; opacity: 0.9; z-index: -1; }
+  .hero-blob-2 { position: absolute; top: 60px; right: 40px; width: 180px; height: 180px; background: var(--road); border-radius: 50%; mix-blend-mode: multiply; opacity: 0.85; z-index: -1; }
+
+  /* Van illustration in hero */
+  .van-svg {
+    position: absolute;
+    bottom: 30px; right: 5vw;
+    width: 220px; max-width: 35vw;
+    z-index: 3;
+    transform: rotate(-2deg);
+  }
+  @media (max-width: 760px) {
+    .van-svg { width: 140px; right: 5vw; bottom: 14px; }
+  }
+
+  .hedgie {
+    position: absolute; bottom: 16px; left: 5vw;
+    font-family: 'Caveat', cursive; font-size: 20px;
+    color: var(--noovo); transform: rotate(-3deg);
+    max-width: 240px;
+  }
+  .hedgie::before { content: '↘'; display: inline-block; font-size: 22px; margin-right: 4px; }
+
+  /* TLDR */
+  .tldr {
+    background: var(--paper-2);
+    border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
+    padding: 5vh 5vw;
+  }
+  .tldr-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .tldr-card {
+    background: var(--paper); border: 1.5px solid var(--ink);
+    padding: 22px 20px; border-radius: 6px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .tldr-card:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
+  .tldr-card .num {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 1.5px; color: var(--ink-soft);
+    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .tldr-card .num .sw { width: 12px; height: 12px; border-radius: 50%; }
+  .tldr-card h4 {
+    font-size: 17px; font-weight: 700; line-height: 1.25;
+    letter-spacing: -0.3px; margin-bottom: 8px;
+  }
+  .tldr-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+
+  section.std { padding: 7vh 5vw; }
+  .section-label {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    margin-bottom: 22px; color: var(--ink-soft);
+  }
+  .section-label .num {
+    background: var(--ink); color: var(--paper);
+    padding: 3px 8px; border-radius: 3px; font-weight: 500;
+  }
+  .section-label .line { flex: 1; height: 1.5px; background: var(--ink); max-width: 60px; }
+  h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(32px, 4.5vw, 56px);
+    font-weight: 900; line-height: 0.98;
+    letter-spacing: -1.5px; margin-bottom: 28px;
+    max-width: 900px;
+  }
+  h2 em { font-style: italic; font-weight: 500; color: var(--road); }
+  h2 .hl {
+    font-style: normal; background: var(--riso-yellow); padding: 0 8px;
+    display: inline-block; transform: rotate(-0.5deg);
+  }
+
+  /* ELEVATED VANS HERO PROJECT */
+  .vans-feature {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 7vh 5vw;
+    border-top: 1.5px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .vans-feature::before {
+    content: ''; position: absolute;
+    top: -80px; left: -60px;
+    width: 280px; height: 280px;
+    background: var(--noovo);
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    opacity: 0.7;
+  }
+  .vans-feature::after {
+    content: ''; position: absolute;
+    bottom: -100px; right: -50px;
+    width: 320px; height: 320px;
+    background: var(--road);
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    opacity: 0.6;
+  }
+  .vans-feature .section-label { color: var(--paper); }
+  .vans-feature .section-label .num { background: var(--paper); color: var(--ink); }
+  .vans-feature .section-label .line { background: var(--paper); }
+  .vans-feature h2 { color: var(--paper); }
+  .vans-feature h2 em { color: var(--riso-yellow); }
+  .vans-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 36px;
+    align-items: center;
+    position: relative; z-index: 2;
+  }
+  .vans-grid .lede {
+    font-size: 17px; line-height: 1.6;
+    color: rgba(244,236,212,0.85);
+    margin-bottom: 18px;
+    max-width: 560px;
+  }
+  .vans-grid .lede b { color: var(--paper); }
+  .vans-grid .lede .hl { background: var(--riso-yellow); color: var(--ink); padding: 0 4px; }
+  .vans-list {
+    list-style: none;
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .vans-list li {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 14px; line-height: 1.5;
+    color: rgba(244,236,212,0.82);
+  }
+  .vans-list li::before {
+    content: '◆';
+    color: var(--riso-yellow);
+    font-size: 10px;
+    margin-top: 5px;
+  }
+  .vans-cta {
+    margin-top: 24px;
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .vans-cta a {
+    display: inline-flex;
+    align-items: center; gap: 8px;
+    padding: 11px 18px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid var(--paper);
+    color: var(--paper);
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .vans-cta a:hover { background: var(--riso-yellow); color: var(--ink); border-color: var(--riso-yellow); }
+
+  .van-mock {
+    background: rgba(244,236,212,0.06);
+    border: 1px solid rgba(244,236,212,0.25);
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+  }
+  .van-mock .browser-bar {
+    display: flex; align-items: center; gap: 6px;
+    margin-bottom: 14px;
+  }
+  .van-mock .browser-bar .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: rgba(244,236,212,0.4);
+  }
+  .van-mock .browser-bar .url {
+    margin-left: 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(244,236,212,0.6);
+    letter-spacing: 1.5px;
+  }
+  .van-map {
+    background: linear-gradient(135deg, #1a3a3a 0%, #2a4a3a 30%, #4a5a3a 60%, #6a5a3a 100%);
+    border-radius: 4px;
+    aspect-ratio: 1.4 / 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .van-map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .van-map .legend {
+    position: absolute;
+    bottom: 10px; left: 10px;
+    background: rgba(26,26,26,0.7);
+    padding: 6px 10px;
+    border-radius: 3px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    color: var(--paper);
+    backdrop-filter: blur(4px);
+  }
+  .van-map .legend .row { display: flex; align-items: center; gap: 6px; margin: 2px 0; }
+  .van-map .legend .sq { width: 8px; height: 8px; border-radius: 2px; }
+
+  /* MATCH GRID */
+  .match-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    border: 1.5px solid var(--ink); border-radius: 6px;
+    overflow: hidden; box-shadow: 6px 6px 0 var(--ink);
+    background: var(--paper);
+  }
+  .match-head {
+    padding: 14px 20px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 700;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .match-head.them { background: var(--noovo); color: var(--paper); border-right: 1.5px solid var(--ink); }
+  .match-head.me { background: var(--ink); color: var(--paper); }
+  .match-row { display: contents; }
+  .match-row > div {
+    padding: 18px 20px; border-bottom: 1px dashed rgba(26,26,26,0.25);
+    font-size: 14px; line-height: 1.5;
+  }
+  .match-row > div:first-child {
+    border-right: 1.5px solid var(--ink); color: var(--ink-soft);
+    background: var(--paper-2);
+  }
+  .match-row > div:last-child { color: var(--ink); }
+  .match-row > div b { background: var(--riso-yellow); padding: 0 3px; }
+  .match-row:last-child > div { border-bottom: none; }
+  .match-row .check {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: var(--road); font-weight: 700; margin-right: 6px;
+    letter-spacing: 1px;
+  }
+
+  /* RESPONSIBILITIES translated to portfolio */
+  .resp { background: var(--paper-2); padding: 7vh 5vw; border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); }
+  .resp-intro {
+    max-width: 720px; font-size: 16px; line-height: 1.6;
+    color: var(--ink-soft); margin-bottom: 36px;
+  }
+  .resp-intro b { color: var(--ink); }
+  .resp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .resp-card {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    padding: 22px 22px;
+    border-radius: 6px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .resp-card:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
+  .resp-card .tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace; font-size: 9px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    background: var(--ink); color: var(--paper);
+    padding: 3px 8px; border-radius: 3px;
+    margin-bottom: 12px;
+  }
+  .resp-card h4 {
+    font-size: 17px; font-weight: 700; line-height: 1.25;
+    letter-spacing: -0.3px; margin-bottom: 10px;
+  }
+  .resp-card p {
+    font-size: 13px; line-height: 1.55; color: var(--ink-soft);
+  }
+  .resp-card p .hl { background: var(--riso-yellow); padding: 0 3px; color: var(--ink); }
+
+  /* TOOLS row */
+  .tools {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 28px;
+  }
+  .tool-chip {
+    background: var(--paper-2);
+    border: 1.5px solid var(--ink);
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .tool-chip .dot { width: 7px; height: 7px; border-radius: 50%; }
+
+  /* WHY NOOVO */
+  .why-grid {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px;
+    align-items: start;
+  }
+  .why-text p {
+    font-size: 16px; line-height: 1.65;
+    color: var(--ink-soft); margin-bottom: 16px;
+    max-width: 560px;
+  }
+  .why-text p b { color: var(--ink); }
+  .why-text p .hl { background: var(--riso-yellow); padding: 0 3px; }
+  .why-card {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    padding: 26px;
+    box-shadow: 6px 6px 0 var(--road);
+    position: relative;
+  }
+  .why-card .tag {
+    position: absolute; top: -12px; left: 22px;
+    background: var(--ink); color: var(--paper);
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    padding: 4px 10px; letter-spacing: 1.5px;
+    transform: rotate(-2deg);
+  }
+  .why-card h4 { font-size: 20px; font-weight: 700; margin-bottom: 14px; line-height: 1.2; }
+  .why-card p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 12px; }
+  .why-card .fact {
+    background: var(--paper-2);
+    border-left: 3px solid var(--road);
+    padding: 12px 16px;
+    margin: 14px 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .why-card .fact b { background: var(--riso-yellow); padding: 0 3px; }
+
+  /* CTA */
+  .cta { padding: 8vh 5vw; }
+  .cta-card {
+    background: var(--ink); color: var(--paper);
+    padding: 48px 40px; border-radius: 6px;
+    border: 1.5px solid var(--ink);
+    position: relative; overflow: hidden;
+    box-shadow: 8px 8px 0 var(--road);
+  }
+  .cta-card::before { content: ''; position: absolute; bottom: -80px; left: -60px; width: 240px; height: 240px; background: var(--noovo); border-radius: 50%; mix-blend-mode: screen; opacity: 0.7; }
+  .cta-card h2 { color: var(--paper); margin-bottom: 18px; position: relative; z-index: 2; }
+  .cta-card h2 em { color: var(--riso-yellow); }
+  .cta-card p { color: rgba(244,236,212,0.85); font-size: 17px; line-height: 1.55; max-width: 620px; margin-bottom: 28px; position: relative; z-index: 2; }
+  .cta-buttons { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 2; }
+  .cta-card .btn { border-color: var(--paper); }
+  .cta-card .btn.primary { background: var(--paper); color: var(--ink); }
+  .cta-card .btn.primary:hover { background: var(--riso-yellow); color: var(--ink); border-color: var(--riso-yellow); box-shadow: 4px 4px 0 var(--paper); }
+  .cta-card .btn.outline { background: transparent; color: var(--paper); }
+  .cta-card .btn.outline:hover { background: var(--paper); color: var(--ink); }
+
+  footer {
+    background: var(--ink);
+    color: rgba(244,236,212,0.55);
+    padding: 24px 5vw;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    border-top: 1px dashed rgba(244,236,212,0.3);
+  }
+  footer .heart { color: var(--road); }
+
+  @media (max-width: 760px) {
+    .hero-blob { width: 240px; height: 240px; right: -100px; top: -30px; }
+    .hero-blob-2 { display: none; }
+    .vans-grid { grid-template-columns: 1fr; gap: 24px; }
+    .why-grid { grid-template-columns: 1fr; gap: 24px; }
+    .match-grid { grid-template-columns: 1fr; }
+    .match-row > div:first-child { border-right: none; border-bottom: 1px solid var(--ink); }
+    .match-head.them { border-right: none; }
+    .cta-card { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="crumbs">
+    <a href="./index.html">engelsted.co</a>
+    <span class="sep">/</span>
+    <span class="here">noovo</span>
+  </div>
+  <span class="stamp">↗ Project Manager</span>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob-2"></div>
+
+  <div class="hero-meta">
+    <span class="pill"><span class="dot"></span>Open application</span>
+    <span class="pill">For: <b style="margin-left:4px">Noovo</b></span>
+    <span class="pill">Role: Project Manager</span>
+    <span class="pill">From: Boulder, CO</span>
+  </div>
+
+  <h1>
+    I co-founded<br>
+    <em>a van wellness</em><br>
+    business as my <span class="stamp">MBA</span><br>
+    capstone.
+  </h1>
+
+  <p class="hero-sub">
+    Hi Noovo. I'm <b>Katrina Engelsted</b>. I once wrote a full business
+    plan for <b>Elevated Van Journeys</b> — a wellness tourism company
+    built around electric camper vans, curated routes through national
+    parks, and <span class="hl">guided audio experiences for mindfulness
+    and reconnection</span>. I'm a startup co-founder by day, and I've spent
+    fifteen years keeping cross-functional projects moving across sales,
+    marketing, creative, and engineering. Here's the case.
+  </p>
+
+  <div class="hero-cta">
+    <a href="#vans" class="btn">See the wellness business →</a>
+    <a href="#contact" class="btn ghost">Skip to "hire me"</a>
+  </div>
+
+  <!-- Hand-drawn-ish van SVG -->
+  <svg class="van-svg" viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- ground line -->
+    <line x1="0" y1="115" x2="220" y2="115" stroke="#1a1a1a" stroke-width="1.5" stroke-dasharray="3,5"/>
+    <!-- van body -->
+    <rect x="20" y="42" width="170" height="65" rx="10" fill="#2e4ad0" stroke="#1a1a1a" stroke-width="2"/>
+    <!-- roof rack -->
+    <rect x="40" y="30" width="130" height="6" rx="2" fill="#1a1a1a"/>
+    <line x1="55" y1="30" x2="55" y2="42" stroke="#1a1a1a" stroke-width="1.5"/>
+    <line x1="155" y1="30" x2="155" y2="42" stroke="#1a1a1a" stroke-width="1.5"/>
+    <!-- windshield -->
+    <path d="M30 60 L60 50 L60 75 L30 75 Z" fill="#f4ecd4" stroke="#1a1a1a" stroke-width="1.5"/>
+    <!-- side window -->
+    <rect x="70" y="55" width="40" height="22" fill="#f4ecd4" stroke="#1a1a1a" stroke-width="1.5"/>
+    <!-- door -->
+    <rect x="118" y="55" width="32" height="35" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+    <circle cx="143" cy="73" r="1.5" fill="#1a1a1a"/>
+    <!-- back window -->
+    <rect x="158" y="55" width="22" height="22" fill="#f4ecd4" stroke="#1a1a1a" stroke-width="1.5"/>
+    <!-- wheels -->
+    <circle cx="55" cy="110" r="13" fill="#1a1a1a"/>
+    <circle cx="55" cy="110" r="6" fill="#f4ecd4"/>
+    <circle cx="160" cy="110" r="13" fill="#1a1a1a"/>
+    <circle cx="160" cy="110" r="6" fill="#f4ecd4"/>
+    <!-- "noovo" tag on side -->
+    <text x="85" y="98" font-family="'DM Mono', monospace" font-size="9" font-weight="700" fill="#f5c526" letter-spacing="1">noovo·ish</text>
+    <!-- sun -->
+    <circle cx="195" cy="20" r="11" fill="#f5c526" stroke="#1a1a1a" stroke-width="1.5"/>
+  </svg>
+
+  <div class="hedgie">yes, this is the application</div>
+</header>
+
+<!-- TLDR -->
+<section class="tldr">
+  <div class="section-label">
+    <span class="num">TL;DR</span>
+    <span>Four things to know</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="tldr-grid">
+    <div class="tldr-card">
+      <div class="num"><span class="sw" style="background: var(--noovo)"></span>01 · The fit</div>
+      <h4>15 years running cross-functional work</h4>
+      <p>Startups + bigger companies. Sales, marketing, creative, engineering. I've been the "engine that keeps projects moving" since 2012.</p>
+    </div>
+    <div class="tldr-card">
+      <div class="num"><span class="sw" style="background: var(--road)"></span>02 · The van angle</div>
+      <h4>I wrote a van wellness business plan</h4>
+      <p>Elevated Van Journeys — electric vans, curated routes through national parks, guided audio experiences. I get the lifestyle, the customer, and the operations from the inside.</p>
+    </div>
+    <div class="tldr-card">
+      <div class="num"><span class="sw" style="background: var(--riso-yellow)"></span>03 · The tools</div>
+      <h4>Monday-adjacent, system-builder</h4>
+      <p>HubSpot, Pardot, Klaviyo, mParticle, Airtable, Notion, GitHub Projects, ClickUp. I learn new PM tools in a week.</p>
+    </div>
+    <div class="tldr-card">
+      <div class="num"><span class="sw" style="background: var(--riso-mint)"></span>04 · The temperament</div>
+      <h4>Diplomatic but firm</h4>
+      <p>Co-founder energy. I push projects forward across stakeholders with different priorities without making it weird.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ELEVATED VANS FEATURE -->
+<section class="vans-feature" id="vans">
+  <div class="section-label">
+    <span class="num">01</span>
+    <span>Receipt #1 · The wellness van business</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>I co-founded <em>Elevated Van Journeys</em>.</h2>
+
+  <div class="vans-grid">
+    <div>
+      <p class="lede">
+        For my Quantic MBA capstone, my co-founders and I built a complete
+        business plan for <b>Elevated Van Journeys</b> — a wellness tourism
+        company offering <span class="hl">turnkey electric-van excursions</span>
+        through national parks, with guided audio experiences and evening
+        community gatherings along the route.
+      </p>
+      <p class="lede">
+        Three co-founders, three skill sets: a <b>licensed marriage and
+        family therapist</b> for the wellness programming, a <b>mechanical
+        engineer</b> who'd already converted two vans, and me on product,
+        tech, and operations.
+      </p>
+
+      <ul class="vans-list">
+        <li><b>The experience:</b> electric vans + curated routes + nightly hubs at majestic locations like our national parks</li>
+        <li><b>The wellness layer:</b> guided audio podcasts on mindfulness, relationships in nature, and self-reflection — playable from the van's sound system</li>
+        <li><b>The community layer:</b> support staff and intentional evening gatherings at each hub stop</li>
+        <li><b>The thesis:</b> wellness tourists spend 178% more than typical domestic travelers — we'd give them turnkey access to a market that didn't exist yet</li>
+        <li><b>The model:</b> Blue Ocean strategy combining wellness retreats, RV rentals, camping, and psychotherapy under one brand</li>
+      </ul>
+
+      <div class="vans-cta">
+        <a href="https://mappingkat.github.io/elevated-vans/" target="_blank" rel="noopener">View the route map ↗</a>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vSgit0o66iwMpVlXeYTGVLrPxbqhDrv0rGVg-lZh3tACo1WH9PTspDYy2ZK3Yxo9gHpmu1jQrFGwTad/pub" target="_blank" rel="noopener">Read the business plan ↗</a>
+      </div>
+    </div>
+
+    <div class="van-mock">
+      <div class="browser-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="url">elevated-van-journeys · the route</span>
+      </div>
+      <div class="van-map">
+        <!-- Stylized map illustration with route + audio motif -->
+        <svg viewBox="0 0 400 280" preserveAspectRatio="xMidYMid slice">
+          <!-- topo contours -->
+          <g fill="none" stroke="rgba(244,236,212,0.18)" stroke-width="1">
+            <path d="M0 80 Q 100 60, 200 90 T 400 70"/>
+            <path d="M0 110 Q 100 90, 200 120 T 400 100"/>
+            <path d="M0 140 Q 100 120, 200 150 T 400 130"/>
+            <path d="M0 170 Q 100 150, 200 180 T 400 160"/>
+            <path d="M0 200 Q 100 180, 200 210 T 400 190"/>
+            <path d="M0 230 Q 100 210, 200 240 T 400 220"/>
+          </g>
+          <!-- route line -->
+          <path d="M 40 220 C 100 180, 130 150, 180 140 S 280 80, 360 60"
+                fill="none" stroke="#f5c526" stroke-width="3" stroke-linecap="round"
+                stroke-dasharray="0,0"/>
+          <!-- hub stops -->
+          <g>
+            <circle cx="40" cy="220" r="6" fill="#ff4d2e" stroke="#1a1a1a" stroke-width="1.5"/>
+            <circle cx="130" cy="150" r="6" fill="#ff4d2e" stroke="#1a1a1a" stroke-width="1.5"/>
+            <circle cx="220" cy="120" r="6" fill="#ff4d2e" stroke="#1a1a1a" stroke-width="1.5"/>
+            <circle cx="290" cy="80" r="6" fill="#ff4d2e" stroke="#1a1a1a" stroke-width="1.5"/>
+            <circle cx="360" cy="60" r="8" fill="#7fd1b4" stroke="#1a1a1a" stroke-width="1.5"/>
+          </g>
+          <!-- audio waves between hubs to signal "guided audio along the route" -->
+          <g stroke="#7fd1b4" stroke-width="1.2" fill="none" opacity="0.7">
+            <path d="M 80 195 q 5 -8 10 0 q 5 8 10 0 q 5 -8 10 0"/>
+            <path d="M 160 138 q 5 -8 10 0 q 5 8 10 0 q 5 -8 10 0"/>
+            <path d="M 245 105 q 5 -8 10 0 q 5 8 10 0 q 5 -8 10 0"/>
+            <path d="M 320 72 q 5 -8 10 0 q 5 8 10 0 q 5 -8 10 0"/>
+          </g>
+          <!-- mountain glyphs -->
+          <g fill="rgba(244,236,212,0.25)" stroke="rgba(244,236,212,0.4)" stroke-width="1">
+            <polygon points="80,180 110,130 140,180"/>
+            <polygon points="170,160 200,110 230,160"/>
+            <polygon points="240,140 280,80 320,140"/>
+          </g>
+          <!-- hub labels -->
+          <g font-family="DM Mono, monospace" font-size="8" fill="rgba(244,236,212,0.55)">
+            <text x="50" y="240">hub 1</text>
+            <text x="140" y="170">hub 2</text>
+            <text x="230" y="140">hub 3</text>
+            <text x="300" y="100">hub 4</text>
+          </g>
+        </svg>
+        <div class="legend">
+          <div class="row"><span class="sq" style="background:#f5c526"></span> curated route</div>
+          <div class="row"><span class="sq" style="background:#ff4d2e"></span> wellness hubs</div>
+          <div class="row"><span class="sq" style="background:#7fd1b4"></span> guided audio</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATCH GRID -->
+<section class="std" id="match">
+  <div class="section-label">
+    <span class="num">02</span>
+    <span>The JD, line by line</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>What you <em>need</em>, <span class="hl">side-by-side</span> with what I've done.</h2>
+
+  <div class="match-grid">
+    <div class="match-head them">Noovo asked for</div>
+    <div class="match-head me">Katrina has</div>
+
+    <div class="match-row">
+      <div>"3–7 years of project management, operations, or <b>cross-functional coordination</b>"</div>
+      <div><span class="check">▸ STRONG MATCH</span>15 years coordinating across sales, marketing, creative, eng. At Teren and Zayo, I owned the wiring between content, field, digital, and events teams. At Upstream, I AM the cross-functional team.</div>
+    </div>
+
+    <div class="match-row">
+      <div>"Experience working in a <b>startup or fast-paced growth environment</b>"</div>
+      <div><span class="check">▸ STRONG MATCH</span>Co-founder at Upstream AI. Early team at Homebot (PropTech, seed→growth). Three years at Teren (seed-stage geospatial). Startup pace is my native pace.</div>
+    </div>
+
+    <div class="match-row">
+      <div>"Proficiency with Monday.com or <b>similar tools like Asana, ClickUp, Jira</b>, and Google Sheets"</div>
+      <div><span class="check">▸ STRONG MATCH</span>I run Upstream's project tracking on GitHub Projects + Notion + Linear. I've used Asana, ClickUp, Trello, Jira, Airtable, and Smartsheet across past roles. Monday.com onboards in days.</div>
+    </div>
+
+    <div class="match-row">
+      <div>"Ability to <b>push projects forward diplomatically but firmly</b>"</div>
+      <div><span class="check">▸ STRONG MATCH</span>I've been the person who walks regulators, water operators, investors, and engineers through the same project from four different angles. Diplomacy is the job. Firmness is the deliverable.</div>
+    </div>
+
+    <div class="match-row">
+      <div>"Comfort managing <b>multiple stakeholders</b> with different personalities and priorities"</div>
+      <div><span class="check">▸ STRONG MATCH</span>Pilot utility operators, my co-founder, investors, conference organizers, regulators, and the people who run the local ski shop where I do data work. Different personalities is Tuesday.</div>
+    </div>
+
+    <div class="match-row">
+      <div>"<b>Build repeatable systems</b> for project management" + "standardize templates, workflows, and reporting structures"</div>
+      <div><span class="check">▸ STRONG MATCH</span>At Zayo I built the lead-scoring system that lifted closed deals 30%. At Teren I built the persona-driven funnel templates. At Upstream I built the pilot-readiness review workflow. Repeatable systems are my favorite deliverable.</div>
+    </div>
+
+    <div class="match-row">
+      <div>"<b>Identify execution risks early</b> · Resolve cross-team dependencies · Escalate without overloading leadership"</div>
+      <div><span class="check">▸ STRONG MATCH</span>This is literally what a co-founder of a two-person startup does every day. I've written more "here are three blockers, here's what I'm doing about two of them, I need your input on one" updates than I can count.</div>
+    </div>
+  </div>
+
+  <div class="tools">
+    <span class="tool-chip"><span class="dot" style="background: var(--noovo)"></span>Monday.com-ready</span>
+    <span class="tool-chip"><span class="dot" style="background: var(--road)"></span>Asana</span>
+    <span class="tool-chip"><span class="dot" style="background: var(--riso-yellow)"></span>ClickUp</span>
+    <span class="tool-chip"><span class="dot" style="background: var(--riso-mint)"></span>Linear</span>
+    <span class="tool-chip"><span class="dot" style="background: var(--ink)"></span>Notion</span>
+    <span class="tool-chip"><span class="dot" style="background: var(--noovo)"></span>Airtable</span>
+    <span class="tool-chip"><span class="dot" style="background: var(--road)"></span>Google Sheets</span>
+    <span class="tool-chip"><span class="dot" style="background: var(--riso-yellow)"></span>Smartsheet</span>
+    <span class="tool-chip"><span class="dot" style="background: var(--riso-mint)"></span>GitHub Projects</span>
+    <span class="tool-chip"><span class="dot" style="background: var(--ink)"></span>Trello</span>
+  </div>
+</section>
+
+<!-- TRANSLATED RESPONSIBILITIES -->
+<section class="resp">
+  <div class="section-label">
+    <span class="num">03</span>
+    <span>How I'd actually run it</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>Your <em>responsibilities</em>, with examples from my actual work.</h2>
+
+  <p class="resp-intro">
+    The JD lists five buckets of responsibility. Here's <b>one concrete example from
+    my career for each</b> — so you can see what "yes I've done that" actually looks like
+    in practice, not in buzzwords.
+  </p>
+
+  <div class="resp-grid">
+
+    <div class="resp-card">
+      <span class="tag">Cross-functional leadership</span>
+      <h4>Teren GTM: 4× qualified leads, month over month</h4>
+      <p>Owned the web tech, content, persona work, and campaign execution at a geospatial seed-stage startup. Coordinated across engineering, product, sales, and design to ship aligned campaigns. <span class="hl">The "engine that keeps projects moving"</span> isn't a metaphor here — I was it.</p>
+    </div>
+
+    <div class="resp-card">
+      <span class="tag">Workflow management</span>
+      <h4>Zayo lead scoring: 15% conv lift, 30% closed-deal lift</h4>
+      <p>Built the process flows, profile grading, and reporting dashboards from scratch. Defined ownership, assigned deadlines, made the system legible to sales leadership <span class="hl">without overloading them with detail</span>.</p>
+    </div>
+
+    <div class="resp-card">
+      <span class="tag">Meeting & comms leadership</span>
+      <h4>Upstream pilot onboarding with utility operators</h4>
+      <p>Weekly meetings with two pilot utilities (Genesee and Alma). I prep agendas, drive actionable outcomes, document decisions, and do all the proactive follow-up. <span class="hl">Operators don't have time for meandering meetings</span> — and neither do executives.</p>
+    </div>
+
+    <div class="resp-card">
+      <span class="tag">Risk & bottleneck management</span>
+      <h4>Upstream MVP scoping: cut DMR compliance from MVP</h4>
+      <p>Identified that direct NetDMR submission carried real regulatory liability for a pre-product startup. Reframed scope around a human-in-the-loop approval model, kept the launch on schedule. <span class="hl">Saw the risk early, named it, solved it</span>.</p>
+    </div>
+
+    <div class="resp-card">
+      <span class="tag">Process optimization</span>
+      <h4>Upstream sub-agent system for pilot review</h4>
+      <p>Built a repeatable Claude Code sub-agent workflow (doc-repo-tester, daily-report-builder, pilot-readiness-reviewer) so my co-founder and I can audit pilot status in minutes, not hours. <span class="hl">Templates and standardized workflows are how a small team punches above its weight</span>.</p>
+    </div>
+
+    <div class="resp-card">
+      <span class="tag">Dashboards & reporting</span>
+      <h4>Multiple roles, multiple dashboards, one habit</h4>
+      <p>At NPS I built custom dashboards for GIS staff. At Lytics I built reporting views for enterprise clients. At Upstream I build Supabase dashboards for pilot operators. <span class="hl">I default to making the invisible visible</span>, which is what leadership reporting actually is.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY NOOVO -->
+<section class="std">
+  <div class="section-label">
+    <span class="num">04</span>
+    <span>Why Noovo specifically</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>This <em>isn't</em> a generic application.</h2>
+
+  <div class="why-grid">
+    <div class="why-text">
+      <p>
+        I get pinged for project manager roles every week. I don't apply to
+        most of them. I'm applying to this one because <b>Noovo sits at the
+        intersection of three things I already love</b>: design-forward
+        product, the outdoor / van-life community, and small-team execution.
+      </p>
+      <p>
+        I co-founded a van wellness business plan in grad school, before
+        there was a job to apply for. I live in Colorado, on the road half
+        the time between Boulder and the western slope, and I know
+        <span class="hl">the specific kind of buyer who walks into a Noovo
+        showroom</span> — because that's my circle.
+      </p>
+      <p>
+        I'm based in Boulder, not Las Vegas, but the JD doesn't specify
+        on-site. If on-site is required, let's talk about it. If it's not,
+        I'm a high-functioning remote PM with Mountain Time as a feature,
+        not a bug — overlap with both coasts.
+      </p>
+    </div>
+
+    <div class="why-card">
+      <span class="tag">★ ON-BRAND</span>
+      <h4>The receipts on "I get it"</h4>
+      <p>Three signals that I'm not just pattern-matching on a job title:</p>
+      <div class="fact">
+        <b>Van-life by design.</b> Co-founded the Elevated Van Journeys wellness business plan with a licensed therapist and a van-converting engineer. I've thought hard about what makes a great van experience.
+      </div>
+      <div class="fact">
+        <b>Outdoors by training.</b> Three years building tools for the National Park Service. Taught outdoor education in college. Spent a year traveling rural America in a van.
+      </div>
+      <div class="fact">
+        <b>Mountain-town life by choice.</b> Boulder + Glenwood Springs, ski + bike background, current data analyst for a local mountain shop.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="cta-card">
+    <h2>Let's <em>keep the projects</em><br>moving.</h2>
+    <p>
+      I'd love a 30-minute call to walk through how I'd actually structure
+      your first 90 days — what I'd audit, what I'd standardize, and where
+      I'd let things keep running as-is.
+    </p>
+    <div class="cta-buttons">
+      <a href="mailto:katrina@engelsted.co?subject=Re%3A%20Project%20Manager%20application&body=Hi%20Katrina%2C" class="btn primary">Email me →</a>
+      <a href="./index.html" class="btn outline">See the full resume site</a>
+      <a href="https://linkedin.com/in/katrinae" target="_blank" rel="noopener" class="btn outline">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>katrina@engelsted.co · Boulder, CO</span>
+  <span>Built in an afternoon · Riso dreams · Made with <span class="heart">♥</span></span>
+</footer>
+
+</body>
+</html>
