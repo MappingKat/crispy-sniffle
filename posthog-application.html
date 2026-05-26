@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Katrina Engelsted × PostHog — Developer Marketer application</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,900;1,500&family=DM+Mono:wght@400;500;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:    #f4ecd4;
+    --paper-2:  #ede2bf;
+    --ink:      #1a1a1a;
+    --ink-soft: #3a3a3a;
+    --riso-red: #ff4d2e;
+    --riso-blue:#2e4ad0;
+    --riso-yellow:#f5c526;
+    --riso-mint:#7fd1b4;
+    --posthog: #1d4aff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    overflow-x: hidden;
+    position: relative;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: radial-gradient(circle, var(--ink) 0.6px, transparent 0.6px);
+    background-size: 5px 5px; opacity: 0.06; pointer-events: none; z-index: 1;
+  }
+  body::after {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1, 0 0 0 0 0.1, 0 0 0 0 0.1, 0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    pointer-events: none; z-index: 1; mix-blend-mode: multiply; opacity: 0.5;
+  }
+  main, header, footer, section { position: relative; z-index: 2; }
+
+  /* TOPBAR */
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 5vw;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .topbar .crumbs { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .topbar .crumbs a { color: var(--ink-soft); text-decoration: none; }
+  .topbar .crumbs a:hover { color: var(--riso-red); }
+  .topbar .crumbs .sep { color: var(--ink-soft); opacity: 0.5; }
+  .topbar .crumbs .here { color: var(--ink); font-weight: 700; }
+  .topbar .stamp {
+    background: var(--riso-red); color: var(--paper);
+    padding: 4px 12px; border-radius: 3px; font-weight: 700;
+    transform: rotate(-1deg);
+  }
+
+  /* HERO */
+  .hero { padding: 5vh 5vw 6vh; position: relative; overflow: hidden; }
+  .hero-meta {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    margin-bottom: 28px; color: var(--ink-soft);
+  }
+  .hero-meta .pill {
+    background: var(--paper-2); border: 1px solid var(--ink);
+    padding: 4px 10px; border-radius: 20px;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .hero-meta .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--riso-red); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: 0.4; } }
+
+  .hero h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(38px, 7vw, 96px);
+    font-weight: 900; line-height: 0.92;
+    letter-spacing: -2.5px; margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic; font-weight: 500;
+    color: var(--riso-red); font-family: 'DM Sans', sans-serif;
+  }
+  .hero h1 .stamp {
+    font-style: normal; background: var(--posthog); color: var(--paper);
+    padding: 0 12px 4px; display: inline-block; transform: rotate(-1.5deg);
+  }
+  .hero h1 .stamp-y {
+    font-style: normal; background: var(--riso-yellow); color: var(--ink);
+    padding: 0 8px; display: inline-block; transform: rotate(-1deg);
+  }
+  .hero-sub {
+    font-size: clamp(17px, 1.7vw, 21px); max-width: 720px;
+    line-height: 1.5; color: var(--ink-soft); margin-bottom: 32px;
+  }
+  .hero-sub b { color: var(--ink); }
+
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 22px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid var(--ink); background: var(--ink); color: var(--paper);
+    border-radius: 4px; cursor: pointer;
+    transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+  }
+  .btn:hover { background: var(--riso-red); border-color: var(--riso-red); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .btn.ghost:hover { background: var(--riso-yellow); color: var(--ink); border-color: var(--ink); }
+
+  .hero-blob { position: absolute; top: -80px; right: -100px; width: 400px; height: 400px; background: var(--posthog); border-radius: 50%; mix-blend-mode: multiply; opacity: 0.9; z-index: -1; }
+  .hero-blob-2 { position: absolute; top: 80px; right: 60px; width: 160px; height: 160px; background: var(--riso-yellow); border-radius: 50%; mix-blend-mode: multiply; opacity: 0.85; z-index: -1; }
+  .hedgie {
+    position: absolute; bottom: 20px; right: 5vw;
+    font-family: 'Caveat', cursive; font-size: 22px;
+    color: var(--riso-blue); transform: rotate(-3deg);
+  }
+  .hedgie::before { content: '↘'; display: block; font-size: 28px; line-height: 1; }
+
+  /* TLDR */
+  .tldr {
+    background: var(--paper-2);
+    border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
+    padding: 5vh 5vw;
+  }
+  .tldr .section-label { margin-bottom: 24px; }
+  .tldr-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .tldr-card {
+    background: var(--paper); border: 1.5px solid var(--ink);
+    padding: 22px 20px; border-radius: 6px;
+    position: relative; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .tldr-card:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
+  .tldr-card .num {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 1.5px; color: var(--ink-soft);
+    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .tldr-card .num .sw { width: 12px; height: 12px; border-radius: 50%; }
+  .tldr-card h4 {
+    font-size: 17px; font-weight: 700; line-height: 1.25;
+    letter-spacing: -0.3px; margin-bottom: 8px;
+  }
+  .tldr-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* SECTION COMMON */
+  section.std { padding: 7vh 5vw; }
+  .section-label {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    margin-bottom: 22px; color: var(--ink-soft);
+  }
+  .section-label .num {
+    background: var(--ink); color: var(--paper);
+    padding: 3px 8px; border-radius: 3px; font-weight: 500;
+  }
+  .section-label .line { flex: 1; height: 1.5px; background: var(--ink); max-width: 60px; }
+  h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(32px, 4.5vw, 56px);
+    font-weight: 900; line-height: 0.98;
+    letter-spacing: -1.5px; margin-bottom: 28px;
+    max-width: 900px;
+  }
+  h2 em { font-style: italic; font-weight: 500; color: var(--riso-red); }
+  h2 .hl {
+    font-style: normal; background: var(--riso-yellow); padding: 0 8px;
+    display: inline-block; transform: rotate(-0.5deg);
+  }
+
+  /* MATCH GRID */
+  .match-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    border: 1.5px solid var(--ink); border-radius: 6px;
+    overflow: hidden; box-shadow: 6px 6px 0 var(--ink);
+    background: var(--paper);
+  }
+  .match-head {
+    padding: 14px 20px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 700;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .match-head.them { background: var(--posthog); color: var(--paper); border-right: 1.5px solid var(--ink); }
+  .match-head.me { background: var(--ink); color: var(--paper); }
+  .match-row { display: contents; }
+  .match-row > div {
+    padding: 18px 20px; border-bottom: 1px dashed rgba(26,26,26,0.25);
+    font-size: 14px; line-height: 1.5;
+  }
+  .match-row > div:first-child {
+    border-right: 1.5px solid var(--ink); color: var(--ink-soft);
+    background: var(--paper-2);
+  }
+  .match-row > div:last-child { color: var(--ink); }
+  .match-row > div b { background: var(--riso-yellow); padding: 0 3px; }
+  .match-row:last-child > div { border-bottom: none; }
+  .match-row .check {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: var(--riso-red); font-weight: 700; margin-right: 6px;
+    letter-spacing: 1px;
+  }
+
+  /* SHIP LOG */
+  .shiplog { background: var(--ink); color: var(--paper); padding: 7vh 5vw; border-top: 1.5px solid var(--ink); position: relative; overflow: hidden; }
+  .shiplog::before { content: ''; position: absolute; top: -100px; right: -80px; width: 320px; height: 320px; background: var(--riso-red); border-radius: 50%; mix-blend-mode: screen; opacity: 0.75; }
+  .shiplog .section-label { color: var(--paper); }
+  .shiplog .section-label .num { background: var(--paper); color: var(--ink); }
+  .shiplog .section-label .line { background: var(--paper); }
+  .shiplog h2 { color: var(--paper); }
+  .shiplog h2 em { color: var(--riso-yellow); }
+  .shiplog .intro { color: rgba(244,236,212,0.75); max-width: 680px; margin-bottom: 36px; font-size: 16px; line-height: 1.55; position: relative; z-index: 2; }
+  .ships { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; position: relative; z-index: 2; }
+  .ship {
+    background: rgba(244,236,212,0.06);
+    border: 1px solid rgba(244,236,212,0.25);
+    padding: 22px 22px;
+    border-radius: 6px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .ship:hover { background: rgba(244,236,212,0.1); border-color: var(--riso-yellow); }
+  .ship .when {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 1.5px; color: var(--riso-yellow);
+    margin-bottom: 8px;
+  }
+  .ship h4 { font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px; }
+  .ship p { font-size: 13px; line-height: 1.55; color: rgba(244,236,212,0.78); }
+  .ship .num { font-family: 'DM Mono', monospace; font-weight: 700; color: var(--riso-yellow); }
+  .ship .inline-link {
+    color: var(--riso-yellow);
+    text-decoration: underline;
+    text-decoration-color: rgba(245,197,38,0.4);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.15s;
+  }
+  .ship .inline-link:hover { text-decoration-color: var(--riso-yellow); }
+  .ship-img {
+    margin-top: 14px;
+    border: 1px solid rgba(244,236,212,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    background: #2a2a2a;
+  }
+  .ship-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .ship-img .img-caption {
+    display: block;
+    padding: 8px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(244,236,212,0.6);
+    border-top: 1px solid rgba(244,236,212,0.15);
+  }
+  .ship-wide {
+    grid-column: 1 / -1;
+    border-color: rgba(245,197,38,0.35);
+  }
+  .ship-img-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .ship-img-row .ship-img { margin-top: 0; }
+  @media (max-width: 760px) {
+    .ship-img-row { grid-template-columns: 1fr; }
+  }
+
+  /* WEIRD */
+  .weird { padding: 7vh 5vw; background: var(--paper-2); border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); }
+  .weird-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px; align-items: center; }
+  .weird-text p { font-size: 16px; line-height: 1.65; color: var(--ink-soft); margin-bottom: 16px; max-width: 560px; }
+  .weird-text p b { color: var(--ink); }
+  .weird-text p .hl { background: var(--riso-yellow); padding: 0 3px; }
+  .pizza-card {
+    background: var(--paper); border: 1.5px solid var(--ink);
+    border-radius: 6px; padding: 28px; position: relative;
+    box-shadow: 6px 6px 0 var(--posthog);
+  }
+  .pizza-card .tag {
+    position: absolute; top: -14px; left: 24px;
+    background: var(--ink); color: var(--paper);
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    padding: 4px 10px; letter-spacing: 1.5px;
+    transform: rotate(-2deg);
+  }
+  .pizza-card h4 { font-size: 22px; font-weight: 700; margin-bottom: 14px; line-height: 1.2; }
+  .pizza-card .verdict {
+    font-family: 'Caveat', cursive; font-size: 36px;
+    color: var(--riso-red); line-height: 1; margin: 10px 0 14px;
+    transform: rotate(-1.5deg); display: inline-block;
+  }
+  .pizza-card p { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+  .pizza-card .vote {
+    margin-top: 18px; display: flex; align-items: center; gap: 10px;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 1.5px; color: var(--ink-soft);
+  }
+  .pizza-card .bar { flex: 1; height: 6px; background: var(--paper-2); border: 1px solid var(--ink); border-radius: 3px; overflow: hidden; }
+  .pizza-card .bar > span { display: block; height: 100%; background: var(--riso-red); width: 60%; }
+
+  /* CTA */
+  .cta { padding: 8vh 5vw; text-align: left; }
+  .cta-card {
+    background: var(--ink); color: var(--paper);
+    padding: 48px 40px; border-radius: 6px;
+    border: 1.5px solid var(--ink);
+    position: relative; overflow: hidden;
+    box-shadow: 8px 8px 0 var(--riso-red);
+  }
+  .cta-card::before { content: ''; position: absolute; bottom: -80px; left: -60px; width: 240px; height: 240px; background: var(--posthog); border-radius: 50%; mix-blend-mode: screen; opacity: 0.7; }
+  .cta-card h2 { color: var(--paper); margin-bottom: 18px; position: relative; z-index: 2; }
+  .cta-card h2 em { color: var(--riso-yellow); }
+  .cta-card p { color: rgba(244,236,212,0.85); font-size: 17px; line-height: 1.55; max-width: 620px; margin-bottom: 28px; position: relative; z-index: 2; }
+  .cta-buttons { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 2; }
+  .cta-card .btn { border-color: var(--paper); }
+  .cta-card .btn.primary { background: var(--paper); color: var(--ink); }
+  .cta-card .btn.primary:hover { background: var(--riso-yellow); color: var(--ink); border-color: var(--riso-yellow); box-shadow: 4px 4px 0 var(--paper); }
+  .cta-card .btn.outline { background: transparent; color: var(--paper); }
+  .cta-card .btn.outline:hover { background: var(--paper); color: var(--ink); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(244,236,212,0.55);
+    padding: 24px 5vw;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    border-top: 1px dashed rgba(244,236,212,0.3);
+  }
+  footer .heart { color: var(--riso-red); }
+
+  /* MOBILE */
+  @media (max-width: 760px) {
+    .hero-blob { width: 240px; height: 240px; right: -100px; top: -30px; }
+    .hero-blob-2 { display: none; }
+    .match-grid { grid-template-columns: 1fr; }
+    .match-row > div:first-child { border-right: none; border-bottom: 1px solid var(--ink); }
+    .match-head.them { border-right: none; }
+    .ships { grid-template-columns: 1fr; }
+    .weird-grid { grid-template-columns: 1fr; gap: 24px; }
+    .cta-card { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="crumbs">
+    <a href="./katrina-engelsted.html">engelsted.co</a>
+    <span class="sep">/</span>
+    <a href="./katrina-engelsted.html">applications</a>
+    <span class="sep">/</span>
+    <span class="here">posthog</span>
+  </div>
+  <span class="stamp">↗ Developer Marketer</span>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob-2"></div>
+
+  <div class="hero-meta">
+    <span class="pill"><span class="dot"></span>Open application</span>
+    <span class="pill">For: <b style="margin-left:4px">PostHog</b></span>
+    <span class="pill">Role: Developer Marketer</span>
+    <span class="pill">From: Boulder, CO</span>
+  </div>
+
+  <h1>
+    I think I'm the<br>
+    <em>developer marketer</em><br>
+    you keep trying to<br>
+    <span class="stamp">find.</span>
+  </h1>
+
+  <p class="hero-sub">
+    Hi PostHog. I'm <b>Katrina Engelsted</b> — a co-founder, a former solutions
+    engineer, and a marketer who's <b>shipped code at every job since 2012</b>.
+    I read the JD twice, made myself a coffee, and built this page instead of
+    pasting a generic cover letter. Here's the case.
+  </p>
+
+  <div class="hero-cta">
+    <a href="#match" class="btn">See the match →</a>
+    <a href="#contact" class="btn ghost">Skip to "hire me"</a>
+  </div>
+
+  <div class="hedgie">yes, this is the application</div>
+</header>
+
+<!-- TLDR -->
+<section class="tldr">
+  <div class="section-label">
+    <span class="num">TL;DR</span>
+    <span>Four things to know</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="tldr-grid">
+    <div class="tldr-card">
+      <div class="num"><span class="sw" style="background: var(--posthog)"></span>01 · The shape</div>
+      <h4>T-shaped, vertically into devtools</h4>
+      <p>Marketing tech, solutions engineering, frontend dev, GTM. The horizontal bar is real and broad.</p>
+    </div>
+    <div class="tldr-card">
+      <div class="num"><span class="sw" style="background: var(--riso-red)"></span>02 · The product</div>
+      <h4>I'm building an AI devtool right now</h4>
+      <p>Co-founder at Upstream AI. RAG, Claude API, sub-agents, the whole stack. I speak the language fluently.</p>
+    </div>
+    <div class="tldr-card">
+      <div class="num"><span class="sw" style="background: var(--riso-yellow)"></span>03 · The track record</div>
+      <h4>4× qualified leads. 15% conv lift. Etc.</h4>
+      <p>I've owned end-to-end launches at three startups. I make plans, then do the plans.</p>
+    </div>
+    <div class="tldr-card">
+      <div class="num"><span class="sw" style="background: var(--riso-mint)"></span>04 · The weird</div>
+      <h4>Geographer. Bike coach. Vibe coder.</h4>
+      <p>If "be as weird as possible" is on the wall, I'd like a seat at that wall.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MATCH -->
+<section class="std" id="match">
+  <div class="section-label">
+    <span class="num">01</span>
+    <span>The JD, line by line</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>What you <em>asked for</em>, <span class="hl">side-by-side</span> with what I bring.</h2>
+
+  <div class="match-grid">
+    <div class="match-head them">PostHog wrote</div>
+    <div class="match-head me">Katrina has</div>
+
+    <div class="match-row">
+      <div>"Development experience, though not necessarily in a formal role — <b>vibecoded side projects still count.</b>"</div>
+      <div><span class="check">▸ STRONG MATCH</span>I'm currently shipping a production AI SaaS as a co-founder. Frontend dev at NPS for 3 years, full-stack at Galvanize, RAG + Claude API + Supabase day-to-day. Vibecoded? Yes. Also non-vibecoded.</div>
+    </div>
+
+    <div class="match-row">
+      <div>"Experience targeting developers as customers or writing for <b>technical audiences</b>."</div>
+      <div><span class="check">▸ STRONG MATCH</span>Solutions Engineering Mgr at Homebot (devs + lenders). Sr. Technical Consultant at Lytics (CDP, customer journey queries). Head of Marketing Tech at a geospatial startup. Writing for engineers is what I do.</div>
+    </div>
+
+    <div class="match-row">
+      <div>"Experience running <b>email campaigns, GTM campaigns, sales enablement</b>."</div>
+      <div><span class="check">▸ STRONG MATCH</span>Built end-to-end GTM at Teren (4× qualified leads). Lead scoring + automations at Zayo (15% lift in conversion, 30% lift in closed deals). HubSpot, Klaviyo, Pardot, mParticle certified.</div>
+    </div>
+
+    <div class="match-row">
+      <div>"Familiarity with <b>devtool products</b>." (nice-to-have)</div>
+      <div><span class="check">▸ STRONG MATCH</span>I am literally building one. I also use Claude Code, PostHog, Supabase, Vercel, Cloudflare Workers, and a long list of other devtools every day. (Yes, we use PostHog at Upstream.)</div>
+    </div>
+
+    <div class="match-row">
+      <div>"Experience working as a <b>product, growth, or content marketer</b>." (nice-to-have)</div>
+      <div><span class="check">▸ STRONG MATCH</span>Product School cert. MBA. Three years as Head of Marketing Tech leading product positioning, persona work, and content. The "T" is wide.</div>
+    </div>
+
+    <div class="match-row">
+      <div>"Excellent writing, researching, and <b>communication skills</b>."</div>
+      <div><span class="check">▸ STRONG MATCH</span>You're reading the artifact. Want more? Investor decks, pilot specs, customer outreach, conference flyers, a public-facing brand. References on request.</div>
+    </div>
+
+    <div class="match-row">
+      <div>"Comfortable being <b>very visible to users</b>, often leading our newest launches or weirdest ideas."</div>
+      <div><span class="check">▸ STRONG MATCH</span>Co-founder energy. I do investor pitches, regulator calls, conference outreach, and pilot demos. Visibility is the job.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SHIPLOG -->
+<section class="shiplog">
+  <div class="section-label">
+    <span class="num">02</span>
+    <span>Ship log</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>Receipts: <em>things I shipped</em>, not strategies I wrote.</h2>
+
+  <p class="intro">
+    You wrote: <i>"Nothing gets shipped in a meeting"</i> and <i>"make the plan, then do the plan."</i>
+    Same. Here's a non-exhaustive list of things that exist in the world because I shipped them.
+  </p>
+
+  <div class="ships">
+
+    <div class="ship">
+      <div class="when">2024 → now · Upstream AI</div>
+      <h4>An entire AI SaaS, from zero</h4>
+      <p>Co-founded with Rob. Wrote the MVP spec, picked the stack (Supabase + Voyage + Claude), built the website, ran the pilot outreach at a regional conference, and signed two pilot utilities. <span class="num">2</span> live pilots, <span class="num">11</span>-table multi-tenant schema with RLS, <span class="num">1</span> patient co-founder.</p>
+    </div>
+
+    <div class="ship">
+      <div class="when">2018–21 · Teren (geospatial startup)</div>
+      <h4>4× qualified leads, month over month</h4>
+      <p>Owned web tech, landing pages, gated content, email campaigns, attribution. Built persona-driven funnels and worked with eng + product on sales enablement that engineers actually used. <span class="num">10%</span> lift in lead gen from segmented landing pages alone.</p>
+    </div>
+
+    <div class="ship">
+      <div class="when">2022 · Zayo Group</div>
+      <h4>Lead scoring that moved closed-won 30%</h4>
+      <p>Built the lead process flows, profile grading, and automation. The system identified high-intent leads early; sales worked them faster. <span class="num">15%</span> lift in lead conv, <span class="num">30%</span> lift in closed deals, <span class="num">500</span> leads from one co-built webinar series.</p>
+    </div>
+
+    <div class="ship">
+      <div class="when">2015–18 · Homebot</div>
+      <h4>A wealth dashboard people actually opened</h4>
+      <p>Solutions Eng Mgr at the early team. Designed the data schema for ingesting messy real estate data from multiple sources, shipped the email-driven product for lenders + agents, trained beta testers. The "interest adds up" visualization below is the kind of UI we shipped to make finance feel less like a black box.</p>
+      <div class="ship-img">
+        <img src="homebot-screenshot.png" alt="Homebot dashboard showing principal vs interest paid, with a refi savings calculator" />
+        <span class="img-caption">Homebot dashboard · principal vs. interest, with a refi-savings slider</span>
+      </div>
+    </div>
+
+    <div class="ship">
+      <div class="when">2012–15 · National Park Service</div>
+      <h4>Maps used by millions of park visitors</h4>
+      <p>Frontend dev on the NPS GIS team. Built and debugged web mapping tools on ArcGIS, Mapbox, and Carto — including the cartography work that became <a href="https://www.nps.gov/maps/tools/park-tiles/view/index.html#4/39.06/-95.98" target="_blank" rel="noopener" class="inline-link">NPS Park Tiles</a>, the official map basemap for park websites. <span class="num">20%</span> lift in site traffic, <span class="num">90%</span> reduction in user-reported errors after a debugging rewrite.</p>
+    </div>
+
+    <div class="ship">
+      <div class="when">2018 · HOT OSM (volunteer)</div>
+      <h4>Training mappers in crisis zones</h4>
+      <p>Contributed to <a href="https://learnosm.org/en/" target="_blank" rel="noopener" class="inline-link">LearnOSM</a>, the official Humanitarian OpenStreetMap Team training material. Walking new volunteers through tracing buildings, roads, and residential land use so disaster-response teams have the maps they need. Open-source, translated into 23+ languages, used worldwide.</p>
+    </div>
+
+    <div class="ship ship-wide">
+      <div class="when">2023 → now · Sunlight Mountain</div>
+      <h4>Data science for a small mountain shop</h4>
+      <p>A proper data project for a local Glenwood Springs ski & bike shop: cleaning messy POS data, restructuring an inconsistent product taxonomy, running EDA on inventory and pricing distributions, and laying the groundwork for demand forecasting and pricing optimization. Jupyter notebooks, Cookiecutter Data Science layout, everything on <a href="https://github.com/MappingKat/SunlightMtnRetail" target="_blank" rel="noopener" class="inline-link">GitHub ↗</a>. Same skill set as enterprise; smaller scale, faster feedback loop.</p>
+      <div class="ship-img-row">
+        <div class="ship-img">
+          <img src="sunlight-inventory.png" alt="Boxplot showing inventory distribution across product categories at Sunlight Mountain" />
+          <span class="img-caption">Inventory distribution by category · seaborn / matplotlib</span>
+        </div>
+        <div class="ship-img">
+          <img src="sunlight-pricing.png" alt="Boxplot showing MSRP distribution across product categories at Sunlight Mountain" />
+          <span class="img-caption">Price distribution by category · same dataset</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ship">
+      <div class="when">2021 · MBA capstone</div>
+      <h4>Elevated Vans — interactive map</h4>
+      <p>An interactive Mapbox-powered visualization of high-altitude van life routes across the American West, built as part of my Quantic MBA portfolio. Geographer brain meets product brain. <a href="https://mappingkat.github.io/elevated-vans/" target="_blank" rel="noopener" class="inline-link">mappingkat.github.io/elevated-vans ↗</a></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- WEIRD -->
+<section class="weird">
+  <div class="section-label">
+    <span class="num">03</span>
+    <span>The "be weird" clause</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>You said weird is a <em>competitive advantage</em>. I agree.</h2>
+
+  <div class="weird-grid">
+    <div class="weird-text">
+      <p>
+        I read your handbook. <b>Twice.</b> The thing that hooked me wasn't
+        the comp transparency (though, chef's kiss) — it was the part where
+        you say weird means <span class="hl">"redesigning an already
+        world-class website for the 5th time"</span> and <span class="hl">"building
+        an objectively unnecessary developer toy with dubious shareholder value."</span>
+      </p>
+      <p>
+        That's exactly the energy I want at this stage. I've spent the
+        last decade in startups that needed someone to wear seven hats and
+        a couple of bigger companies that taught me why I prefer
+        the seven-hat life. <b>Big problems, small teams, fast cycles.</b>
+      </p>
+      <p>
+        I am bringing to the interview: a Master's in Data Science I just
+        finished, an MBA from somewhere weird (Quantic, also async-native),
+        a Gamma Theta Upsilon honor society pin that I will never display,
+        and the lived experience of co-founding a SaaS company for rural
+        water operators — possibly the least sexy and most rewarding
+        vertical in the world. Also I coach mountain biking.
+      </p>
+    </div>
+
+    <div class="pizza-card">
+      <span class="tag">★ ICEBREAKER</span>
+      <h4>Does pineapple belong on pizza?</h4>
+      <div class="verdict">Absolutely yes.</div>
+      <p>
+        Sweet + salty + acidic + umami is a <b>full sensory product</b>.
+        Anyone who says otherwise is optimizing for tradition over outcomes.
+        Ship the pineapple.
+      </p>
+      <div class="vote">
+        <span>60% says yes</span>
+        <span class="bar"><span></span></span>
+        <span style="color: var(--riso-red); font-weight: 700;">+1</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="cta-card">
+    <h2>Let's <em>ship something</em><br>weird together.</h2>
+    <p>
+      I'm in Boulder, async-native, and comfortable being the loud voice for
+      a launch on Monday and writing the SQL example for the engineer on Tuesday.
+      If LLM Analytics needs a marketer who actually understands what an LLM is,
+      I'd love to talk.
+    </p>
+    <div class="cta-buttons">
+      <a href="mailto:katrina@engelsted.co?subject=Re%3A%20Developer%20Marketer%20application&body=Hi%20Katrina%2C" class="btn primary">Email me →</a>
+      <a href="./katrina-engelsted.html" class="btn outline">See the full resume site</a>
+      <a href="https://linkedin.com/in/katrinae" target="_blank" rel="noopener" class="btn outline">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>katrina@engelsted.co · Boulder, CO</span>
+  <span>Built in an afternoon · No webinars were harmed · Made with <span class="heart">♥</span></span>
+</footer>
+
+</body>
+</html>
