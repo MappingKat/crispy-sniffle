@@ -487,6 +487,74 @@
   }
   .why-card .fact b { background: var(--riso-yellow); padding: 0 3px; }
 
+  /* JOURNAL CITATION CARD */
+  .cite-card {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    padding: 26px;
+    box-shadow: 6px 6px 0 var(--sage);
+    position: relative;
+  }
+  .cite-card .journal {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .cite-card .journal .peer {
+    background: var(--sage);
+    color: var(--paper);
+    padding: 2px 7px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+  }
+  .cite-card .paper-title {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+  }
+  .cite-card .authors {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+  .cite-card .pull {
+    background: var(--paper-2);
+    border-left: 3px solid var(--water);
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .cite-card .pull b { background: var(--riso-yellow); padding: 0 3px; }
+  .cite-card .cite-cta {
+    display: inline-flex;
+    align-items: center; gap: 8px;
+    padding: 10px 16px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 4px;
+    transition: background 0.15s;
+  }
+  .cite-card .cite-cta:hover { background: var(--water); border-color: var(--water); }
+
   /* CTA */
   .cta { padding: 8vh 5vw; }
   .cta-card {
@@ -672,11 +740,66 @@
   </div>
 </section>
 
-<!-- RECEIPT #1 — WWOOF THESIS -->
-<section class="receipt-feature" id="receipts">
+<!-- RECEIPT #1 — WATER CONSERVATION RATES RESEARCH -->
+<section class="std" id="receipts" style="background: var(--paper-2); border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);">
   <div class="section-label">
     <span class="num">01</span>
-    <span>Receipt #1 · The GIS + spatial-stats project</span>
+    <span>Receipt #1 · The water-conservation-rates research</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>I did undergrad research on <em>who adopts conservation water rates</em> — and why.</h2>
+
+  <div class="why-grid">
+    <div class="why-text">
+      <p>
+        At Colgate I worked with <b>Prof. Manny Teodoro</b> — the same
+        person who sent me this opening — to investigate whether anyone was
+        studying <span class="hl">professional mobility and its effect on
+        water-rate structures</span>. That question became the seed of his
+        peer-reviewed paper on professional policy networks and water
+        conservation rates.
+      </p>
+      <p>
+        The finding still shapes how I think about MWM's world: water
+        utility executives who arrive <b>from outside</b> an agency are far
+        more likely to adopt conservation-oriented rate structures than
+        those promoted from within — what he calls
+        <b>"mobility-contingent professionalism."</b> Career path predicts
+        conservation-rate adoption even after controlling for climate.
+      </p>
+      <p>
+        Why it matters here: <b>conservation rate design is core to MWM's
+        practice.</b> I've thought rigorously about the institutional and
+        human factors behind whether a utility actually adopts them — not
+        just the demand math. That's a useful lens to bring to demand
+        modeling and conservation-program work.
+      </p>
+    </div>
+
+    <div class="cite-card">
+      <div class="journal">
+        <span>J. Public Admin. Research &amp; Theory · 2010 · 20(2):437</span>
+        <span class="peer">Peer-reviewed</span>
+      </div>
+      <div class="paper-title">Contingent Professionalism: Bureaucratic Mobility and the Adoption of Water Conservation Rates</div>
+      <div class="authors">Manuel P. Teodoro — research I contributed to as an undergraduate at Colgate</div>
+      <div class="pull">
+        "…environmental policies are most likely to diffuse from professions
+        to governments under conditions of <b>bureaucratic job mobility</b>…
+        executive career path is a strong predictor of an agency's adoption
+        of conservation rates, even after accounting for climatic conditions."
+      </div>
+      <a class="cite-cta" href="https://academic.oup.com/jpart/article-abstract/20/2/437/1149189" target="_blank" rel="noopener">Read the paper ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- RECEIPT #2 — WWOOF THESIS -->
+<section class="receipt-feature" id="thesis">
+  <div class="section-label">
+    <span class="num">02</span>
+    <span>Receipt #2 · The GIS + spatial-stats project</span>
     <span class="line"></span>
   </div>
 
@@ -745,8 +868,8 @@
 <!-- RECEIPT #2 — UPSTREAM AI -->
 <section class="std" id="upstream">
   <div class="section-label">
-    <span class="num">02</span>
-    <span>Receipt #2 · The water-utility startup</span>
+    <span class="num">03</span>
+    <span>Receipt #3 · The water-utility startup</span>
     <span class="line"></span>
   </div>
 
@@ -801,7 +924,7 @@
 <!-- MATCH GRID -->
 <section class="std" id="match" style="background: var(--paper-2); border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);">
   <div class="section-label">
-    <span class="num">03</span>
+    <span class="num">04</span>
     <span>The JD, line by line</span>
     <span class="line"></span>
   </div>
@@ -892,7 +1015,7 @@
 <!-- TRANSLATED RESPONSIBILITIES -->
 <section class="resp">
   <div class="section-label">
-    <span class="num">04</span>
+    <span class="num">05</span>
     <span>How I'd actually do the work</span>
     <span class="line"></span>
   </div>
@@ -950,7 +1073,7 @@
 <!-- WHY MADDAUS -->
 <section class="std">
   <div class="section-label">
-    <span class="num">05</span>
+    <span class="num">06</span>
     <span>Why MWM specifically</span>
     <span class="line"></span>
   </div>
