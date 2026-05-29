@@ -287,19 +287,75 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
+  }
+  .now-list-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+  .now-list-label .tape {
+    background: var(--riso-yellow);
+    color: var(--ink);
+    padding: 3px 9px;
+    border: 1.5px solid var(--ink);
+    transform: rotate(-2deg);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+  }
+  .now-list-label .arrow {
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    color: var(--riso-blue);
+    transform: rotate(-3deg);
+    text-transform: none;
+    letter-spacing: 0;
   }
   .now-item {
     background: var(--paper);
     border: 1.5px solid var(--ink);
-    padding: 18px 22px;
+    padding: 16px 20px;
     border-radius: 6px;
     display: flex;
-    gap: 16px;
+    gap: 14px;
     align-items: flex-start;
     transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
   }
   .now-item:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+  /* per-card riso pattern bars on the right edge */
+  .now-item::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 36px;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+  .now-item.pattern-dots::after {
+    background-image: radial-gradient(circle, var(--riso-red) 1.5px, transparent 1.8px);
+    background-size: 8px 8px;
+  }
+  .now-item.pattern-stripes::after {
+    background-image: repeating-linear-gradient(
+      45deg,
+      var(--riso-mint) 0, var(--riso-mint) 3px,
+      transparent 3px, transparent 8px
+    );
+  }
+  .now-item.pattern-grid::after {
+    background-image:
+      linear-gradient(var(--riso-yellow) 1.5px, transparent 1.5px),
+      linear-gradient(90deg, var(--riso-yellow) 1.5px, transparent 1.5px);
+    background-size: 8px 8px;
+  }
   .now-item .ico {
     flex-shrink: 0;
     width: 38px; height: 38px;
@@ -309,10 +365,30 @@
     display: flex; align-items: center; justify-content: center;
     font-family: 'DM Mono', monospace;
     font-size: 16px; font-weight: 700;
+    position: relative;
+    z-index: 2;
   }
   .now-item .ico.blue { background: var(--riso-mint); }
   .now-item .ico.red  { background: var(--riso-red); color: var(--paper); }
-  .now-item h4 { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+  .now-item .body { position: relative; z-index: 2; padding-right: 40px; flex: 1; }
+  .now-item .tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+  .now-item .tag .num {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1px 5px;
+    border-radius: 2px;
+    margin-right: 5px;
+    font-weight: 700;
+  }
+  .now-item h4 { font-size: 15px; font-weight: 700; margin-bottom: 3px; line-height: 1.25; }
   .now-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin: 0; }
   .squiggle {
     font-family: 'Caveat', cursive;
@@ -434,10 +510,26 @@
     display: flex;
     flex-direction: column;
     min-height: 220px;
+    overflow: hidden;
   }
   .project:hover {
     transform: translate(-3px, -3px);
     box-shadow: 6px 6px 0 var(--ink);
+  }
+  .project .thumb {
+    margin: -26px -24px 18px;
+    height: 140px;
+    background: var(--paper);
+    border-bottom: 1.5px solid var(--ink);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .project .thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: contrast(1.05) saturate(0.9);
+    mix-blend-mode: multiply;
   }
   .project .kind {
     font-family: 'DM Mono', monospace;
@@ -661,7 +753,7 @@
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="left">
-    <span><span class="dot"></span> Available for the right thing</span>
+    <span><span class="dot"></span> Available full-time for the right thing</span>
   </div>
   <nav>
     <a href="#now">Currently</a>
@@ -690,9 +782,10 @@
   </h1>
 
   <p class="hero-sub">
-    Fifteen years of <b>turning messy real-world problems into software</b> — at startups
-    that needed someone to <span class="hl">wear seven hats</span> and a couple of bigger
-    companies that taught me why the small ones matter more.
+    Fifteen years of <b>turning messy real-world problems into software and data</b> — at
+    startups that needed someone to <span class="hl">wear seven hats</span> and a couple of
+    bigger companies that taught me why the small ones matter more.
+    <b>Open to full-time roles</b> where the GIS, R, and dashboard toolkit meets work that matters.
   </p>
 
   <div class="hero-cta">
@@ -715,44 +808,56 @@
 
   <div class="now-grid">
     <div class="now-card">
-      <span class="pin">Main thing</span>
-      <h3>Co-founding <em>Upstream AI</em></h3>
+      <span class="pin">On the side</span>
+      <h3>Founding advisor at <em>Upstream AI</em></h3>
       <p>
-        Building software for small water and wastewater utilities — the
-        <b>1 to 5 person teams</b> who keep drinking water flowing in towns of
-        a few hundred people. They've been running on spreadsheets and tribal
-        knowledge for decades; we're building them an AI-native
-        operations platform.
+        I'm the founding technical advisor (part-time) on an early-stage
+        platform for small water and wastewater utilities — the
+        <b>1 to 5 person teams</b> who keep drinking water flowing in towns
+        of a few hundred people. They've been running on spreadsheets and
+        tribal knowledge for decades; we're building them something better.
       </p>
       <p>
-        Pilot utilities live in Colorado. Lots of regulatory acronyms.
-        Surprisingly fun. <span class="squiggle">→ getupstream.ai</span>
+        Two pilot utilities live in Colorado. Pre-revenue, deliberately
+        sized so I have bandwidth for a full-time analyst seat elsewhere —
+        which is what I'm looking for now. <span class="squiggle">→ getupstream.ai</span>
       </p>
     </div>
 
-    <ul class="now-list">
-      <li class="now-item">
-        <span class="ico red">⚙</span>
-        <div>
-          <h4>Working alongside AI, on purpose</h4>
-          <p>Claude Code is a co-worker now. Sub-agents for testing, doc QA, pilot readiness. Wild times.</p>
-        </div>
-      </li>
-      <li class="now-item">
-        <span class="ico blue">♡</span>
-        <div>
-          <h4>Raising the generation that'll date robots</h4>
-          <p>Trying to make sure they grow up curious, skeptical, and unafraid of either humans or machines.</p>
-        </div>
-      </li>
-      <li class="now-item">
-        <span class="ico">⛰</span>
-        <div>
-          <h4>Out on the trails</h4>
-          <p>Mountain bike coaching, ski seasons, and a constantly recalibrating relationship with elevation.</p>
-        </div>
-      </li>
-    </ul>
+    <div>
+      <div class="now-list-label">
+        <span class="tape">Also true</span>
+        <span>three fun facts</span>
+        <span class="arrow">about me ↓</span>
+      </div>
+
+      <ul class="now-list">
+        <li class="now-item pattern-dots">
+          <span class="ico red">⚙</span>
+          <div class="body">
+            <span class="tag"><span class="num">01</span>Fun fact</span>
+            <h4>Working alongside AI, on purpose</h4>
+            <p>Claude Code is a co-worker now. Sub-agents for testing, doc QA, pilot readiness. Wild times.</p>
+          </div>
+        </li>
+        <li class="now-item pattern-stripes">
+          <span class="ico blue">♡</span>
+          <div class="body">
+            <span class="tag"><span class="num">02</span>Fun fact</span>
+            <h4>Raising the generation that'll date robots</h4>
+            <p>Trying to make sure they grow up curious, skeptical, and unafraid of either humans or machines.</p>
+          </div>
+        </li>
+        <li class="now-item pattern-grid">
+          <span class="ico">⛰</span>
+          <div class="body">
+            <span class="tag"><span class="num">03</span>Fun fact</span>
+            <h4>Out on the trails</h4>
+            <p>Mountain bike coaching, ski seasons, and a constantly recalibrating relationship with elevation.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -782,13 +887,14 @@
       <div class="job-date">2024 — Now</div>
       <div class="job-dot"></div>
       <div class="job-body">
-        <div class="job-role">Co-founder & Product / Engineering <em>(Upstream AI)</em></div>
-        <div class="job-co">Boulder, CO <span class="tag">SaaS · Water</span></div>
+        <div class="job-role">Founding Technical Advisor <em>(Upstream AI)</em></div>
+        <div class="job-co">Boulder, CO · Part-time <span class="tag">SaaS · Water</span></div>
         <p>
-          Co-founded an AI platform for rural water utilities. Doing the
-          product, the engineering, the pilot conversations, and the slide
-          decks — sometimes in the same hour. <span class="hl">Two pilot
-          utilities live in Colorado.</span>
+          Founding advisor at an early-stage AI platform for rural water
+          utilities. Product, engineering, pilot conversations, and the
+          slide decks — sometimes in the same hour. <span class="hl">Two
+          pilot utilities live in Colorado.</span> Pre-revenue, structured
+          so I have bandwidth for a full-time analyst seat.
         </p>
       </div>
     </div>
@@ -888,6 +994,25 @@
       </div>
     </div>
 
+    <div class="job">
+      <div class="job-date">2010 — 11</div>
+      <div class="job-dot"></div>
+      <div class="job-body">
+        <div class="job-role">Honors Thesis, Geography <em>(Colgate University)</em></div>
+        <div class="job-co">GIS · Spatial Statistics <span class="tag">Published research</span></div>
+        <p>
+          <i>A Network of Alternative Economies</i> — an exploratory spatial
+          study of all <b>1,650 WWOOF host farms</b> in the continental U.S.
+          Regression models in ArcGIS against unemployment, natural-amenity,
+          racial-diversity, and Bohemian indices; twelve field interviews
+          ground-truthing the patterns in upstate New York. <span class="hl">First
+          time I got hooked on translating messy real-world data into something
+          that helps a community see itself.</span>
+          <a href="./documents/WWOOFhosts.pdf" target="_blank" rel="noopener" style="color: var(--riso-blue); text-decoration: underline;">Read the thesis ↗</a>
+        </p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -904,10 +1029,19 @@
   <div class="projects-grid">
 
     <a href="https://getupstream.ai" target="_blank" rel="noopener" class="project">
+      <div class="thumb"><img src="./images/water.jpg" alt="Rural water" loading="lazy"/></div>
       <div class="kind"><span class="swatch" style="background: var(--riso-red)"></span>Live product · 2024–now</div>
       <h3>Upstream AI</h3>
       <p>An operations platform for rural water utilities. Document repository with RAG-powered Q&A, AI-assisted daily reports, compliance prep that respects the human in the loop.</p>
       <div class="meta"><span>getupstream.ai</span><span>↗</span></div>
+    </a>
+
+    <a href="./documents/WWOOFhosts.pdf" target="_blank" rel="noopener" class="project">
+      <div class="thumb"><img src="./images/wwoof-host-distribution.png" alt="WWOOF host distribution map" loading="lazy"/></div>
+      <div class="kind"><span class="swatch" style="background: var(--riso-mint)"></span>Honors thesis · 2011</div>
+      <h3>A Network of Alternative Economies</h3>
+      <p>GIS + spatial-statistics study of 1,650 WWOOF host farms across the continental U.S. Regression against amenity, demographic, and Bohemian indices in ArcGIS; twelve field interviews ground-truthing the spatial patterns. Honors in Geography at Colgate.</p>
+      <div class="meta"><span>180 pp · PDF</span><span>↗</span></div>
     </a>
 
     <a href="https://www.nps.gov/maps/tools/park-tiles/view/index.html#4/39.06/-95.98" target="_blank" rel="noopener" class="project">
@@ -917,11 +1051,19 @@
       <div class="meta"><span>nps.gov/maps</span><span>↗</span></div>
     </a>
 
-    <a href="https://mappingkat.github.io/elevated-vans/" target="_blank" rel="noopener" class="project">
-      <div class="kind"><span class="swatch" style="background: var(--riso-yellow)"></span>Personal project · 2021</div>
-      <h3>Elevated Vans</h3>
-      <p>An interactive Mapbox-powered visualization of high-altitude van life routes across the American West. Built as part of my MBA portfolio at Quantic. Geographer brain meets product brain.</p>
-      <div class="meta"><span>mappingkat.github.io</span><span>↗</span></div>
+    <a href="./documents/Elevated%20Journeys%20Business%20Plan.pdf" target="_blank" rel="noopener" class="project">
+      <div class="kind"><span class="swatch" style="background: var(--riso-yellow)"></span>MBA capstone · 2021</div>
+      <h3>Elevated Van Journeys</h3>
+      <p>Full 37-page business plan for an electric-van wellness tourism company: market sizing, Blue Ocean positioning, financials, ops plan, and the five-day Grand Circle itinerary. Co-authored with a therapist and a van-converting engineer. Pairs with the interactive route map at <span style="text-decoration: underline">mappingkat.github.io/elevated-vans</span>.</p>
+      <div class="meta"><span>37 pp · PDF</span><span>↗</span></div>
+    </a>
+
+    <a href="https://github.com/MappingKat/SunlightMtnRetail" target="_blank" rel="noopener" class="project">
+      <div class="thumb"><img src="./images/sunlight-inventory.png" alt="Sunlight inventory analysis" loading="lazy"/></div>
+      <div class="kind"><span class="swatch" style="background: var(--ink)"></span>Data science · 2023–now</div>
+      <h3>Sunlight Mtn Retail Analysis</h3>
+      <p>Inventory and pricing optimization for a small mountain-town ski & bike shop. Data cleanup, taxonomy restructuring, EDA on inventory + pricing distributions, with a roadmap toward demand forecasting. Jupyter notebooks on GitHub.</p>
+      <div class="meta"><span>github.com/MappingKat</span><span>↗</span></div>
     </a>
 
     <a href="https://learnosm.org/en/" target="_blank" rel="noopener" class="project">
@@ -930,20 +1072,6 @@
       <p>Contributed to the official training material for the Humanitarian OpenStreetMap Team — guides that walk new volunteers through tracing buildings and roads so disaster-response teams get the maps they need. Translated into 23+ languages.</p>
       <div class="meta"><span>learnosm.org</span><span>↗</span></div>
     </a>
-
-    <a href="https://github.com/MappingKat/SunlightMtnRetail" target="_blank" rel="noopener" class="project">
-      <div class="kind"><span class="swatch" style="background: var(--ink)"></span>Data science · 2023–now</div>
-      <h3>Sunlight Mtn Retail Analysis</h3>
-      <p>Inventory and pricing optimization for a small mountain-town ski & bike shop. Data cleanup, taxonomy restructuring, EDA on inventory + pricing distributions, with a roadmap toward demand forecasting. Jupyter notebooks on GitHub.</p>
-      <div class="meta"><span>github.com/MappingKat</span><span>↗</span></div>
-    </a>
-
-    <div class="project placeholder">
-      <div class="kind"><span class="swatch" style="background: var(--ink-soft)"></span>Essay · soon</div>
-      <h3>What rural utilities taught me about AI products</h3>
-      <p>Notes from a year of pilot conversations — why "human in the loop" isn't a UX flourish for these operators, it's the regulatory baseline.</p>
-      <div class="meta"><span>Coming soon</span><span>—</span></div>
-    </div>
 
   </div>
 </section>
@@ -961,9 +1089,11 @@
   <div class="contact-grid">
     <div>
       <p class="contact-lead">
-        I'm always up for a conversation with founders building for
-        small or overlooked operators, fellow geographers-gone-software,
-        and anyone thinking carefully about AI in regulated, human-in-the-loop work.
+        I'm <b style="color:var(--paper);">actively looking for a senior full-time analyst, GIS, or
+        solutions role</b> where the toolkit can be applied at scale.
+        Also up for a conversation with founders building for small or
+        overlooked operators, fellow geographers-gone-software, and anyone
+        thinking carefully about AI in regulated, human-in-the-loop work.
       </p>
 
       <ul class="contact-links">

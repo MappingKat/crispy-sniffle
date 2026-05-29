@@ -484,8 +484,46 @@
     .vans-grid { grid-template-columns: 1fr; gap: 24px; }
     .why-grid { grid-template-columns: 1fr; gap: 24px; }
     .match-grid { grid-template-columns: 1fr; }
-    .match-row > div:first-child { border-right: none; border-bottom: 1px solid var(--ink); }
-    .match-head.them { border-right: none; }
+    .match-row > div:first-child {
+      border-right: none;
+      border-bottom: none;
+      padding-bottom: 12px;
+    }
+    .match-row > div:last-child {
+      border-bottom: 1.5px solid var(--ink);
+      padding-top: 12px;
+      background: var(--paper);
+    }
+    .match-row:last-child > div:last-child { border-bottom: none; }
+    .match-head { display: none; }
+    .match-row > div:first-child::before {
+      content: 'Noovo asked for';
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--paper);
+      background: var(--noovo);
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+    .match-row > div:last-child::before {
+      content: 'Katrina has';
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--paper);
+      background: var(--ink);
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
     .cta-card { padding: 32px 24px; }
   }
 </style>
@@ -526,9 +564,9 @@
     plan for <b>Elevated Van Journeys</b> — a wellness tourism company
     built around electric camper vans, curated routes through national
     parks, and <span class="hl">guided audio experiences for mindfulness
-    and reconnection</span>. I'm a startup co-founder by day, and I've spent
-    fifteen years keeping cross-functional projects moving across sales,
-    marketing, creative, and engineering. Here's the case.
+    and reconnection</span>. I've spent fifteen years keeping cross-functional
+    projects moving across sales, marketing, creative, and engineering — and
+    I'm currently looking for the right full-time PM role. Here's the case.
   </p>
 
   <div class="hero-cta">
@@ -596,7 +634,7 @@
     <div class="tldr-card">
       <div class="num"><span class="sw" style="background: var(--riso-mint)"></span>04 · The temperament</div>
       <h4>Diplomatic but firm</h4>
-      <p>Co-founder energy. I push projects forward across stakeholders with different priorities without making it weird.</p>
+      <p>Founder-level energy from two years as a founding advisor at a small startup. I push projects forward across stakeholders with different priorities without making it weird.</p>
     </div>
   </div>
 </section>
@@ -717,12 +755,12 @@
 
     <div class="match-row">
       <div>"3–7 years of project management, operations, or <b>cross-functional coordination</b>"</div>
-      <div><span class="check">▸ STRONG MATCH</span>15 years coordinating across sales, marketing, creative, eng. At Teren and Zayo, I owned the wiring between content, field, digital, and events teams. At Upstream, I AM the cross-functional team.</div>
+      <div><span class="check">▸ STRONG MATCH</span>15 years coordinating across sales, marketing, creative, eng. At Teren and Zayo, I owned the wiring between content, field, digital, and events teams. At Upstream (part-time advisory) I do the same on a tiny team.</div>
     </div>
 
     <div class="match-row">
       <div>"Experience working in a <b>startup or fast-paced growth environment</b>"</div>
-      <div><span class="check">▸ STRONG MATCH</span>Co-founder at Upstream AI. Early team at Homebot (PropTech, seed→growth). Three years at Teren (seed-stage geospatial). Startup pace is my native pace.</div>
+      <div><span class="check">▸ STRONG MATCH</span>Founding advisor at Upstream AI (part-time). Early team at Homebot (PropTech, seed→growth). Three years at Teren (seed-stage geospatial). Startup pace is my native pace.</div>
     </div>
 
     <div class="match-row">
@@ -737,7 +775,7 @@
 
     <div class="match-row">
       <div>"Comfort managing <b>multiple stakeholders</b> with different personalities and priorities"</div>
-      <div><span class="check">▸ STRONG MATCH</span>Pilot utility operators, my co-founder, investors, conference organizers, regulators, and the people who run the local ski shop where I do data work. Different personalities is Tuesday.</div>
+      <div><span class="check">▸ STRONG MATCH</span>Pilot utility operators, the Upstream team, investors, conference organizers, regulators, and the people who run the local ski shop where I do data work. Different personalities is Tuesday.</div>
     </div>
 
     <div class="match-row">
@@ -747,7 +785,7 @@
 
     <div class="match-row">
       <div>"<b>Identify execution risks early</b> · Resolve cross-team dependencies · Escalate without overloading leadership"</div>
-      <div><span class="check">▸ STRONG MATCH</span>This is literally what a co-founder of a two-person startup does every day. I've written more "here are three blockers, here's what I'm doing about two of them, I need your input on one" updates than I can count.</div>
+      <div><span class="check">▸ STRONG MATCH</span>This is literally what an advisor to a two-person startup does every week. I've written more "here are three blockers, here's what I'm doing about two of them, I need your input on one" updates than I can count.</div>
     </div>
   </div>
 
@@ -810,7 +848,7 @@
     <div class="resp-card">
       <span class="tag">Process optimization</span>
       <h4>Upstream sub-agent system for pilot review</h4>
-      <p>Built a repeatable Claude Code sub-agent workflow (doc-repo-tester, daily-report-builder, pilot-readiness-reviewer) so my co-founder and I can audit pilot status in minutes, not hours. <span class="hl">Templates and standardized workflows are how a small team punches above its weight</span>.</p>
+      <p>Built a repeatable Claude Code sub-agent workflow (doc-repo-tester, daily-report-builder, pilot-readiness-reviewer) so the Upstream team can audit pilot status in minutes, not hours. <span class="hl">Templates and standardized workflows are how a small team punches above its weight</span>.</p>
     </div>
 
     <div class="resp-card">

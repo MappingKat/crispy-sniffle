@@ -285,6 +285,113 @@
     .ship-img-row { grid-template-columns: 1fr; }
   }
 
+  /* RFC SECTION */
+  .rfc { padding: 7vh 5vw; background: var(--paper); position: relative; }
+  .rfc::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 220px; height: 100%;
+    background-image: radial-gradient(circle, var(--posthog) 0.8px, transparent 1px);
+    background-size: 10px 10px;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  .rfc .section-label { position: relative; z-index: 2; }
+  .rfc h2 { position: relative; z-index: 2; }
+  .rfc-intro {
+    font-size: 16px; line-height: 1.6;
+    max-width: 720px;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+    position: relative; z-index: 2;
+  }
+  .rfc-intro b { color: var(--ink); }
+  .rfc-intro .rfc-link {
+    font-family: 'DM Mono', monospace;
+    background: var(--ink); color: var(--paper);
+    padding: 2px 8px; border-radius: 3px;
+    font-size: 11px; letter-spacing: 1px;
+    text-decoration: none;
+    margin: 0 2px;
+  }
+  .rfc-intro .rfc-link:hover { background: var(--posthog); }
+  .rfc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    position: relative; z-index: 2;
+  }
+  .rfc-card {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    padding: 22px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .rfc-card:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+  .rfc-card.priority {
+    background: var(--paper-2);
+    box-shadow: 4px 4px 0 var(--riso-red);
+  }
+  .rfc-card.priority:hover { box-shadow: 7px 7px 0 var(--riso-red); }
+  .rfc-card .rfc-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+  .rfc-card .rfc-tag .sw {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--posthog);
+  }
+  .rfc-card .rfc-tag.hot .sw { background: var(--riso-red); }
+  .rfc-card .rfc-tag.proj .sw { background: var(--riso-yellow); }
+  .rfc-card .rfc-tag.proj { color: var(--ink); }
+  .rfc-card .star {
+    position: absolute;
+    top: -12px; right: 14px;
+    background: var(--riso-red); color: var(--paper);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 3px 9px;
+    letter-spacing: 1.5px;
+    transform: rotate(2deg);
+    font-weight: 700;
+  }
+  .rfc-card h4 {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+  .rfc-card h4 em { font-style: italic; font-weight: 500; color: var(--posthog); }
+  .rfc-card .rfc-quote {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: var(--paper-2);
+    border-left: 3px solid var(--posthog);
+    border-radius: 0 4px 4px 0;
+    font-style: italic;
+  }
+  .rfc-card.priority .rfc-quote { background: var(--paper); }
+  .rfc-card .rfc-take {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .rfc-card .rfc-take b { color: var(--ink); }
+  .rfc-card .rfc-take .hl { background: var(--riso-yellow); padding: 0 3px; color: var(--ink); }
+
   /* WEIRD */
   .weird { padding: 7vh 5vw; background: var(--paper-2); border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); }
   .weird-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px; align-items: center; }
@@ -355,10 +462,50 @@
     .hero-blob { width: 240px; height: 240px; right: -100px; top: -30px; }
     .hero-blob-2 { display: none; }
     .match-grid { grid-template-columns: 1fr; }
-    .match-row > div:first-child { border-right: none; border-bottom: 1px solid var(--ink); }
-    .match-head.them { border-right: none; }
+    .match-row > div:first-child {
+      border-right: none;
+      border-bottom: none;
+      padding-bottom: 12px;
+    }
+    .match-row > div:last-child {
+      border-bottom: 1.5px solid var(--ink);
+      padding-top: 12px;
+      background: var(--paper);
+    }
+    .match-row:last-child > div:last-child { border-bottom: none; }
+    /* Hide the top header row and inject per-cell labels instead */
+    .match-head { display: none; }
+    .match-row > div:first-child::before {
+      content: 'PostHog wrote';
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--paper);
+      background: var(--posthog);
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+    .match-row > div:last-child::before {
+      content: 'Katrina has';
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--paper);
+      background: var(--ink);
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
     .ships { grid-template-columns: 1fr; }
     .weird-grid { grid-template-columns: 1fr; gap: 24px; }
+    .rfc-grid { grid-template-columns: 1fr; }
     .cta-card { padding: 32px 24px; }
   }
 </style>
@@ -395,14 +542,18 @@
   </h1>
 
   <p class="hero-sub">
-    Hi PostHog. I'm <b>Katrina Engelsted</b> — a co-founder, a former solutions
+    Hi PostHog. I'm <b>Katrina Engelsted</b> — a founding advisor at a
+    pre-revenue AI startup (part-time, on the side), a former solutions
     engineer, and a marketer who's <b>shipped code at every job since 2012</b>.
-    I read the JD twice, made myself a coffee, and built this page instead of
-    pasting a generic cover letter. Here's the case.
+    I'm looking for the right full-time role. I read the JD twice, found
+    <a href="#rfc" style="color:var(--posthog); border-bottom:1.5px solid var(--posthog); text-decoration:none;">your team's marketing RFC</a>,
+    made myself a coffee, and built this page instead of pasting a generic
+    cover letter. Here's the case.
   </p>
 
   <div class="hero-cta">
     <a href="#match" class="btn">See the match →</a>
+    <a href="#rfc" class="btn ghost">Jump to the RFC reading</a>
     <a href="#contact" class="btn ghost">Skip to "hire me"</a>
   </div>
 
@@ -426,7 +577,7 @@
     <div class="tldr-card">
       <div class="num"><span class="sw" style="background: var(--riso-red)"></span>02 · The product</div>
       <h4>I'm building an AI devtool right now</h4>
-      <p>Co-founder at Upstream AI. RAG, Claude API, sub-agents, the whole stack. I speak the language fluently.</p>
+      <p>Founding advisor at Upstream AI (part-time). RAG, Claude API, sub-agents, the whole stack. I speak the language fluently.</p>
     </div>
     <div class="tldr-card">
       <div class="num"><span class="sw" style="background: var(--riso-yellow)"></span>03 · The track record</div>
@@ -457,7 +608,7 @@
 
     <div class="match-row">
       <div>"Development experience, though not necessarily in a formal role — <b>vibecoded side projects still count.</b>"</div>
-      <div><span class="check">▸ STRONG MATCH</span>I'm currently shipping a production AI SaaS as a co-founder. Frontend dev at NPS for 3 years, full-stack at Galvanize, RAG + Claude API + Supabase day-to-day. Vibecoded? Yes. Also non-vibecoded.</div>
+      <div><span class="check">▸ STRONG MATCH</span>Currently shipping a production AI SaaS as a founding advisor (part-time). Frontend dev at NPS for 3 years, full-stack at Galvanize, RAG + Claude API + Supabase day-to-day. Vibecoded? Yes. Also non-vibecoded.</div>
     </div>
 
     <div class="match-row">
@@ -487,7 +638,7 @@
 
     <div class="match-row">
       <div>"Comfortable being <b>very visible to users</b>, often leading our newest launches or weirdest ideas."</div>
-      <div><span class="check">▸ STRONG MATCH</span>Co-founder energy. I do investor pitches, regulator calls, conference outreach, and pilot demos. Visibility is the job.</div>
+      <div><span class="check">▸ STRONG MATCH</span>Founder-adjacent energy. I do investor pitches, regulator calls, conference outreach, and pilot demos. Visibility is the job.</div>
     </div>
   </div>
 </section>
@@ -512,7 +663,7 @@
     <div class="ship">
       <div class="when">2024 → now · Upstream AI</div>
       <h4>An entire AI SaaS, from zero</h4>
-      <p>Co-founded with Rob. Wrote the MVP spec, picked the stack (Supabase + Voyage + Claude), built the website, ran the pilot outreach at a regional conference, and signed two pilot utilities. <span class="num">2</span> live pilots, <span class="num">11</span>-table multi-tenant schema with RLS, <span class="num">1</span> patient co-founder.</p>
+      <p>Founding technical advisor (part-time, pre-revenue). Wrote the MVP spec, picked the stack (Supabase + Voyage + Claude), built the website, ran the pilot outreach at a regional conference, and signed two pilot utilities. <span class="num">2</span> live pilots, <span class="num">11</span>-table multi-tenant schema with RLS, <span class="num">1</span> patient founding partner.</p>
     </div>
 
     <div class="ship">
@@ -574,10 +725,139 @@
   </div>
 </section>
 
+<!-- RFC #464 ROADMAP -->
+<section class="rfc" id="rfc">
+  <div class="section-label">
+    <span class="num">03</span>
+    <span>I read RFC #464</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>Your <em>near-term roadmap</em>, with where I'd plug in.</h2>
+
+  <p class="rfc-intro">
+    I pulled up your team's marketing <a class="rfc-link" href="https://github.com/PostHog/requests-for-comments-public/issues/464" target="_blank" rel="noopener">RFC #464</a>
+    and read the section on near-term hires and projects. The thing that
+    matters about that doc isn't the buzzwords — it's that you already know
+    exactly what the next two quarters look like. Here's how each of those
+    items maps to something I've actually done. <b>I'd genuinely take the
+    Partnership Marketer seat if that's where the need is most acute</b>;
+    PMM and the Customer.io migration are equally strong fits.
+  </p>
+
+  <div class="rfc-grid">
+
+    <div class="rfc-card priority">
+      <span class="star">★ Highest priority</span>
+      <div class="rfc-tag hot"><span class="sw"></span>Near-term hire · #1</div>
+      <h4><em>Partnership Marketer</em></h4>
+      <div class="rfc-quote">
+        "Our next hires are Partnership Marketer (highest priority)…"
+      </div>
+      <p class="rfc-take">
+        Partnerships is where my <b>solutions-engineering + martech + GTM
+        background converges</b>. At Lytics I owned the integrations + agency
+        side of CDP rollouts (the literal partner motion). At Teren I built
+        the partner-flavored campaigns that brought in 4× qualified leads.
+        At Homebot I trained the lender + agent reseller channel. <span class="hl">Partner
+        programs only work if the marketer can talk to the partner's
+        engineers</span> — and that's the part most marketers can't do.
+      </p>
+    </div>
+
+    <div class="rfc-card">
+      <div class="rfc-tag"><span class="sw"></span>Near-term hire · PMM</div>
+      <h4>Product Marketer · <em>LLM Analytics</em></h4>
+      <div class="rfc-quote">
+        "…then two Product Marketers… likely focus areas are Error Tracking,
+        LLM Analytics, and Replay."
+      </div>
+      <p class="rfc-take">
+        Of the three, <b>LLM Analytics is the closest to what I do every
+        week.</b> I run evals, prompt-tune, and monitor token spend for the
+        Upstream sub-agent stack. I can write the launch post, the
+        compare-vs-Helicone-and-Langfuse table, and the SQL examples a real
+        AI engineer would actually copy. <span class="hl">Error Tracking and
+        Replay are also fair game</span> — I've been on the user end of both
+        for two years.
+      </p>
+    </div>
+
+    <div class="rfc-card">
+      <div class="rfc-tag proj"><span class="sw"></span>Big project · BAU+</div>
+      <h4>Migrating <em>Customer.io → PostHog Workflows</em></h4>
+      <div class="rfc-quote">
+        "Big projects beyond BAU: migrating from Customer.io to PostHog
+        Workflows…"
+      </div>
+      <p class="rfc-take">
+        <b>This is literally what I did at Zayo.</b> Lead-scoring +
+        automation rebuild from scratch — process flows, profile grading,
+        deadlines, dashboards. Migrations like this fail when the marketer
+        can't read the sending logic; they ship clean when the marketer can
+        diff the old triggers against the new ones in a spreadsheet at 10pm.
+        <span class="hl">I prefer the 10pm version</span> — and I'd find it
+        oddly fun to dogfood Workflows during the migration.
+      </p>
+    </div>
+
+    <div class="rfc-card">
+      <div class="rfc-tag proj"><span class="sw"></span>Big project · launch</div>
+      <h4>Launching <em>PostHog for Students</em></h4>
+      <div class="rfc-quote">
+        "…launching PostHog for Students…"
+      </div>
+      <p class="rfc-take">
+        Universities are a specific channel and they don't move at startup
+        speed. I taught GIS labs at Colgate, mentor mountain-bike kids in
+        Boulder, and contributed to <b>LearnOSM</b> (the HOT OSM training
+        curriculum, translated into 23+ languages). <span class="hl">I know
+        how to write for a student who's never deployed anything</span> and
+        for the professor deciding whether to put PostHog on the syllabus.
+        Different audiences, same launch.
+      </p>
+    </div>
+
+    <div class="rfc-card">
+      <div class="rfc-tag proj"><span class="sw"></span>Big project · program</div>
+      <h4>A real <em>partnership program</em> off the ground</h4>
+      <div class="rfc-quote">
+        "…getting a real partnership program off the ground."
+      </div>
+      <p class="rfc-take">
+        Standing up a partner program is mostly <b>repeatable systems</b>:
+        tier criteria, enablement collateral, deal-reg, comp-share, MDF, a
+        dashboard the partner can actually log into. I've built that
+        connective tissue twice — at Zayo for the fiber channel partners and
+        at Homebot for the lender + agent reseller motion. <span class="hl">The
+        first version is always uglier than the marketing site suggests</span>,
+        and that's fine — ship it, iterate.
+      </p>
+    </div>
+
+    <div class="rfc-card">
+      <div class="rfc-tag"><span class="sw"></span>Bonus · "this worked well"</div>
+      <h4>Hire-based PMM placement, à la <em>Cleo & Sara</em></h4>
+      <div class="rfc-quote">
+        "We'll place the PMMs based on candidates — this worked well with
+        Cleo and Sara…"
+      </div>
+      <p class="rfc-take">
+        I read that sentence and grinned. <b>"Hire the human, then carve the
+        role"</b> is how I'd staff a small team too — and it's also how I'd
+        like to be staffed. If LLM Analytics, Error Tracking, Partnerships,
+        or the Workflows migration is the right shape for me, I'm in.
+        <span class="hl">No ego about which lane.</span>
+      </p>
+    </div>
+
+  </div>
+</section>
+
 <!-- WEIRD -->
 <section class="weird">
   <div class="section-label">
-    <span class="num">03</span>
+    <span class="num">04</span>
     <span>The "be weird" clause</span>
     <span class="line"></span>
   </div>
@@ -634,8 +914,8 @@
     <p>
       I'm in Boulder, async-native, and comfortable being the loud voice for
       a launch on Monday and writing the SQL example for the engineer on Tuesday.
-      If LLM Analytics needs a marketer who actually understands what an LLM is,
-      I'd love to talk.
+      Whether the seat is Partnership Marketer, PMM on LLM Analytics, or the
+      person who owns the Customer.io → Workflows migration — I'd love to talk.
     </p>
     <div class="cta-buttons">
       <a href="mailto:katrina@engelsted.co?subject=Re%3A%20Developer%20Marketer%20application&body=Hi%20Katrina%2C" class="btn primary">Email me →</a>
