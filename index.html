@@ -1146,18 +1146,25 @@
       </ul>
     </div>
 
-    <form class="cform" onsubmit="event.preventDefault(); window.location.href='mailto:katrina@engelsted.co?subject=' + encodeURIComponent(document.getElementById('cf-subj').value || 'Hi from your site') + '&body=' + encodeURIComponent('From: ' + document.getElementById('cf-name').value + ' (' + document.getElementById('cf-email').value + ')\n\n' + document.getElementById('cf-msg').value);">
+    <form class="cform" action="https://formsubmit.co/katrina@engelsted.co" method="POST">
+      <!-- FormSubmit config -->
+      <input type="hidden" name="_subject" value="New message from engelsted.co" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="true" />
+      <input type="hidden" name="_next" value="https://www.engelsted.co/index.html#contact" />
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
       <label for="cf-name">Your name</label>
-      <input type="text" id="cf-name" required />
+      <input type="text" id="cf-name" name="name" required />
 
       <label for="cf-email">Email</label>
-      <input type="email" id="cf-email" required />
+      <input type="email" id="cf-email" name="email" required />
 
       <label for="cf-subj">What's it about?</label>
-      <input type="text" id="cf-subj" placeholder="e.g. building a water thing, hiring, just saying hi" />
+      <input type="text" id="cf-subj" name="subject" placeholder="e.g. building a water thing, hiring, just saying hi" />
 
       <label for="cf-msg">Message</label>
-      <textarea id="cf-msg" required></textarea>
+      <textarea id="cf-msg" name="message" required></textarea>
 
       <button type="submit">Send it →</button>
     </form>
