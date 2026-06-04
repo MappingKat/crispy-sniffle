@@ -408,6 +408,47 @@
   }
   .story-intro b { color: var(--ink); }
 
+  /* prose narrative (multiple paragraphs) */
+  .prose {
+    max-width: 760px;
+    font-size: clamp(17px, 1.7vw, 20px);
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .prose p { margin-bottom: 22px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose b { color: var(--ink); }
+  .prose em.lede {
+    background: var(--riso-yellow);
+    color: var(--ink);
+    font-style: normal;
+    padding: 0 4px;
+  }
+  .prose .weh {
+    font-family: 'Caveat', cursive;
+    font-size: 1.4em;
+    color: var(--riso-red);
+    font-style: normal;
+    transform: rotate(-2deg);
+    display: inline-block;
+  }
+  .prose a {
+    color: var(--riso-blue);
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+  }
+  .prose a:hover { color: var(--riso-red); }
+  .prose .drop {
+    float: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 4.5em;
+    font-weight: 900;
+    line-height: 0.85;
+    padding: 4px 12px 0 0;
+    color: var(--riso-red);
+  }
+
   .timeline {
     position: relative;
     padding-left: 0;
@@ -763,6 +804,7 @@
   <nav>
     <a href="#now">Currently</a>
     <a href="#story">Story</a>
+    <a href="#roles">Roles</a>
     <a href="#work">Work</a>
     <a href="#contact">Say hi</a>
   </nav>
@@ -866,25 +908,78 @@
   </div>
 </section>
 
-<!-- STORY -->
-<section id="story">
+<!-- THE STORY SO FAR -->
+<section id="story" style="background: var(--paper-2); border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);">
   <div class="section-label">
     <span class="num">02</span>
-    <span>The story</span>
+    <span>The story so far</span>
     <span class="line"></span>
   </div>
 
-  <h2>Geographer who fell <em>in love</em> with software.</h2>
+  <h2>One job, in <em>many costumes.</em></h2>
 
-  <p class="story-intro">
-    I started out making <b>maps for the National Park Service</b> — turning
-    geographic data into things rangers and visitors could actually use.
-    Then I learned to ship code, ran marketing tech for a few startups,
-    led solutions engineering at others, and somewhere along the way realized
-    the through-line: <b>I like translating between worlds.</b> Operators
-    and engineers. Customers and roadmaps. Maps and databases. Now I do it
-    full-time for my own thing.
-  </p>
+  <div class="prose">
+    <p>
+      <span class="drop">E</span>very job I've ever had has been the same job in a different costume:
+      take something messy in the real world and turn it into something
+      useful for the people stuck inside it. Maps for the National Park
+      Service. Mortgage emails for actual homeowners. Mountain-bike riders
+      learning to send drops without sending themselves to the ER. <b>Three
+      costumes, one job.</b> Geography was where I started — a discipline
+      that lets you ask "what's happening" and "why is it happening
+      <i>here</i>" in the same breath. Out of college I went into
+      nonprofits using software for good, until I noticed "humanitarian
+      help" sometimes meant <em class="lede">exporting American capitalism
+      in a development-aid trench coat</em>. So I left.
+    </p>
+
+    <p>
+      That kicked off a decade of chasing product-market fit at startups.
+      <b>Homebot</b> — where I figured out how to make millions of
+      homeowners actually open a mortgage email. <b>Teren</b> — where I
+      built marketing for a drone-imagery company and got to keep my
+      geospatial brain alive. One success, one failure, and a permanent
+      conviction that PMF is mostly stubbornness with a measurement plan.
+      After that I bet on customer data platforms — the third-party cookie
+      was dying, the post-cookie internet needed plumbing. Turned out it
+      was a race to the bottom against a hundred competitors. Then Google
+      didn't even kill the cookie. <span class="weh">Weh weh.</span>
+    </p>
+
+    <p>
+      I needed to recalibrate, so I got <b>PMBIA-certified</b> to coach
+      mountain biking. Spent a couple seasons teaching women and youth how
+      to get shreddy — and how to take care of their bikes, because MTB is
+      fundamentally an equipment sport. Helped a beloved local ski + bike
+      shop trade retail margin for service and community. Then I got stung
+      by a bee in Fernie, BC, went into full anaphylaxis on a trail, and
+      didn't die. Shortly after, I had a kid. <em class="lede">Both reset
+      the "what matters" axis in a hurry.</em>
+    </p>
+
+    <p>
+      Now I'm raising a small human who'll grow up dating robots, and in
+      the cracks I've gone all-in on AI for the unsexiest, most
+      consequential vertical I can find: <b>small drinking-water and
+      wastewater utilities</b>. They run on spreadsheets and tribal
+      knowledge from the 1970s, and the climate is no longer being
+      patient. So I co-founded <a href="https://getupstream.ai"
+      target="_blank" rel="noopener">getupstream.ai</a> as a side project
+      — building the software these operators need for a more volatile
+      century.
+    </p>
+  </div>
+</section>
+
+<!-- THE ROLES (chronological timeline) -->
+<section id="roles">
+  <div class="section-label">
+    <span class="num">03</span>
+    <span>The roles</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>Where I've <em>worked.</em></h2>
 
   <div class="timeline">
 
@@ -1042,7 +1137,7 @@
 <!-- PROJECTS / WRITING -->
 <section id="work" style="background: var(--paper-2); border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);">
   <div class="section-label">
-    <span class="num">03</span>
+    <span class="num">04</span>
     <span>Selected work</span>
     <span class="line"></span>
   </div>
@@ -1109,7 +1204,7 @@
 <!-- CONTACT -->
 <section id="contact" class="contact">
   <div class="section-label">
-    <span class="num">04</span>
+    <span class="num">05</span>
     <span>Get in touch</span>
     <span class="line"></span>
   </div>
