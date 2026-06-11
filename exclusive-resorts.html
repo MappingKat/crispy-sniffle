@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Katrina Engelsted × Exclusive Resorts — AI Marketing Operations Manager application</title>
+<title>Katrina Engelsted × Exclusive Resorts — AI Marketing Operations Manager</title>
 <meta name="robots" content="noindex, nofollow" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,14 +14,10 @@
     --paper-2:  #ede2bf;
     --ink:      #1a1a1a;
     --ink-soft: #3a3a3a;
-    --navy:     #1f3759;   /* deep concierge blue */
-    --navy-deep:#13243d;
-    --gold:     #b8923a;   /* warm hospitality gold */
-    --gold-deep:#8d6e23;
-    --moss:     #4a6b3a;   /* destination green */
+    --navy:     #1f3759;
+    --gold:     #b8923a;
     --riso-yellow:#f5c526;
     --riso-mint:#7fd1b4;
-    --riso-red: #ff4d2e;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -29,14 +25,14 @@
     font-family: 'DM Sans', sans-serif;
     background: var(--paper);
     color: var(--ink);
-    line-height: 1.55;
+    line-height: 1.6;
     overflow-x: hidden;
     position: relative;
   }
   body::before {
     content: ''; position: fixed; inset: 0;
     background-image: radial-gradient(circle, var(--ink) 0.6px, transparent 0.6px);
-    background-size: 5px 5px; opacity: 0.06; pointer-events: none; z-index: 1;
+    background-size: 5px 5px; opacity: 0.05; pointer-events: none; z-index: 1;
   }
   body::after {
     content: ''; position: fixed; inset: 0;
@@ -64,13 +60,21 @@
     transform: rotate(-1deg);
   }
 
+  /* PAGE LAYOUT — cover-letter feel: centered column */
+  .letter {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 6vh 5vw;
+  }
+
   /* HERO */
-  .hero { padding: 5vh 5vw 7vh; position: relative; overflow: hidden; }
+  .hero { padding: 4vh 5vw 3vh; position: relative; overflow: hidden; }
   .hero-meta {
     display: flex; gap: 14px; flex-wrap: wrap;
     font-family: 'DM Mono', monospace; font-size: 10px;
     letter-spacing: 1.8px; text-transform: uppercase;
-    margin-bottom: 28px; color: var(--ink-soft);
+    margin-bottom: 24px; color: var(--ink-soft);
+    max-width: 760px; margin-left: auto; margin-right: auto;
   }
   .hero-meta .pill {
     background: var(--paper-2); border: 1px solid var(--ink);
@@ -82,321 +86,175 @@
 
   .hero h1 {
     font-family: 'DM Sans', sans-serif;
-    font-size: clamp(38px, 7vw, 96px);
-    font-weight: 900; line-height: 0.9;
-    letter-spacing: -2.5px; margin-bottom: 26px;
+    font-size: clamp(36px, 6vw, 76px);
+    font-weight: 900; line-height: 0.95;
+    letter-spacing: -2pt; margin-bottom: 22px;
+    max-width: 760px; margin-left: auto; margin-right: auto;
   }
-  .hero h1 em { font-style: italic; font-weight: 500; color: var(--navy); font-family: 'DM Sans', sans-serif; }
+  .hero h1 em { font-style: italic; font-weight: 500; color: var(--navy); }
   .hero h1 .stamp {
     font-style: normal; background: var(--gold); color: var(--paper);
-    padding: 0 14px 6px; display: inline-block; transform: rotate(-1.5deg);
+    padding: 0 12px 4px; display: inline-block; transform: rotate(-1.5deg);
   }
-  .hero-sub {
-    font-size: clamp(17px, 1.8vw, 22px); max-width: 720px;
-    line-height: 1.5; color: var(--ink-soft); margin-bottom: 30px;
-  }
-  .hero-sub b { color: var(--ink); }
-  .hero-sub .hl { background: var(--riso-yellow); padding: 0 4px; }
 
-  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 24px;
-    font-family: 'DM Mono', monospace; font-size: 12px;
-    font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
-    text-decoration: none;
-    border: 1.5px solid var(--ink); background: var(--ink); color: var(--paper);
-    border-radius: 4px; cursor: pointer;
-    transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+  /* COVER LETTER PROSE */
+  .body-letter {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 5vw 4vh;
   }
-  .btn:hover { background: var(--gold); border-color: var(--gold); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
-  .btn.ghost { background: transparent; color: var(--ink); }
-  .btn.ghost:hover { background: var(--riso-yellow); color: var(--ink); border-color: var(--ink); }
+  .body-letter p {
+    font-size: clamp(16px, 1.6vw, 19px);
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+  .body-letter p b { color: var(--ink); }
+  .body-letter p .hl { background: var(--riso-yellow); padding: 0 4px; color: var(--ink); }
+  .body-letter p a { color: var(--navy); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  .body-letter p a:hover { color: var(--gold); }
+  .body-letter .salutation {
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+    color: var(--navy);
+    margin-bottom: 18px;
+    transform: rotate(-1deg);
+    display: inline-block;
+  }
+  .body-letter .signoff {
+    margin-top: 28px;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .body-letter .signoff .name {
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    color: var(--navy);
+    display: block;
+    transform: rotate(-2deg);
+  }
 
-  .hero-blob { position: absolute; top: -70px; right: -90px; width: 400px; height: 400px; background: var(--navy); border-radius: 50%; mix-blend-mode: multiply; opacity: 0.88; z-index: -1; }
-  .hero-blob-2 { position: absolute; top: 80px; right: 30px; width: 170px; height: 170px; background: var(--gold); border-radius: 50%; mix-blend-mode: multiply; opacity: 0.85; z-index: -1; }
-  .hero-scrawl {
-    font-family: 'Caveat', cursive; font-size: 22px;
-    color: var(--navy); transform: rotate(-3deg);
-    margin-top: 22px; display: inline-block;
-  }
-  .hero-scrawl::before { content: '↘ '; }
-
-  /* TLDR */
-  .tldr {
-    background: var(--paper-2);
-    border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
-    padding: 5vh 5vw;
-  }
-  .tldr-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-  }
-  .tldr-card {
-    background: var(--paper); border: 1.5px solid var(--ink);
-    padding: 22px 20px; border-radius: 6px;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .tldr-card:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
-  .tldr-card .num {
-    font-family: 'DM Mono', monospace; font-size: 10px;
-    letter-spacing: 1.5px; color: var(--ink-soft);
-    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
-  }
-  .tldr-card .num .sw { width: 12px; height: 12px; border-radius: 50%; }
-  .tldr-card h4 {
-    font-size: 17px; font-weight: 700; line-height: 1.25;
-    letter-spacing: -0.3px; margin-bottom: 8px;
-  }
-  .tldr-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
-  .tldr-card p b { color: var(--ink); }
-
-  /* SECTION SHELL */
-  section.std { padding: 7vh 5vw; }
+  /* SECTION */
   .section-label {
     display: flex; align-items: center; gap: 12px;
     font-family: 'DM Mono', monospace; font-size: 11px;
     letter-spacing: 2.5px; text-transform: uppercase;
-    margin-bottom: 22px; color: var(--ink-soft);
+    margin-bottom: 18px; color: var(--ink-soft);
+    max-width: 760px; margin-left: auto; margin-right: auto;
   }
   .section-label .num { background: var(--ink); color: var(--paper); padding: 3px 8px; border-radius: 3px; font-weight: 500; }
   .section-label .line { flex: 1; height: 1.5px; background: var(--ink); max-width: 60px; }
   h2 {
     font-family: 'DM Sans', sans-serif;
-    font-size: clamp(32px, 4.5vw, 56px);
-    font-weight: 900; line-height: 0.98;
-    letter-spacing: -1.5px; margin-bottom: 28px; max-width: 900px;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900; line-height: 1.05;
+    letter-spacing: -1.2px; margin-bottom: 22px;
+    max-width: 760px; margin-left: auto; margin-right: auto;
   }
   h2 em { font-style: italic; font-weight: 500; color: var(--navy); }
   h2 .hl { font-style: normal; background: var(--riso-yellow); padding: 0 8px; display: inline-block; transform: rotate(-0.5deg); }
 
-  /* RECEIPT - DARK FEATURE */
-  .receipt-feature {
-    background: var(--ink); color: var(--paper);
-    padding: 7vh 5vw;
-    border-top: 1.5px solid var(--ink); position: relative; overflow: hidden;
-  }
-  .receipt-feature::before { content: ''; position: absolute; top: -80px; left: -60px; width: 280px; height: 280px; background: var(--navy); border-radius: 50%; mix-blend-mode: screen; opacity: 0.7; }
-  .receipt-feature::after { content: ''; position: absolute; bottom: -100px; right: -50px; width: 320px; height: 320px; background: var(--gold); border-radius: 50%; mix-blend-mode: screen; opacity: 0.55; }
-  .receipt-feature .section-label { color: var(--paper); }
-  .receipt-feature .section-label .num { background: var(--paper); color: var(--ink); }
-  .receipt-feature .section-label .line { background: var(--paper); }
-  .receipt-feature h2 { color: var(--paper); }
-  .receipt-feature h2 em { color: var(--gold); }
-  .receipt-grid {
-    display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px; align-items: start;
-    position: relative; z-index: 2;
-  }
-  .receipt-grid .lede {
-    font-size: 17px; line-height: 1.6;
-    color: rgba(244,236,212,0.85); margin-bottom: 18px; max-width: 560px;
-  }
-  .receipt-grid .lede b { color: var(--paper); }
-  .receipt-grid .lede .hl { background: var(--riso-yellow); color: var(--ink); padding: 0 4px; }
-
-  /* AI WORKFLOW LIST (terminal-like) */
-  .workflow-mock {
-    background: rgba(244,236,212,0.06);
-    border: 1px solid rgba(244,236,212,0.25);
-    border-radius: 8px;
-    padding: 20px;
-  }
-  .workflow-mock .bar {
-    display: flex; align-items: center; gap: 8px;
-    margin-bottom: 14px;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: rgba(244,236,212,0.55);
-    letter-spacing: 1.5px;
-  }
-  .workflow-mock .bar .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(244,236,212,0.4); }
-  .workflow-mock .bar .dot:nth-child(2) { background: var(--gold); }
-  .workflow-list {
-    list-style: none;
-    display: flex; flex-direction: column; gap: 12px;
-  }
-  .workflow-list li {
-    background: rgba(244,236,212,0.06);
-    border: 1px solid rgba(244,236,212,0.22);
-    padding: 12px 14px;
-    border-radius: 5px;
+  /* THE 4 STEPS */
+  .steps {
+    max-width: 760px;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: 22px 1fr auto;
-    align-items: center; gap: 12px;
-    font-size: 13px;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    padding: 0 5vw;
   }
-  .workflow-list li .agent {
-    background: var(--gold); color: var(--ink);
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
-  }
-  .workflow-list li .name {
-    font-family: 'DM Mono', monospace; font-size: 12px;
-    color: var(--paper); letter-spacing: 0.5px;
-  }
-  .workflow-list li .desc { display: block; color: rgba(244,236,212,0.65); font-size: 11px; margin-top: 2px; font-family: 'DM Sans', sans-serif; letter-spacing: 0; }
-  .workflow-list li .status {
-    font-family: 'DM Mono', monospace; font-size: 9px;
-    color: var(--riso-mint); letter-spacing: 1px;
-  }
-
-  /* SHIP LOG GRID */
-  .ships {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-  }
-  .ship {
-    background: var(--paper-2); border: 1.5px solid var(--ink);
-    padding: 22px; border-radius: 6px;
+  .step {
+    background: var(--paper-2);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    padding: 20px 22px;
     transition: transform 0.2s, box-shadow 0.2s;
   }
-  .ship:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
-  .ship .when {
+  .step:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
+  .step .num {
     font-family: 'DM Mono', monospace; font-size: 10px;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--gold-deep); font-weight: 700;
-    margin-bottom: 6px;
+    letter-spacing: 1.5px; color: var(--ink-soft);
+    margin-bottom: 8px;
   }
-  .ship h4 { font-size: 18px; font-weight: 700; line-height: 1.25; margin-bottom: 8px; letter-spacing: -0.3px; }
-  .ship h4 em { font-style: italic; font-weight: 500; color: var(--navy); }
-  .ship p { font-size: 13px; line-height: 1.55; color: var(--ink-soft); }
-  .ship p .hl { background: var(--riso-yellow); padding: 0 3px; }
-  .ship p .num { font-family: 'DM Mono', monospace; font-weight: 700; color: var(--gold-deep); }
+  .step h4 {
+    font-size: 18px; font-weight: 700; line-height: 1.2;
+    letter-spacing: -0.3px; margin-bottom: 8px;
+    color: var(--navy);
+  }
+  .step p { font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
 
-  /* TRAVEL RECEIPT (special) */
-  .travel { background: var(--paper); padding: 7vh 5vw; border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); position: relative; overflow: hidden; }
-  .travel::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0; width: 35%; height: 100%;
-    background: linear-gradient(135deg, transparent 0%, rgba(31,55,89,0.05) 50%, rgba(184,146,58,0.08) 100%);
-    pointer-events: none;
+  /* PROOF POINTS — four small cards */
+  .proof {
+    max-width: 760px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    padding: 0 5vw;
   }
-  .travel-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 36px; align-items: start; }
-  .travel-text p { font-size: 16px; line-height: 1.65; color: var(--ink-soft); margin-bottom: 16px; max-width: 560px; }
-  .travel-text p b { color: var(--ink); }
-  .travel-text p .hl { background: var(--riso-yellow); padding: 0 3px; }
-  .travel-card {
-    background: var(--paper-2); border: 1.5px solid var(--ink);
-    border-radius: 6px; padding: 26px;
-    box-shadow: 6px 6px 0 var(--navy);
-    position: relative;
-  }
-  .travel-card .tag {
-    position: absolute; top: -12px; left: 22px;
-    background: var(--gold); color: var(--ink);
-    font-family: 'DM Mono', monospace; font-size: 10px;
-    padding: 4px 10px; letter-spacing: 1.5px;
-    transform: rotate(-2deg); font-weight: 700;
-  }
-  .travel-card h4 { font-size: 19px; font-weight: 700; margin-bottom: 12px; line-height: 1.2; }
-  .travel-card .fact {
-    background: var(--paper); border-left: 3px solid var(--gold);
-    padding: 11px 16px; margin: 12px 0;
-    font-size: 13.5px; line-height: 1.55;
-  }
-  .travel-card .fact b { color: var(--ink); }
-  .travel-card .fact .hl { background: var(--riso-yellow); padding: 0 3px; }
-  .travel-card .stamps {
-    display: flex; flex-wrap: wrap; gap: 6px;
-    margin-top: 14px;
-    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px;
-  }
-  .travel-card .stamps span {
-    background: var(--paper); border: 1px solid var(--ink);
-    padding: 4px 9px; border-radius: 3px;
-    transform: rotate(-1deg);
-  }
-  .travel-card .stamps span:nth-child(even) { transform: rotate(1deg); background: var(--navy); color: var(--paper); border-color: var(--navy); }
-
-  /* MATCH GRID */
-  .match-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-    border: 1.5px solid var(--ink); border-radius: 6px;
-    overflow: hidden; box-shadow: 6px 6px 0 var(--ink);
+  .proof-card {
     background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    padding: 18px 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .match-head {
-    padding: 14px 20px;
-    font-family: 'DM Mono', monospace; font-size: 11px;
+  .proof-card:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--gold); }
+  .proof-card .when {
+    font-family: 'DM Mono', monospace; font-size: 9.5px;
     letter-spacing: 1.5px; text-transform: uppercase;
-    font-weight: 700;
-    border-bottom: 1.5px solid var(--ink);
+    color: var(--gold); font-weight: 700;
+    margin-bottom: 4px;
   }
-  .match-head.them { background: var(--navy); color: var(--paper); border-right: 1.5px solid var(--ink); }
-  .match-head.me { background: var(--ink); color: var(--paper); }
-  .match-row { display: contents; }
-  .match-row > div {
-    padding: 18px 20px; border-bottom: 1px dashed rgba(26,26,26,0.25);
-    font-size: 14px; line-height: 1.5;
+  .proof-card h4 {
+    font-size: 16px; font-weight: 700; line-height: 1.2;
+    letter-spacing: -0.2px; margin-bottom: 6px;
   }
-  .match-row > div:first-child {
-    border-right: 1.5px solid var(--ink); color: var(--ink-soft);
-    background: var(--paper-2);
-  }
-  .match-row > div:last-child { color: var(--ink); }
-  .match-row > div b { background: var(--riso-yellow); padding: 0 3px; }
-  .match-row:last-child > div { border-bottom: none; }
-  .match-row .check {
-    font-family: 'DM Mono', monospace; font-size: 10px;
-    color: var(--navy); font-weight: 700; margin-right: 6px;
-    letter-spacing: 1px;
-  }
-  .match-row .check.adj { color: var(--gold-deep); }
+  .proof-card h4 em { font-style: italic; font-weight: 500; color: var(--navy); }
+  .proof-card p { font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); }
+  .proof-card p .num { font-family: 'DM Mono', monospace; font-weight: 700; color: var(--gold); }
 
-  /* TOOLS row */
-  .tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
-  .tool-chip {
-    background: var(--paper-2); border: 1.5px solid var(--ink);
-    padding: 8px 14px; border-radius: 20px;
-    font-family: 'DM Mono', monospace; font-size: 11px;
-    letter-spacing: 1.2px;
-    display: inline-flex; align-items: center; gap: 6px;
-  }
-  .tool-chip .dot { width: 7px; height: 7px; border-radius: 50%; }
-  .tool-chip.daily { background: var(--navy); color: var(--paper); border-color: var(--navy); font-weight: 700; }
-  .tool-chip.daily::after { content: 'DAILY'; font-size: 7.5px; background: var(--gold); color: var(--ink); padding: 1px 4px; border-radius: 2px; margin-left: 4px; letter-spacing: 1px; }
-
-  /* WHY */
-  .why-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px; align-items: start; }
-  .why-text p { font-size: 16px; line-height: 1.65; color: var(--ink-soft); margin-bottom: 16px; max-width: 560px; }
-  .why-text p b { color: var(--ink); }
-  .why-text p .hl { background: var(--riso-yellow); padding: 0 3px; }
-  .why-card { background: var(--paper); border: 1.5px solid var(--ink); border-radius: 6px; padding: 26px; box-shadow: 6px 6px 0 var(--gold); position: relative; }
-  .why-card .tag {
-    position: absolute; top: -12px; left: 22px;
-    background: var(--ink); color: var(--paper);
-    font-family: 'DM Mono', monospace; font-size: 10px;
-    padding: 4px 10px; letter-spacing: 1.5px; transform: rotate(-2deg);
-  }
-  .why-card h4 { font-size: 20px; font-weight: 700; margin-bottom: 14px; line-height: 1.2; }
-  .why-card .fact {
-    background: var(--paper-2); border-left: 3px solid var(--navy);
-    padding: 12px 16px; margin: 14px 0;
-    font-size: 13px; line-height: 1.55;
-  }
-  .why-card .fact b { background: var(--riso-yellow); padding: 0 3px; }
+  /* DIVIDER + SECTION SPACING */
+  section.std { padding: 5vh 0; }
+  section.std.dark { background: var(--ink); color: var(--paper); }
+  section.std.dark h2 { color: var(--paper); }
+  section.std.dark h2 em { color: var(--gold); }
+  section.std.dark .section-label { color: rgba(244,236,212,0.7); }
+  section.std.dark .section-label .num { background: var(--paper); color: var(--ink); }
+  section.std.dark .section-label .line { background: var(--paper); }
+  section.std.dark .body-letter p { color: rgba(244,236,212,0.88); }
+  section.std.dark .body-letter p b { color: var(--paper); }
+  section.std.tinted { background: var(--paper-2); border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); }
 
   /* CTA */
-  .cta { padding: 8vh 5vw; }
+  .cta { padding: 7vh 5vw; }
   .cta-card {
+    max-width: 760px;
+    margin: 0 auto;
     background: var(--ink); color: var(--paper);
-    padding: 48px 40px; border-radius: 6px;
+    padding: 40px 36px; border-radius: 6px;
     border: 1.5px solid var(--ink);
     position: relative; overflow: hidden;
     box-shadow: 8px 8px 0 var(--gold);
   }
-  .cta-card::before { content: ''; position: absolute; bottom: -80px; left: -60px; width: 240px; height: 240px; background: var(--navy); border-radius: 50%; mix-blend-mode: screen; opacity: 0.7; }
-  .cta-card h2 { color: var(--paper); margin-bottom: 18px; position: relative; z-index: 2; }
+  .cta-card::before { content: ''; position: absolute; bottom: -80px; left: -60px; width: 220px; height: 220px; background: var(--navy); border-radius: 50%; mix-blend-mode: screen; opacity: 0.7; }
+  .cta-card h2 { color: var(--paper); margin-bottom: 14px; position: relative; z-index: 2; }
   .cta-card h2 em { color: var(--gold); }
-  .cta-card p { color: rgba(244,236,212,0.85); font-size: 17px; line-height: 1.55; max-width: 620px; margin-bottom: 28px; position: relative; z-index: 2; }
+  .cta-card p { color: rgba(244,236,212,0.85); font-size: 16px; line-height: 1.6; max-width: 620px; margin-bottom: 24px; position: relative; z-index: 2; }
   .cta-buttons { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 2; }
-  .cta-card .btn { border-color: var(--paper); }
-  .cta-card .btn.primary { background: var(--paper); color: var(--ink); }
-  .cta-card .btn.primary:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); box-shadow: 4px 4px 0 var(--paper); }
-  .cta-card .btn.outline { background: transparent; color: var(--paper); }
-  .cta-card .btn.outline:hover { background: var(--paper); color: var(--ink); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 22px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid var(--paper); background: transparent; color: var(--paper);
+    border-radius: 4px; cursor: pointer;
+    transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+  }
+  .btn:hover { background: var(--paper); color: var(--ink); }
+  .btn.primary { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+  .btn.primary:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); box-shadow: 4px 4px 0 var(--paper); }
 
   footer {
     background: var(--ink);
@@ -409,35 +267,38 @@
   }
   footer .heart { color: var(--gold); }
 
+  /* PASSPORT STAMPS */
+  .stamps-wrap {
+    max-width: 760px; margin: 14px auto 0;
+    padding: 0 5vw;
+  }
+  .stamps-row {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 1.2px; text-transform: uppercase;
+  }
+  .stamps-row .lbl {
+    align-self: center;
+    color: var(--ink-soft);
+    margin-right: 4px;
+  }
+  .stamps-row .stamp-chip {
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    padding: 4px 9px;
+    border-radius: 3px;
+    color: var(--ink);
+    transform: rotate(-1deg);
+  }
+  .stamps-row .stamp-chip:nth-child(3n) { transform: rotate(1deg); background: var(--navy); color: var(--paper); border-color: var(--navy); }
+  .stamps-row .stamp-chip:nth-child(5n) { transform: rotate(-2deg); background: var(--gold); color: var(--ink); border-color: var(--gold); }
+  .stamps-row.lived .stamp-chip { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .stamps-row.lived .stamp-chip:nth-child(3n) { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+
   @media (max-width: 760px) {
-    .hero-blob { width: 240px; height: 240px; right: -100px; top: -30px; }
-    .hero-blob-2 { display: none; }
-    .receipt-grid { grid-template-columns: 1fr; gap: 24px; }
-    .travel-grid { grid-template-columns: 1fr; gap: 24px; }
-    .why-grid { grid-template-columns: 1fr; gap: 24px; }
-    .ships { grid-template-columns: 1fr; }
-    .match-grid { grid-template-columns: 1fr; }
-    .match-row > div:first-child { border-right: none; border-bottom: none; padding-bottom: 12px; }
-    .match-row > div:last-child { border-bottom: 1.5px solid var(--ink); padding-top: 12px; background: var(--paper); }
-    .match-row:last-child > div:last-child { border-bottom: none; }
-    .match-head { display: none; }
-    .match-row > div:first-child::before {
-      content: 'Exclusive Resorts wrote';
-      display: inline-block;
-      font-family: 'DM Mono', monospace; font-size: 9px;
-      letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700;
-      color: var(--paper); background: var(--navy);
-      padding: 3px 8px; border-radius: 3px; margin-bottom: 8px;
-    }
-    .match-row > div:last-child::before {
-      content: 'Katrina has';
-      display: inline-block;
-      font-family: 'DM Mono', monospace; font-size: 9px;
-      letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700;
-      color: var(--paper); background: var(--ink);
-      padding: 3px 8px; border-radius: 3px; margin-bottom: 8px;
-    }
-    .cta-card { padding: 32px 24px; }
+    .steps { grid-template-columns: 1fr; }
+    .proof { grid-template-columns: 1fr; }
+    .cta-card { padding: 28px 22px; }
   }
 </style>
 <!-- PostHog analytics -->
@@ -460,474 +321,246 @@
 
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-blob"></div>
-  <div class="hero-blob-2"></div>
-
   <div class="hero-meta">
     <span class="pill"><span class="dot"></span>Available full-time</span>
     <span class="pill">For: <b style="margin-left:4px">Exclusive Resorts</b></span>
     <span class="pill">Role: AI Marketing Operations Manager</span>
-    <span class="pill">From: Boulder, CO</span>
+    <span class="pill">From: Boulder, CO · 30 min from Denver</span>
   </div>
 
   <h1>
-    I'm a marketer<br>
-    who <em>builds with</em><br>
-    <span class="stamp">AI</span> — daily, on purpose.
+    I clean up<br>
+    <em>marketing stacks</em><br>
+    for a <span class="stamp">living.</span>
   </h1>
-
-  <p class="hero-sub">
-    Hi Exclusive Resorts. I'm <b>Katrina Engelsted</b>. I've spent the last
-    fifteen years running marketing operations — lead scoring at Zayo
-    (<span class="hl">+30% closed-won</span>), 4× MQLs at Teren, CDP rollouts
-    at Lytics — and the last two as founding technical advisor to an AI
-    devtool startup, where my actual job is <b>building Claude-powered
-    workflows</b>. I'm based in Boulder (your backyard), I co-authored a
-    wellness-travel business plan in grad school, and I've been chasing
-    singletrack across the US and Canada for years. Which is to say: I get
-    the customer, the operations, and the AI piece — at the same time.
-  </p>
-
-  <div class="hero-cta">
-    <a href="#receipts" class="btn">See the AI receipts →</a>
-    <a href="./katrina-engelsted-exclusive-resorts-resume.pdf" target="_blank" rel="noopener" class="btn ghost">Download résumé (PDF)</a>
-  </div>
-
-  <div class="hero-scrawl">a marketing operations résumé that ships its own software</div>
 </header>
 
-<!-- TLDR -->
-<section class="tldr">
-  <div class="section-label">
-    <span class="num">TL;DR</span>
-    <span>Four things to know</span>
-    <span class="line"></span>
-  </div>
+<!-- THE LETTER -->
+<section class="body-letter">
+  <span class="salutation">Hi Exclusive Resorts —</span>
 
-  <div class="tldr-grid">
-    <div class="tldr-card">
-      <div class="num"><span class="sw" style="background: var(--navy)"></span>01 · The AI part</div>
-      <h4>I already build with Claude every day</h4>
-      <p>Two years building Claude Code sub-agent workflows for an AI startup. <b>Prompt libraries, automation scripts, RAG pipelines</b> — the toolkit you're hiring for is the one I'm already using.</p>
-    </div>
-    <div class="tldr-card">
-      <div class="num"><span class="sw" style="background: var(--gold)"></span>02 · The marketing-ops part</div>
-      <h4>15 years of mar-ops, measured in % lift</h4>
-      <p>Lead-scoring + automation at Zayo (<b>+30% closed-won, +15% conv</b>). Built the GTM stack at Teren (<b>4× MQLs</b>). CDP delivery at Lytics. HubSpot · Pardot · Klaviyo · mParticle.</p>
-    </div>
-    <div class="tldr-card">
-      <div class="num"><span class="sw" style="background: var(--moss)"></span>03 · The travel part</div>
-      <h4>I'm your member, basically</h4>
-      <p>MBA capstone: a <b>wellness travel business plan</b> built on national-park itineraries. Annual US-and-Canada trips chasing singletrack. The lifestyle isn't a marketing target — it's how I live.</p>
-    </div>
-    <div class="tldr-card">
-      <div class="num"><span class="sw" style="background: var(--riso-yellow)"></span>04 · The location part</div>
-      <h4>Boulder native, Denver-adjacent</h4>
-      <p>30 minutes from your HQ. Happy in-office, hybrid, or async. I know Colorado destinations the way your members do — because I've been recommending them to friends for a decade.</p>
-    </div>
-  </div>
+  <p>
+    I'm <b>Katrina Engelsted</b>, and I'd like to apply for the
+    <b>AI Marketing Operations Manager</b> role. My specialty is something
+    most marketing-ops candidates don't claim: I'm a <b>solutions engineer
+    who specialized into marketing</b>. That means when a marketing team
+    has accumulated a dozen tools that half-overlap, four lifecycle flows
+    nobody can fully explain, three reporting cadences that contradict
+    each other, and a <i>"we should be using AI for this"</i> backlog the
+    size of a Notion graveyard — <span class="hl">I'm the person you
+    call.</span>
+  </p>
+
+  <p>
+    I audit, I integrate, I simplify, I automate — in that order. The
+    deliverable is always a marketing org that ships more with less
+    ceremony, and a stack that a new hire on day three can read like a
+    map. The AI part is the easy part, honestly — Claude and ChatGPT
+    accelerate the work, but only after the workflow underneath them is
+    actually <i>worth</i> automating.
+  </p>
 </section>
 
-<!-- RECEIPT #1 — AI WORKFLOWS -->
-<section class="receipt-feature" id="receipts">
+<!-- HOW I WORK -->
+<section class="std tinted">
   <div class="section-label">
     <span class="num">01</span>
-    <span>Receipt #1 · The AI workflows I've already shipped</span>
+    <span>How I work</span>
     <span class="line"></span>
   </div>
 
-  <h2>I don't talk about AI workflows. I <em>ship</em> them.</h2>
+  <h2>Four steps, in <em>order.</em></h2>
 
-  <div class="receipt-grid">
-    <div>
-      <p class="lede">
-        For the last two years I've been founding technical advisor at
-        <b>Upstream AI</b> — building AI-native software for small water
-        utilities. The actual day-to-day is a lot like what you're hiring for:
-        <span class="hl">build the workflow, write the prompt library,
-        document the playbook, train the team, repeat.</span>
-      </p>
-      <p class="lede">
-        I run a stack of <b>Claude Code sub-agents</b> for testing, documentation,
-        and pilot-readiness review. I keep a versioned prompt library. I
-        write internal playbooks the way other people write Notion docs —
-        because nothing scales without them.
-      </p>
-      <p class="lede">
-        Translation for marketing: I can stand up a
-        <b>"campaign-brief → AI-drafted variants → human review → CRM
-        upload"</b> pipeline in a week. I can audit which of your existing
-        Customer.io / HubSpot / Klaviyo flows are <b>begging to be replaced
-        by a Claude agent</b>. And I can write the training docs that make
-        the rest of marketing actually use them.
-      </p>
+  <div class="steps">
+    <div class="step">
+      <div class="num">Step 01 · Audit</div>
+      <h4>Map the system as it actually is</h4>
+      <p>Every tool, every workflow, every owner, every hand-off. The first deliverable is a picture of the stack the way it really runs — not the way it's documented.</p>
     </div>
-
-    <div class="workflow-mock">
-      <div class="bar">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        <span style="margin-left:10px;">~/upstream/agents · main</span>
-      </div>
-      <ul class="workflow-list">
-        <li>
-          <span class="agent">★</span>
-          <div>
-            <span class="name">doc-repo-tester</span>
-            <span class="desc">QA's the RAG index against canonical questions before pilot demos.</span>
-          </div>
-          <span class="status">▸ live</span>
-        </li>
-        <li>
-          <span class="agent">★</span>
-          <div>
-            <span class="name">daily-report-builder</span>
-            <span class="desc">Turns operator voice notes into structured monthly compliance reports.</span>
-          </div>
-          <span class="status">▸ live</span>
-        </li>
-        <li>
-          <span class="agent">★</span>
-          <div>
-            <span class="name">pilot-readiness-reviewer</span>
-            <span class="desc">Audits pilot status, flags blockers, drafts the weekly update.</span>
-          </div>
-          <span class="status">▸ live</span>
-        </li>
-        <li>
-          <span class="agent">★</span>
-          <div>
-            <span class="name">prompt-library</span>
-            <span class="desc">Versioned, tagged, tested — not a Notion graveyard.</span>
-          </div>
-          <span class="status">▸ live</span>
-        </li>
-        <li>
-          <span class="agent">+</span>
-          <div>
-            <span class="name">campaign-brief-agent</span>
-            <span class="desc">[ proposed for ER ] · brief in → audience-segmented copy variants out.</span>
-          </div>
-          <span class="status">▸ ready</span>
-        </li>
-        <li>
-          <span class="agent">+</span>
-          <div>
-            <span class="name">member-insight-summarizer</span>
-            <span class="desc">[ proposed for ER ] · CRM + survey data → weekly trend digest for the marketing team.</span>
-          </div>
-          <span class="status">▸ ready</span>
-        </li>
-      </ul>
+    <div class="step">
+      <div class="num">Step 02 · Integrate</div>
+      <h4>Find the overlap + the seams</h4>
+      <p>Two tools doing the same job. Two tools that should be connected but aren't. Tools nobody uses anymore. I decide what stays, what goes, and what gets bridged with APIs or Zapier.</p>
+    </div>
+    <div class="step">
+      <div class="num">Step 03 · Simplify</div>
+      <h4>Standardize + document</h4>
+      <p>One campaign-brief template. One lifecycle source-of-truth. One reporting cadence the leadership team actually reads. Make the ops legible — the team you have can ship 2× faster.</p>
+    </div>
+    <div class="step">
+      <div class="num">Step 04 · Automate</div>
+      <h4>Claude + Zapier + good prompts</h4>
+      <p>Versioned prompt libraries. Claude Code sub-agents for the repetitive work. AI in the loop, human at the sign-off. The boring work stops being done by humans.</p>
     </div>
   </div>
 </section>
 
-<!-- RECEIPT #2 — MARKETING OPS -->
-<section class="std" id="marketing">
-  <div class="section-label">
-    <span class="num">02</span>
-    <span>Receipt #2 · The marketing-ops track record</span>
-    <span class="line"></span>
-  </div>
-
-  <h2>I'm a <em>real</em> marketing-ops person, not a freshly-rebranded AI hobbyist.</h2>
-
-  <div class="ships">
-
-    <div class="ship">
-      <div class="when">2022 · Zayo Group · Marketing Automation Mgr</div>
-      <h4>Lead scoring that lifted <em>closed deals 30%</em></h4>
-      <p>Built process flows, profile grading, lifecycle stages, deadlines, dashboards. Made the system legible to sales leadership without overloading them. <span class="num">+15%</span> lift in lead-to-MQL conversion, <span class="num">+30%</span> lift in closed-won, <span class="num">500</span> leads from one co-built webinar series.</p>
-    </div>
-
-    <div class="ship">
-      <div class="when">2018–21 · Teren · Head of Marketing Technology</div>
-      <h4><em>4× qualified leads</em>, month over month</h4>
-      <p>Owned the full GTM tech stack at a seed-stage geospatial startup: web, landing pages, gated content, attribution, persona-driven funnels. Worked with eng + product on sales enablement that engineers actually used. <span class="num">10%</span> lift in lead gen from segmented landing pages alone.</p>
-    </div>
-
-    <div class="ship">
-      <div class="when">2022–23 · Lytics · Sr. Technical Consultant</div>
-      <h4>Enterprise <em>customer data platform</em> rollouts</h4>
-      <p>Got enterprise clients live on a CDP — translating "we want to know our customers" into SQL queries, segments, audiences, and data pipelines that actually shipped. <span class="hl">The literal CRM + lifecycle work the JD calls out as nice-to-have.</span></p>
-    </div>
-
-    <div class="ship">
-      <div class="when">2015–18 · Homebot · Solutions Engineering Mgr</div>
-      <h4>Early team · email product for <em>agents + lenders</em></h4>
-      <p>Designed the data schema for messy real-estate ingestion. Shipped the email-driven product. Trained the beta cohort. Built the dashboards that made mortgage finance legible. <span class="hl">Customer-segmented lifecycle at scale.</span></p>
-    </div>
-
-  </div>
-</section>
-
-<!-- RECEIPT #3 — TRAVEL / LIFESTYLE -->
-<section class="travel" id="travel">
-  <div class="section-label">
-    <span class="num">03</span>
-    <span>Receipt #3 · The travel-and-membership lens</span>
-    <span class="line"></span>
-  </div>
-
-  <h2>I already think like an <em>ER member.</em></h2>
-
-  <div class="travel-grid">
-    <div class="travel-text">
-      <p>
-        The JD lists "luxury, hospitality, travel, membership, or lifestyle
-        brands" as nice-to-have. Most candidates have to fake that fluency.
-        <b>I don't.</b>
-      </p>
-      <p>
-        For my <b>Quantic MBA capstone</b> I co-authored <i>Elevated Van
-        Journeys</i> — a 37-page business plan for a wellness travel company
-        built around <span class="hl">curated routes through national parks</span>,
-        electric vans, guided audio experiences, and community hubs at each
-        stop. Three co-founders, three skill sets. Year-3 model: <b>$1M
-        revenue, 29% net margin</b>. The lifestyle angle wasn't research —
-        it was the business.
-      </p>
-      <p>
-        And I live it. I'm <b>PMBIA-certified</b> mountain bike coach. I run
-        women's skills clinics across Colorado. I plan annual bike trips
-        across the US and Canada — Whistler, Squamish, Crested Butte,
-        Sedona, Bentonville, the whole roster. <span class="hl">I plan
-        destination experiences for myself the way ER plans them for
-        members.</span> I know what a great destination week feels like from
-        the inside.
-      </p>
-      <p>
-        For ER specifically: I think the magic is the <b>"effortless"
-        feeling</b> — that the member never sees the operations behind it.
-        The AI workflows I'd build would protect that feeling by making
-        marketing run smoother, not by stuffing AI in the member's face.
-      </p>
-    </div>
-
-    <div class="travel-card">
-      <span class="tag">★ Receipts</span>
-      <h4>Why I get the customer</h4>
-      <div class="fact">
-        <b>Elevated Van Journeys</b> — co-authored MBA-capstone wellness-travel business plan. Market sizing, Blue Ocean positioning, financials, routes. 37 pages, <a href="./documents/Elevated%20Journeys%20Business%20Plan.pdf" target="_blank" rel="noopener" style="color:var(--navy); text-decoration:underline;">read it ↗</a>.
-      </div>
-      <div class="fact">
-        <b>National Park Service alum.</b> Three years building cartography that became <a href="https://www.nps.gov/maps/tools/park-tiles/view/index.html#4/39.06/-95.98" target="_blank" rel="noopener" style="color:var(--navy); text-decoration:underline;">NPS Park Tiles</a> — the basemap behind millions of trip-plans.
-      </div>
-      <div class="fact">
-        <b>PMBIA mountain bike coach.</b> Women's clinics, private 1:1 — the experience-economy mindset of "help someone do something they didn't think they could."
-      </div>
-      <div class="fact">
-        <b>Boulder-based, Denver-adjacent.</b> I'm at the trailhead an hour from your office. I know what Colorado magic looks like because I live in it.
-      </div>
-      <div class="stamps">
-        <span>Whistler</span><span>Squamish</span><span>Crested Butte</span><span>Sedona</span><span>Bentonville</span><span>Moab</span><span>Park City</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MATCH GRID -->
-<section class="std" id="match" style="background: var(--paper-2); border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);">
-  <div class="section-label">
-    <span class="num">04</span>
-    <span>The JD, line by line</span>
-    <span class="line"></span>
-  </div>
-
-  <h2>What you <em>wrote</em>, <span class="hl">side-by-side</span> with what I bring.</h2>
-
-  <div class="match-grid">
-    <div class="match-head them">Exclusive Resorts wrote</div>
-    <div class="match-head me">Katrina has</div>
-
-    <div class="match-row">
-      <div>"<b>2–5 years of experience</b> in marketing operations, growth marketing, digital marketing, or related roles"</div>
-      <div><span class="check">▸ STRONG</span>Fifteen years across mar-ops, growth, and solutions engineering. Zayo (mar-auto), Teren (head of mar-tech), Lytics (CDP consulting), Homebot (sol-eng + lifecycle). The "2–5" floor is comfortably cleared.</div>
-    </div>
-
-    <div class="match-row">
-      <div>"Strong interest in <b>AI tools</b> and how they can improve marketing workflows"</div>
-      <div><span class="check">▸ STRONG</span>"Interest" undersells it. I'm a working AI-native operator. Two years building with <b>Claude Code, Claude API, RAG pipelines, sub-agents, prompt libraries</b>. I dogfood my own workflows weekly.</div>
-    </div>
-
-    <div class="match-row">
-      <div>"Experience with tools like <b>ChatGPT, Claude</b>, or similar platforms"</div>
-      <div><span class="check">▸ STRONG</span>Claude (Code + API) daily. ChatGPT and GPT-4o regularly. Familiar with Figma AI, comfortable with image-gen pipelines (DALL-E, Midjourney, Nano Banana / Gemini Imagen). Voyage + OpenAI embeddings in production.</div>
-    </div>
-
-    <div class="match-row">
-      <div>"Build and maintain <b>AI-assisted workflows</b> · prompt libraries, templates, repeatable systems"</div>
-      <div><span class="check">▸ STRONG</span>This is my current job description. Versioned prompt library, sub-agent suite, README-first engineering, templated playbooks. I'd land Monday with a starter prompt-library structure for ER and walk the team through it.</div>
-    </div>
-
-    <div class="match-row">
-      <div>"<b>Identify automation opportunities</b> across teams"</div>
-      <div><span class="check">▸ STRONG</span>I default to "what part of this is repeatable?" Built the lead-scoring + automation system at Zayo from a blank Salesforce instance. Did the same at Teren. Looking at ER's stack, I can already see three obvious wins.</div>
-    </div>
-
-    <div class="match-row">
-      <div>"Marketing systems and workflows · <b>campaign execution, reporting, segmentation</b>, internal collaboration"</div>
-      <div><span class="check">▸ STRONG</span>Native habitat. HubSpot, Pardot, Klaviyo, Marketo, mParticle, Salesforce, Asana, Notion, Linear, Airtable. Built segments in Lytics for Fortune-500 clients. Owned the full campaign-execution loop at Teren.</div>
-    </div>
-
-    <div class="match-row">
-      <div>"<b>Partner with brand, creative, CRM, growth, and analytics</b> teams"</div>
-      <div><span class="check">▸ STRONG</span>The "engine that keeps cross-functional projects moving" for 15 years. At Teren I lived between eng / product / sales / design every day. At Upstream I AM the cross-functional team.</div>
-    </div>
-
-    <div class="match-row">
-      <div>"Help teams <b>adopt AI tools effectively</b> through training, documentation, and hands-on support"</div>
-      <div><span class="check">▸ STRONG</span>Trained pilot operators at Upstream, trained beta cohorts at Homebot, wrote part of <b>LearnOSM</b> (HOT OSM training, 23+ languages). Comfortable in front of a room and inside a doc.</div>
-    </div>
-
-    <div class="match-row">
-      <div>"<b>Reporting, dashboards, marketing performance analysis</b>"</div>
-      <div><span class="check">▸ STRONG</span>Custom dashboards at NPS, attribution dashboards at Teren, segment-reporting at Lytics, Supabase + Recharts operator dashboards at Upstream. Machine Learning / Data Science certificate (Springboard 2024) refreshed the toolkit.</div>
-    </div>
-
-    <div class="match-row">
-      <div>"Experience building <b>no-code/low-code</b> automations" (nice-to-have)</div>
-      <div><span class="check">▸ STRONG</span>Zapier, Make, n8n, Retool, Airtable Automations. Plus I can actually code when no-code stops being enough — that's a meaningful gap most mar-ops candidates have.</div>
-    </div>
-
-    <div class="match-row">
-      <div>"Familiarity with <b>CRM and lifecycle marketing systems</b>" (nice-to-have)</div>
-      <div><span class="check">▸ STRONG</span>HubSpot + Pardot + Marketo + Klaviyo + Customer.io. Plus Lytics CDP consulting, plus Homebot's lifecycle-email product. Lifecycle is the muscle.</div>
-    </div>
-
-    <div class="match-row">
-      <div>"Basic understanding of <b>APIs, analytics, or data workflows</b>" (nice-to-have)</div>
-      <div><span class="check">▸ STRONG</span>"Basic" undersells it. I ship production code against Anthropic, OpenAI, Voyage, Supabase, Stripe, Postgres, BigQuery. Webhooks + REST + GraphQL all live in my muscle memory.</div>
-    </div>
-
-    <div class="match-row">
-      <div>"Experience in <b>luxury, hospitality, travel, membership, or lifestyle</b> brands" (nice-to-have)</div>
-      <div><span class="check">▸ MATCH</span>MBA capstone was a wellness-travel business plan. PMBIA mountain bike coach. Annual US/CAN destination-bike trips. NPS alum. <span class="hl">I'm in the lifestyle, not just adjacent to it.</span></div>
-    </div>
-  </div>
-
-  <div class="tools">
-    <span class="tool-chip daily">Claude (Code + API)</span>
-    <span class="tool-chip daily">ChatGPT / GPT-4o</span>
-    <span class="tool-chip daily">Prompt libraries · sub-agents</span>
-    <span class="tool-chip"><span class="dot" style="background: var(--navy)"></span>HubSpot · Pardot · Marketo</span>
-    <span class="tool-chip"><span class="dot" style="background: var(--navy)"></span>Klaviyo · Customer.io</span>
-    <span class="tool-chip"><span class="dot" style="background: var(--gold)"></span>Salesforce · Lytics CDP</span>
-    <span class="tool-chip"><span class="dot" style="background: var(--gold)"></span>Zapier · Make · n8n · Retool</span>
-    <span class="tool-chip"><span class="dot" style="background: var(--moss)"></span>Figma · Figma AI</span>
-    <span class="tool-chip"><span class="dot" style="background: var(--moss)"></span>Image-gen (DALL-E, Midjourney, Nano Banana)</span>
-    <span class="tool-chip"><span class="dot" style="background: var(--riso-yellow)"></span>Supabase · Postgres · BigQuery</span>
-    <span class="tool-chip"><span class="dot" style="background: var(--riso-yellow)"></span>Python · SQL · TypeScript</span>
-    <span class="tool-chip"><span class="dot" style="background: var(--ink)"></span>Notion · Linear · GitHub Projects</span>
-  </div>
-</section>
-
-<!-- HOW I'D RUN THE ROLE -->
+<!-- PROOF -->
 <section class="std">
   <div class="section-label">
-    <span class="num">05</span>
-    <span>The first 90 days, sketched</span>
+    <span class="num">02</span>
+    <span>The track record</span>
     <span class="line"></span>
   </div>
 
-  <h2>How I'd <em>actually</em> run the role.</h2>
+  <h2>Four times I've <em>done this before.</em></h2>
 
-  <div class="ships">
-    <div class="ship">
-      <div class="when">Days 1–30 · LISTEN + AUDIT</div>
-      <h4>Map the current stack and the people in it</h4>
-      <p>Sit with brand, creative, CRM, growth, and analytics one at a time. Inventory existing workflows, tooling, and rituals. <b>Find the three places where AI would save the most painful hours</b> — not the showiest places. Document everything in a shared Notion that I maintain.</p>
+  <div class="proof">
+    <div class="proof-card">
+      <div class="when">2022 · Zayo Group</div>
+      <h4>Mktg Automation Mgr · <em>lead scoring + lifecycle</em></h4>
+      <p>Built lead-scoring flows, profile grading, dashboards from a blank Salesforce instance. <span class="num">+15%</span> lead-to-MQL, <span class="num">+30%</span> closed-won.</p>
     </div>
-
-    <div class="ship">
-      <div class="when">Days 31–60 · SHIP THE FIRST TWO</div>
-      <h4>One workflow per team, one library shared</h4>
-      <p>Pick two pilot use-cases (likely <span class="hl">campaign-brief generation</span> + <span class="hl">CRM-data summarization</span>). Build, document, train. Stand up the shared prompt library. Make adoption frictionless: chrome extension, Slack bot, whatever the team actually opens.</p>
+    <div class="proof-card">
+      <div class="when">2018–21 · Teren</div>
+      <h4>Head of Marketing Tech · <em>full GTM stack</em></h4>
+      <p>Owned web, landing pages, attribution, campaigns at a seed-stage geospatial startup. <span class="num">4×</span> MQLs MoM. Worked across eng, product, sales every day.</p>
     </div>
-
-    <div class="ship">
-      <div class="when">Days 61–90 · MEASURE + EXPAND</div>
-      <h4>Hours saved, output quality, adoption rate</h4>
-      <p>Instrument adoption. Surface metrics in a weekly dashboard the leadership team actually reads. Identify the next three workflows. <b>By day 90, AI use is no longer optional — it's invisible because it's the default.</b></p>
+    <div class="proof-card">
+      <div class="when">2022–23 · Lytics</div>
+      <h4>Sr. Technical Consultant · <em>CDP delivery</em></h4>
+      <p>Got enterprise clients live on a customer data platform — translating "we want to know our customers" into SQL, segments, audiences, pipelines that actually shipped.</p>
     </div>
-
-    <div class="ship">
-      <div class="when">Ongoing · KEEP IT BORING</div>
-      <h4>Versioned prompts, README-first, no shadow systems</h4>
-      <p>The interesting part of AI ops isn't the demos — it's the QA, the rollback plans, the docs, the team trainings, and the bored-but-confident humans signing off on every output. <span class="hl">I treat AI workflows the way good ops people treat any other system.</span></p>
+    <div class="proof-card">
+      <div class="when">2015–18 · Homebot</div>
+      <h4>Solutions Eng Mgr · <em>lifecycle email product</em></h4>
+      <p>Early team at a PropTech startup. Designed the data schema for messy real-estate ingestion. Shipped the agent + lender lifecycle product. Trained the beta cohort.</p>
     </div>
   </div>
 </section>
 
-<!-- WHY ER -->
-<section class="std" style="background: var(--paper-2); border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);">
+<!-- THE AI DAY-JOB -->
+<section class="std dark">
   <div class="section-label">
-    <span class="num">06</span>
-    <span>Why Exclusive Resorts specifically</span>
+    <span class="num">03</span>
+    <span>The AI day-job</span>
     <span class="line"></span>
   </div>
 
-  <h2>This <em>isn't</em> a "spray and pray" application.</h2>
+  <h2>I already build with <em>Claude</em> — daily.</h2>
 
-  <div class="why-grid">
-    <div class="why-text">
-      <p>
-        I'm in Boulder. ER is in Denver. There's about <b>thirty minutes of
-        I-25</b> between us and one of the best destinations-marketing brands
-        in the country. I've watched ER grow up in my own city.
-      </p>
-      <p>
-        I'm applying to this role because the intersection is unusually
-        clean: <b>a lifestyle brand whose members are people like me</b>, in
-        a moment where AI is genuinely reshaping how marketing teams operate,
-        with a role that asks for someone who can <span class="hl">build the
-        systems and translate them to the humans on either side</span>. Not
-        a lot of jobs ask for both.
-      </p>
-      <p>
-        The candor part: I'm a part-time founding advisor at an early-stage
-        startup. <b>It's structured so I can step back to a purely advisory
-        commitment for the right full-time role</b>, which this is. No
-        scheduling conflict, no divided attention. Available to start.
-      </p>
-    </div>
+  <div class="body-letter">
+    <p>
+      For the last six months I've been <b>founding technical advisor at
+      Upstream AI</b>, a pre-revenue water-utility software startup. My
+      actual day-to-day there is building <b>Claude Code sub-agents</b>
+      (for testing, documentation, pilot-readiness review), <b>versioned
+      prompt libraries</b>, and <b>RAG pipelines</b> that non-technical
+      end-users can rely on.
+    </p>
+    <p>
+      Translation for ER: the toolkit you're hiring for is the one I
+      already use. I can land Monday with a starter prompt-library
+      structure for your team, audit which of your existing flows are
+      begging to be replaced by a Claude agent, and write the training docs
+      that get the rest of marketing actually using them. The role is part-time and structured so I can step back to a purely
+      advisory commitment for the right full-time seat — which this is.
+    </p>
+  </div>
+</section>
 
-    <div class="why-card">
-      <span class="tag">★ MEANS IT</span>
-      <h4>The receipts on "I get it"</h4>
-      <p>Four signals that I'm not just pattern-matching on a JD:</p>
-      <div class="fact">
-        <b>I build AI workflows for a living.</b> Two years of Claude Code sub-agents at Upstream. The toolkit you're hiring for is the one I already use.
-      </div>
-      <div class="fact">
-        <b>Marketing-ops is the deepest stripe in my background.</b> Zayo, Teren, Lytics, Homebot. % lifts to point at. Stacks I can name in my sleep.
-      </div>
-      <div class="fact">
-        <b>I'm in the lifestyle, not adjacent to it.</b> Wellness travel MBA capstone, NPS alum, PMBIA coach, US/CAN destination biker, Boulder native.
-      </div>
-      <div class="fact">
-        <b>Local + available + aligned.</b> 30 minutes from your HQ. Full-time available. Genuinely interested in ER — not just AI mar-ops roles in general.
-      </div>
+<!-- THE BRAND PART -->
+<section class="std tinted">
+  <div class="section-label">
+    <span class="num">04</span>
+    <span>One last thing</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>I'm in the <em>lifestyle</em>, not adjacent to it.</h2>
+
+  <div class="body-letter">
+    <p>
+      Travel and luxury aren't a research project for me — they're how I
+      grew up. My family emphasized travel and took me to <b>Tanzania,
+      Bali, Costa Rica, Patagonia, Denmark, France, Germany, and
+      Spain</b> before I was twenty.
+    </p>
+  </div>
+
+  <div class="stamps-wrap">
+    <div class="stamps-row">
+      <span class="lbl">Family travel:</span>
+      <span class="stamp-chip">Tanzania</span>
+      <span class="stamp-chip">Bali</span>
+      <span class="stamp-chip">Costa Rica</span>
+      <span class="stamp-chip">Patagonia</span>
+      <span class="stamp-chip">Argentina</span>
+      <span class="stamp-chip">Denmark</span>
+      <span class="stamp-chip">France</span>
+      <span class="stamp-chip">Germany</span>
+      <span class="stamp-chip">Spain</span>
     </div>
+  </div>
+
+  <div class="body-letter" style="margin-top: 22px;">
+    <p>
+      As an adult I went the other direction and spent multiple years
+      <b>living abroad</b> on development and research work — in
+      <b>Haiti, India, the Philippines, and Indonesia</b>. The
+      contrast is the point. I know what a luxury hotel does right, and
+      I also know what a fourteen-hour delayed-bag layover feels like at
+      2am in a country whose airline you've never heard of.
+      <span class="hl">I understand both the joys and pains of
+      travel.</span>
+    </p>
+  </div>
+
+  <div class="stamps-wrap">
+    <div class="stamps-row lived">
+      <span class="lbl">Lived abroad:</span>
+      <span class="stamp-chip">Haiti</span>
+      <span class="stamp-chip">India</span>
+      <span class="stamp-chip">Philippines</span>
+      <span class="stamp-chip">Indonesia</span>
+    </div>
+  </div>
+
+  <div class="body-letter" style="margin-top: 22px;">
+    <p>
+      More recently: my MBA capstone was a <b>wellness-travel business
+      plan</b> built around curated national-park itineraries. I'm
+      <b>PMBIA-certified</b> to coach mountain biking and plan annual
+      destination trips across the US and Canada — Whistler, Squamish,
+      Crested Butte, Sedona, Bentonville, Moab. Three years at the
+      <b>National Park Service</b> doing cartography that became NPS Park
+      Tiles, the basemap behind millions of trip-plans.
+    </p>
+    <p>
+      I plan destination experiences for myself the way ER plans them for
+      members. I know what a great destination week feels like from the
+      inside — and I'm thirty minutes from your Denver HQ.
+    </p>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta" id="contact">
   <div class="cta-card">
-    <h2>Want to <em>see how I'd build</em><br>your first AI workflow?</h2>
+    <h2>Want me to <em>audit one</em> of your workflows?</h2>
     <p>
-      Give me 30 minutes and one of your real marketing tasks. I'll walk you
-      through the workflow I'd build, the prompt library structure I'd stand
-      up, and the way I'd train the team on it. Worst case you get a free
-      audit of one process. Best case you've found your hire.
+      Give me 30 minutes and one of your real marketing workflows. I'll
+      walk you through how I'd map it, where I'd compress it, and which
+      two AI workflows I'd ship in the first month. Worst case you get a
+      free audit. Best case you've found your hire.
     </p>
     <div class="cta-buttons">
-      <a href="mailto:katrina@engelsted.co?subject=AI%20Marketing%20Operations%20Manager%20application%20-%20Engelsted&body=Hi%20there%2C%0A%0AI'm%20applying%20for%20the%20AI%20Marketing%20Operations%20Manager%20role.%20A%20long-form%20version%20of%20my%20application%20lives%20at%20engelsted.co%2Fexclusive-resorts.html%20and%20my%20r%C3%A9sum%C3%A9%20is%20attached.%0A%0AHappy%20to%20jump%20on%20a%20call%20whenever%20works%20—%20I'm%20local%20to%20Boulder.%0A%0ABest%2C%0AKatrina%20Engelsted%0Akatrina%40engelsted.co" class="btn primary">Email me →</a>
-      <a href="./katrina-engelsted-exclusive-resorts-resume.pdf" target="_blank" rel="noopener" class="btn outline">Download résumé (PDF)</a>
-      <a href="./index.html" class="btn outline">Full résumé site</a>
-      <a href="https://linkedin.com/in/katrinae" target="_blank" rel="noopener" class="btn outline">LinkedIn</a>
+      <a href="./katrina-engelsted-exclusive-resorts-resume.pdf" target="_blank" rel="noopener" class="btn primary">Download résumé (PDF)</a>
+      <a href="./index.html#contact" class="btn">Get in touch</a>
+      <a href="./index.html" class="btn">Full résumé site</a>
+      <a href="https://linkedin.com/in/katrinae" target="_blank" rel="noopener" class="btn">LinkedIn</a>
     </div>
+  </div>
+</section>
+
+<!-- SIGN-OFF -->
+<section class="body-letter" style="padding-bottom: 8vh;">
+  <div class="signoff">
+    Thanks for reading,<br>
+    <span class="name">Katrina</span>
+    <span style="color:var(--ink-soft); font-size:13px; font-family:'DM Mono',monospace; letter-spacing:1px;">
+      katrina@engelsted.co · Boulder, CO · 30 min from Denver
+    </span>
   </div>
 </section>
 
