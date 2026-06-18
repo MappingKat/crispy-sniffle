@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Katrina Engelsted × Trimble — Manager, Customer Master Platform</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,900;1,500&family=DM+Mono:wght@400;500;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:    #f4ecd4;
+    --paper-2:  #ede2bf;
+    --ink:      #1a1a1a;
+    --ink-soft: #3a3a3a;
+    --slate:    #1f2d3d;   /* deep enterprise navy */
+    --slate-2:  #2b3d52;
+    --bronze:   #c87a3a;   /* warm hardware bronze */
+    --steel:    #5e7387;   /* cool neutral */
+    --riso-yellow:#f5c526;
+    --riso-mint:#7fd1b4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: radial-gradient(circle, var(--ink) 0.6px, transparent 0.6px);
+    background-size: 5px 5px; opacity: 0.05; pointer-events: none; z-index: 1;
+  }
+  body::after {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1, 0 0 0 0 0.1, 0 0 0 0 0.1, 0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    pointer-events: none; z-index: 1; mix-blend-mode: multiply; opacity: 0.5;
+  }
+  main, header, footer, section { position: relative; z-index: 2; }
+
+  /* TOPBAR */
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 5vw;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .topbar .crumbs { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .topbar .crumbs a { color: var(--ink-soft); text-decoration: none; }
+  .topbar .crumbs a:hover { color: var(--bronze); }
+  .topbar .crumbs .sep { color: var(--ink-soft); opacity: 0.5; }
+  .topbar .crumbs .here { color: var(--ink); font-weight: 700; }
+  .topbar .stamp {
+    background: var(--slate); color: var(--paper);
+    padding: 4px 12px; border-radius: 3px; font-weight: 700;
+    transform: rotate(-1deg);
+  }
+
+  /* HERO */
+  .hero { padding: 5vh 5vw 4vh; position: relative; overflow: hidden; }
+  .hero-meta {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    margin-bottom: 28px; color: var(--ink-soft);
+    max-width: 800px;
+  }
+  .hero-meta .pill {
+    background: var(--paper-2); border: 1px solid var(--ink);
+    padding: 4px 10px; border-radius: 20px;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .hero-meta .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--bronze); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: 0.4; } }
+
+  .hero h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(40px, 7vw, 92px);
+    font-weight: 900; line-height: 0.92;
+    letter-spacing: -2.5px; margin-bottom: 26px;
+    max-width: 900px;
+  }
+  .hero h1 em { font-style: italic; font-weight: 500; color: var(--slate); }
+  .hero h1 .stamp {
+    font-style: normal; background: var(--bronze); color: var(--paper);
+    padding: 0 14px 6px; display: inline-block; transform: rotate(-1.5deg);
+  }
+
+  /* LETTER */
+  .body-letter {
+    max-width: 760px;
+    padding: 0 5vw 4vh;
+  }
+  .body-letter p {
+    font-size: clamp(16px, 1.6vw, 19px);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+  .body-letter p b { color: var(--ink); }
+  .body-letter p .hl { background: var(--riso-yellow); padding: 0 4px; color: var(--ink); }
+  .body-letter p a { color: var(--slate); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  .body-letter .salutation {
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+    color: var(--slate);
+    margin-bottom: 14px;
+    transform: rotate(-1deg);
+    display: inline-block;
+  }
+
+  /* SECTION SHELL */
+  section.std { padding: 6vh 5vw; }
+  section.std.tinted { background: var(--paper-2); border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); }
+  section.std.dark { background: var(--ink); color: var(--paper); }
+  section.std.dark h2 { color: var(--paper); }
+  section.std.dark h2 em { color: var(--bronze); }
+  section.std.dark .section-label { color: rgba(244,236,212,0.7); }
+  section.std.dark .section-label .num { background: var(--paper); color: var(--ink); }
+  section.std.dark .section-label .line { background: var(--paper); }
+  section.std.dark .body-letter p { color: rgba(244,236,212,0.88); }
+  section.std.dark .body-letter p b { color: var(--paper); }
+
+  .section-label {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    margin-bottom: 18px; color: var(--ink-soft);
+    max-width: 900px;
+  }
+  .section-label .num { background: var(--ink); color: var(--paper); padding: 3px 8px; border-radius: 3px; font-weight: 500; }
+  .section-label .line { flex: 1; height: 1.5px; background: var(--ink); max-width: 60px; }
+  h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(28px, 4.2vw, 50px);
+    font-weight: 900; line-height: 1.05;
+    letter-spacing: -1.5px; margin-bottom: 24px;
+    max-width: 900px;
+  }
+  h2 em { font-style: italic; font-weight: 500; color: var(--slate); }
+  h2 .hl { font-style: normal; background: var(--riso-yellow); padding: 0 8px; display: inline-block; transform: rotate(-0.5deg); }
+
+  /* WHIRLPOOL FEATURE — graph-style mock */
+  .whirl-grid {
+    display: grid; grid-template-columns: 1.1fr 1fr;
+    gap: 32px; align-items: start;
+    max-width: 1100px;
+  }
+  .whirl-text p {
+    font-size: 16px; line-height: 1.65;
+    color: rgba(244,236,212,0.88);
+    margin-bottom: 16px; max-width: 560px;
+  }
+  .whirl-text p b { color: var(--paper); }
+  .whirl-text p .hl { background: var(--riso-yellow); color: var(--ink); padding: 0 3px; }
+  .whirl-text .step-list {
+    list-style: none;
+    margin: 16px 0;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .whirl-text .step-list li {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 14px; line-height: 1.5;
+    color: rgba(244,236,212,0.82);
+  }
+  .whirl-text .step-list li::before {
+    content: '◆'; color: var(--bronze); font-size: 10px; margin-top: 5px;
+  }
+  .whirl-text .step-list li b { color: var(--paper); }
+
+  /* graph mock */
+  .graph-mock {
+    background: rgba(244,236,212,0.06);
+    border: 1px solid rgba(244,236,212,0.25);
+    border-radius: 8px;
+    padding: 22px;
+    aspect-ratio: 1 / 1;
+    position: relative;
+  }
+  .graph-mock .lbl {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: rgba(244,236,212,0.6); letter-spacing: 1.5px;
+    margin-bottom: 14px;
+    display: flex; gap: 8px; align-items: center;
+  }
+  .graph-mock .lbl .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(244,236,212,0.4); }
+  .graph-mock .lbl .dot:nth-child(2) { background: var(--bronze); }
+  .graph-mock svg { width: 100%; height: calc(100% - 30px); display: block; }
+  .graph-mock .node-lbl {
+    font-family: 'DM Mono', monospace; font-size: 9px;
+    fill: var(--paper); letter-spacing: 0.5px;
+  }
+  .graph-mock .edge-lbl {
+    font-family: 'DM Mono', monospace; font-size: 8px;
+    fill: rgba(244,236,212,0.5); letter-spacing: 0.3px;
+  }
+
+  /* MAPPING TABLE — JD requirements */
+  .mapping {
+    max-width: 1000px;
+    border: 1.5px solid var(--ink); border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 6px 6px 0 var(--ink);
+    background: var(--paper);
+  }
+  .mapping-head {
+    display: grid; grid-template-columns: 1fr 1.5fr;
+  }
+  .mapping-head .h {
+    padding: 14px 18px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 700;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .mapping-head .h.them { background: var(--slate); color: var(--paper); border-right: 1.5px solid var(--ink); }
+  .mapping-head .h.me { background: var(--ink); color: var(--paper); }
+  .mapping-row {
+    display: grid; grid-template-columns: 1fr 1.5fr;
+    border-bottom: 1px dashed rgba(26,26,26,0.25);
+  }
+  .mapping-row:last-child { border-bottom: none; }
+  .mapping-row > div {
+    padding: 14px 18px;
+    font-size: 14px; line-height: 1.5;
+  }
+  .mapping-row .ask {
+    background: var(--paper-2);
+    border-right: 1.5px solid var(--ink);
+    color: var(--ink-soft);
+  }
+  .mapping-row .ask b { background: var(--riso-yellow); padding: 0 3px; color: var(--ink); }
+  .mapping-row .have { color: var(--ink); }
+  .mapping-row .have .check {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: var(--slate); font-weight: 700; margin-right: 6px;
+    letter-spacing: 1px;
+  }
+  .mapping-row .have .check.gap { color: var(--bronze); }
+  .mapping-row .have b { background: var(--riso-yellow); padding: 0 3px; }
+
+  /* APPROACH STEPS */
+  .approach {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; max-width: 1000px;
+  }
+  .approach-card {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    padding: 22px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .approach-card:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
+  .approach-card .num {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 1.5px; color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .approach-card h4 {
+    font-size: 18px; font-weight: 700;
+    line-height: 1.2; letter-spacing: -0.3px;
+    margin-bottom: 8px; color: var(--slate);
+  }
+  .approach-card p { font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
+  .approach-card p b { color: var(--ink); }
+
+  /* HONEST GAPS */
+  .gaps {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-left: 4px solid var(--bronze);
+    border-radius: 6px;
+    padding: 22px 26px;
+    max-width: 760px;
+    margin-top: 24px;
+  }
+  .gaps h4 {
+    font-size: 16px; font-weight: 700; margin-bottom: 10px;
+    font-family: 'DM Mono', monospace; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--bronze);
+  }
+  .gaps p { font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); margin-bottom: 8px; }
+  .gaps p b { color: var(--ink); }
+
+  /* TRACK RECORD */
+  .ships {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px; max-width: 1000px;
+  }
+  .ship {
+    background: var(--paper-2);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    padding: 18px 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ship:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--slate); }
+  .ship .when {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--slate); font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .ship h4 {
+    font-size: 16.5px; font-weight: 700;
+    line-height: 1.2; letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+  .ship h4 em { font-style: italic; font-weight: 500; color: var(--slate); }
+  .ship p { font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); }
+  .ship p b { color: var(--ink); }
+  .ship.featured {
+    background: var(--ink); color: var(--paper);
+    border-color: var(--ink);
+    grid-column: 1 / -1;
+  }
+  .ship.featured .when { color: var(--bronze); }
+  .ship.featured h4 { color: var(--paper); }
+  .ship.featured h4 em { color: var(--bronze); }
+  .ship.featured p { color: rgba(244,236,212,0.85); }
+  .ship.featured p b { color: var(--paper); }
+
+  /* CTA */
+  .cta { padding: 7vh 5vw; }
+  .cta-card {
+    max-width: 900px;
+    background: var(--slate); color: var(--paper);
+    padding: 40px 36px; border-radius: 6px;
+    border: 1.5px solid var(--ink);
+    position: relative; overflow: hidden;
+    box-shadow: 8px 8px 0 var(--bronze);
+  }
+  .cta-card::before { content: ''; position: absolute; bottom: -80px; left: -60px; width: 220px; height: 220px; background: var(--bronze); border-radius: 50%; mix-blend-mode: screen; opacity: 0.4; }
+  .cta-card h2 { color: var(--paper); margin-bottom: 14px; position: relative; z-index: 2; }
+  .cta-card h2 em { color: var(--bronze); }
+  .cta-card p { color: rgba(244,236,212,0.88); font-size: 16px; line-height: 1.6; max-width: 620px; margin-bottom: 24px; position: relative; z-index: 2; }
+  .cta-buttons { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 2; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 22px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid var(--paper); background: transparent; color: var(--paper);
+    border-radius: 4px; cursor: pointer;
+    transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+  }
+  .btn:hover { background: var(--paper); color: var(--ink); }
+  .btn.primary { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+  .btn.primary:hover { background: var(--bronze); color: var(--paper); border-color: var(--bronze); box-shadow: 4px 4px 0 var(--paper); }
+
+  footer {
+    background: var(--ink);
+    color: rgba(244,236,212,0.55);
+    padding: 24px 5vw;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    border-top: 1px dashed rgba(244,236,212,0.3);
+  }
+  footer .heart { color: var(--bronze); }
+
+  @media (max-width: 900px) {
+    .whirl-grid { grid-template-columns: 1fr; }
+    .mapping-head, .mapping-row { grid-template-columns: 1fr; }
+    .mapping-head .h.them { border-right: none; }
+    .mapping-row .ask { border-right: none; border-bottom: 1px solid var(--ink); }
+    .approach { grid-template-columns: 1fr; }
+    .ships { grid-template-columns: 1fr; }
+    .cta-card { padding: 28px 22px; }
+  }
+</style>
+<!-- PostHog analytics -->
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('phc_kjKQbXuSggojWAGtEzcrv8eFCRDDZoKXbv8qjehVCrWt', { api_host: 'https://us.i.posthog.com', person_profiles: 'identified_only' });
+</script>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="crumbs">
+    <a href="./index.html">engelsted.co</a>
+    <span class="sep">/</span>
+    <span class="here">trimble</span>
+  </div>
+  <span class="stamp">↗ Mgr, Customer Master Platform</span>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-meta">
+    <span class="pill"><span class="dot"></span>Available full-time</span>
+    <span class="pill">For: <b style="margin-left:4px">Trimble</b></span>
+    <span class="pill">Role: Manager, Customer Master Platform</span>
+    <span class="pill">From: Boulder, CO · 25 min from Westminster</span>
+  </div>
+
+  <h1>
+    I've built <em>customer<br>
+    identity engines</em><br>
+    <span class="stamp">before.</span>
+  </h1>
+</header>
+
+<!-- LETTER -->
+<section class="body-letter">
+  <span class="salutation">Hi Trimble —</span>
+
+  <p>
+    I'm <b>Katrina Engelsted</b>, and I'd like to apply for the <b>Manager,
+    Customer Master Platform</b> role. The headline reason: the work you're
+    hiring this seat to do — <b>match &amp; merge, survivorship,
+    deterministic + probabilistic identity resolution, cross-reference
+    patterns, hierarchy management</b> — is work I've done before. Just
+    not under an MDM vendor's brand. I did it as a graph identity model
+    inside a CDP at Lytics, for Whirlpool, on tens of millions of records.
+    The primitives are the same.
+  </p>
+
+  <p>
+    I'm a <b>solutions engineer who specialized into customer-data
+    infrastructure</b>. Fifteen years across enterprise systems, data
+    platforms, and team leadership — early-team Solutions Engineering
+    Manager at Homebot, full GTM-stack ownership at Teren, CDP delivery
+    at Lytics, and now founding technical advisor at an AI-native startup
+    where I build with Claude Code daily. I'm in Boulder, 25 minutes
+    from your Westminster office, and looking for a full-time platform
+    leadership seat where the unification problem is real.
+  </p>
+</section>
+
+<!-- THE WHIRLPOOL STORY (dark feature) -->
+<section class="std dark" id="whirlpool">
+  <div class="section-label">
+    <span class="num">01</span>
+    <span>Receipt #1 · The work that maps to this role</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>Customer identity at scale — <em>I've done this exact shape.</em></h2>
+
+  <div class="whirl-grid">
+    <div class="whirl-text">
+      <p>
+        At Lytics I led a <b>Whirlpool</b> engagement that's the closest
+        analog I've shipped to what Trimble is hiring for. The customer
+        data lived in a relational SQL stack — transactions, products,
+        customers, devices, web events — and the job was to translate that
+        into a <b>graph identity model</b>: persons, households, devices,
+        and accounts as nodes, with edges expressing the relationships
+        between them.
+      </p>
+      <p>
+        It's the same primitives an MDM platform asks you to configure —
+        just instantiated in a different vendor's runtime.
+      </p>
+      <ul class="step-list">
+        <li><b>Deterministic + probabilistic matching.</b> Tiered-confidence model — high (same email + same device fingerprint + same IP), medium (household cluster, keep distinct but link), low (don't merge).</li>
+        <li><b>Survivorship rules.</b> Last-touch wins on contact fields, source-of-truth for transactional fields, manual override for stewardship cases.</li>
+        <li><b>Cross-reference patterns.</b> Mapped Whirlpool's source-system IDs to a canonical graph identity. Bidirectional sync so each upstream system stayed in lock-step.</li>
+        <li><b>Hierarchy management.</b> Household → person → device. Edges scored by confidence, hierarchy queryable for downstream marketing and service.</li>
+        <li><b>Stewardship-friendly outputs.</b> Every segment built off the graph could be traced back to the identity links and confidence scores that built it. The marketing team could explain any number to leadership.</li>
+      </ul>
+      <p>
+        Scale was tens of millions of records, multi-vendor data sources,
+        and an ongoing event stream. <span class="hl">The exact failure
+        modes you'd see in an enterprise MDM rollout — false-positive
+        merges from shared IPs, hierarchy drift, source-of-truth conflicts,
+        stewardship escalation paths — I've already debugged in
+        production.</span>
+      </p>
+    </div>
+
+    <div class="graph-mock">
+      <div class="lbl">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span style="margin-left:8px;">graph_identity.json · view</span>
+      </div>
+      <svg viewBox="0 0 320 320">
+        <!-- household node center-top -->
+        <g>
+          <circle cx="160" cy="60" r="28" fill="#c87a3a" stroke="#f4ecd4" stroke-width="2"/>
+          <text x="160" y="64" text-anchor="middle" class="node-lbl" fill="#1a1a1a" style="font-weight:700;">HH</text>
+        </g>
+        <!-- person nodes -->
+        <g>
+          <circle cx="70" cy="160" r="22" fill="#1f3759" stroke="#f4ecd4" stroke-width="2"/>
+          <text x="70" y="164" text-anchor="middle" class="node-lbl" style="font-weight:700;">P1</text>
+          <circle cx="250" cy="160" r="22" fill="#1f3759" stroke="#f4ecd4" stroke-width="2"/>
+          <text x="250" y="164" text-anchor="middle" class="node-lbl" style="font-weight:700;">P2</text>
+          <circle cx="160" cy="170" r="22" fill="#1f3759" stroke="#f4ecd4" stroke-width="2"/>
+          <text x="160" y="174" text-anchor="middle" class="node-lbl" style="font-weight:700;">P3</text>
+        </g>
+        <!-- device + account leaves -->
+        <g>
+          <circle cx="30" cy="260" r="16" fill="#7fd1b4" stroke="#f4ecd4" stroke-width="1.5"/>
+          <text x="30" y="264" text-anchor="middle" class="node-lbl" fill="#1a1a1a" style="font-weight:700;">d</text>
+          <circle cx="100" cy="280" r="16" fill="#7fd1b4" stroke="#f4ecd4" stroke-width="1.5"/>
+          <text x="100" y="284" text-anchor="middle" class="node-lbl" fill="#1a1a1a" style="font-weight:700;">d</text>
+          <circle cx="170" cy="280" r="16" fill="#f5c526" stroke="#f4ecd4" stroke-width="1.5"/>
+          <text x="170" y="284" text-anchor="middle" class="node-lbl" fill="#1a1a1a" style="font-weight:700;">A</text>
+          <circle cx="230" cy="280" r="16" fill="#7fd1b4" stroke="#f4ecd4" stroke-width="1.5"/>
+          <text x="230" y="284" text-anchor="middle" class="node-lbl" fill="#1a1a1a" style="font-weight:700;">d</text>
+          <circle cx="290" cy="270" r="16" fill="#f5c526" stroke="#f4ecd4" stroke-width="1.5"/>
+          <text x="290" y="274" text-anchor="middle" class="node-lbl" fill="#1a1a1a" style="font-weight:700;">A</text>
+        </g>
+        <!-- edges (HH → persons) -->
+        <g stroke="#f4ecd4" stroke-width="1.5" opacity="0.8" fill="none">
+          <line x1="160" y1="88" x2="70" y2="138"/>
+          <line x1="160" y1="88" x2="250" y2="138"/>
+          <line x1="160" y1="88" x2="160" y2="148"/>
+        </g>
+        <!-- edges (persons → leaves) -->
+        <g stroke="#c87a3a" stroke-width="1.2" opacity="0.7" fill="none" stroke-dasharray="3,2">
+          <line x1="70" y1="182" x2="30" y2="244"/>
+          <line x1="70" y1="182" x2="100" y2="264"/>
+          <line x1="160" y1="192" x2="170" y2="264"/>
+          <line x1="250" y1="182" x2="230" y2="264"/>
+          <line x1="250" y1="182" x2="290" y2="254"/>
+        </g>
+        <!-- edge labels (confidence) -->
+        <g>
+          <text x="100" y="115" class="edge-lbl">conf: 0.97</text>
+          <text x="190" y="115" class="edge-lbl">conf: 0.94</text>
+          <text x="170" y="135" class="edge-lbl">conf: 0.99</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- THE MAPPING TABLE -->
+<section class="std tinted">
+  <div class="section-label">
+    <span class="num">02</span>
+    <span>The JD, line by line</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>What you <em>need</em>, <span class="hl">side-by-side</span> with what I've built.</h2>
+
+  <div class="mapping">
+    <div class="mapping-head">
+      <div class="h them">Trimble wrote</div>
+      <div class="h me">Katrina has</div>
+    </div>
+
+    <div class="mapping-row">
+      <div class="ask">"<b>Match &amp; merge strategies</b> — deterministic + probabilistic"</div>
+      <div class="have"><span class="check">▸ STRONG</span>Whirlpool/Lytics: tiered-confidence model spanning both. High-confidence merges (exact email + device fingerprint), probabilistic clustering for household relationships, exclusion rules for shared IPs.</div>
+    </div>
+
+    <div class="mapping-row">
+      <div class="ask">"<b>Survivorship rules</b>"</div>
+      <div class="have"><span class="check">▸ STRONG</span>Field-by-field survivorship — last-touch wins on contact, source-of-truth wins on transactional, manual stewardship override. Configured in production for an enterprise client.</div>
+    </div>
+
+    <div class="mapping-row">
+      <div class="ask">"<b>Cross-reference &amp; identity resolution patterns</b>"</div>
+      <div class="have"><span class="check">▸ STRONG</span>Mapped Whirlpool source-system IDs to a canonical graph identity with bidirectional sync. Same pattern as the cross-ref tables in any MDM hub.</div>
+    </div>
+
+    <div class="mapping-row">
+      <div class="ask">"<b>Customer hierarchy management</b> (legal, commercial, operational)"</div>
+      <div class="have"><span class="check">▸ STRONG</span>Household → person → account → device hierarchies at Lytics. At Teren I worked with multi-entity account structures across legal/commercial. Comfortable with the shape.</div>
+    </div>
+
+    <div class="mapping-row">
+      <div class="ask">"<b>Stewardship workflows</b>"</div>
+      <div class="have"><span class="check">▸ STRONG</span>Built the operating model that let the Whirlpool marketing team trace any segment back to its identity links and confidence scores. Stewardship was the deliverable, not an afterthought.</div>
+    </div>
+
+    <div class="mapping-row">
+      <div class="ask">"<b>API-first architecture</b> &amp; <b>event-driven integration</b> (CDC, streaming, pub/sub)"</div>
+      <div class="have"><span class="check">▸ STRONG</span>Production APIs against Anthropic, OpenAI, Voyage, Supabase, Postgres, Stripe at Upstream. CDC/event patterns from Lytics event streams and Teren attribution pipelines. REST + GraphQL + webhook native.</div>
+    </div>
+
+    <div class="mapping-row">
+      <div class="ask">"<b>Upstream + downstream integration</b> (CRM, ERP, Data Warehouse, IAM)"</div>
+      <div class="have"><span class="check">▸ STRONG</span>Salesforce, HubSpot, Marketo, Snowflake, Postgres, Supabase. CDP delivery at Lytics meant integrating into client CRMs, warehouses, and identity providers as standard practice.</div>
+    </div>
+
+    <div class="mapping-row">
+      <div class="ask">"<b>Translate governance-approved standards into platform rules</b>"</div>
+      <div class="have"><span class="check">▸ STRONG</span>The literal job at Lytics: take a client's data-policy decisions and instantiate them as platform rules. I'd partner with TDMO the way I partnered with client data-governance teams — they define, I implement.</div>
+    </div>
+
+    <div class="mapping-row">
+      <div class="ask">"<b>Lead and grow a cross-functional team</b> — architects, platform engineers, data engineers"</div>
+      <div class="have"><span class="check">▸ MATCH</span>Solutions Engineering Manager at Homebot (early team). Cross-functional team lead at Teren as Head of Marketing Technology. Plus the founding-team coordination at Upstream. Comfortable hiring, structuring, and leading technical teams.</div>
+    </div>
+
+    <div class="mapping-row">
+      <div class="ask">"<b>Agile delivery</b>, ambiguous requirements → prioritized technical backlogs"</div>
+      <div class="have"><span class="check">▸ STRONG</span>The default operating mode of every startup role I've held. Translating "we want to know our customers" into a prioritized sprint backlog is the literal day-job at Lytics.</div>
+    </div>
+
+    <div class="mapping-row">
+      <div class="ask">"<b>Vendor management</b> + retaining internal ownership"</div>
+      <div class="have"><span class="check">▸ STRONG</span>Managed Lytics implementation partners on the Whirlpool engagement. Managed external developers + agencies at Teren and Zayo. The instinct to retain internal ownership while leaning on partners is muscle memory.</div>
+    </div>
+
+    <div class="mapping-row">
+      <div class="ask">"<b>Snowflake</b> (bonus)"</div>
+      <div class="have"><span class="check">▸ MATCH</span>One production project (Eagle River AMI assessment, R + Snowflake) plus deep familiarity with the warehouse model. Not a 10-year Snowflake veteran; comfortable enough to ship.</div>
+    </div>
+
+    <div class="mapping-row">
+      <div class="ask">"<b>AI-assisted matching</b> / advanced entity resolution (bonus)"</div>
+      <div class="have"><span class="check">▸ STRONG</span>Founding technical advisor at Upstream AI for two years. Built Claude Code sub-agents, RAG pipelines, and embedding-based similarity scoring. I'd actively look for places to apply LLM-assisted matching to the MDM problem.</div>
+    </div>
+  </div>
+
+  <!-- HONEST GAPS -->
+  <div class="gaps">
+    <h4>Honest gaps</h4>
+    <p>
+      <b>I haven't operated a named enterprise MDM platform.</b> Informatica MDM, Reltio, Semarchy, SAP MDG — I've read documentation for these and know their data models, but I haven't sat at the console of any of them long enough to have opinions about their quirks.
+    </p>
+    <p>
+      My take: the underlying primitives (match/merge, survivorship, cross-ref, hierarchy, stewardship) are tool-independent, and I've practiced all of them in a CDP context that's structurally identical. Vendor-specific ramp is real but bounded — I'd expect to be making meaningful configuration changes in the first month and leading platform decisions by month three.
+    </p>
+  </div>
+</section>
+
+<!-- HOW I'D APPROACH -->
+<section class="std">
+  <div class="section-label">
+    <span class="num">03</span>
+    <span>How I'd run the first 90 days</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>Listen, audit, ship something <em>small</em>, then plan the year.</h2>
+
+  <div class="approach">
+    <div class="approach-card">
+      <div class="num">Days 1–30 · LISTEN + AUDIT</div>
+      <h4>Map the current state, meet the team</h4>
+      <p>Sit with the existing platform team, the TDMO, and the upstream/downstream system owners (CRM, ERP, warehouse, IAM). Inventory the current match/merge rules, survivorship logic, and hierarchy model. Document the stewardship workflow as it actually runs today.</p>
+    </div>
+    <div class="approach-card">
+      <div class="num">Days 31–60 · SHIP A SMALL WIN</div>
+      <h4>One concrete improvement, end-to-end</h4>
+      <p>Pick the highest-impact, lowest-risk change visible from the audit — likely a probabilistic-matching tuning, a survivorship-rule cleanup, or a stewardship-workflow simplification — and ship it through dev/test/prod. Build trust with the team and TDMO by delivering, not just planning.</p>
+    </div>
+    <div class="approach-card">
+      <div class="num">Days 61–90 · PLAN THE YEAR</div>
+      <h4>Roadmap, hiring, scalability</h4>
+      <p>By day 90 I'd have a published roadmap covering: AI-assisted matching prototype, hierarchy-model refactor (if needed), API-surface evolution, CI/CD modernization, and a hiring plan for the next two roles. Aligned with TDMO's governance roadmap, not duplicating it.</p>
+    </div>
+    <div class="approach-card">
+      <div class="num">Ongoing · KEEP IT BORING</div>
+      <h4>Reliability, documentation, repeatability</h4>
+      <p>MDM platforms fail when stewardship instability creates trust collapse downstream. I'd run this seat with reliability + documentation as first-class deliverables. Versioned rules, environment parity, release notes the business actually reads.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRACK RECORD -->
+<section class="std tinted">
+  <div class="section-label">
+    <span class="num">04</span>
+    <span>The track record</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>Where I've <em>built</em> these things.</h2>
+
+  <div class="ships">
+
+    <div class="ship featured">
+      <div class="when">2022 — 23 · Lytics · Sr. Technical Consultant</div>
+      <h4>Customer data platform delivery · <em>graph identity model (Whirlpool)</em></h4>
+      <p>Got enterprise clients live on a CDP. Notable: <b>Whirlpool</b> — translated their relational SQL stack into a graph identity model with tiered-confidence resolution at scale. Match/merge/survivorship/cross-ref/hierarchy/stewardship — the full primitives stack. <b>The closest analog I've shipped to what Trimble is hiring for.</b></p>
+    </div>
+
+    <div class="ship">
+      <div class="when">2015 — 18 · Homebot · Solutions Engineering Mgr</div>
+      <h4>Early team · <em>data schema + lifecycle platform</em></h4>
+      <p>Solutions Engineering Manager at an early-team PropTech startup. Designed the data schema for messy real-estate ingestion across multiple upstream MLS sources. Shipped the lifecycle email product for agents + lenders. <b>People management + platform delivery from day one.</b></p>
+    </div>
+
+    <div class="ship">
+      <div class="when">2024 → now · Upstream AI · Founding Tech Advisor</div>
+      <h4>AI-native platform · <em>Claude Code + RAG + sub-agents</em></h4>
+      <p>Founding technical advisor at a pre-revenue startup. Built RAG pipelines, Claude Code sub-agents, prompt libraries. Embedding-based similarity is a daily tool. <b>The AI-assisted matching bonus in the JD is the work I'm doing now.</b> Part-time, stepping back to advisory for the right full-time seat.</p>
+    </div>
+
+    <div class="ship">
+      <div class="when">2018 — 21 · Teren · Head of Marketing Technology</div>
+      <h4>Geospatial-risk startup · <em>full stack ownership</em></h4>
+      <p>Three years owning web tech, attribution, persona-driven funnels at a seed-stage geospatial company. <b>4× MQLs MoM.</b> Worked across eng, product, sales — the cross-functional posture this Trimble role requires.</p>
+    </div>
+
+    <div class="ship">
+      <div class="when">2022 · Zayo Group · Mktg Automation Mgr</div>
+      <h4>Lead scoring + automation · <em>+30% closed-won</em></h4>
+      <p>Built lead-scoring flows, profile grading, dashboards from a blank Salesforce instance. <b>+15% lead-to-MQL, +30% closed-won.</b> Process flows and ownership models — the kind of stewardship-adjacent operating discipline MDM needs.</p>
+    </div>
+
+    <div class="ship">
+      <div class="when">2012 — 15 · National Park Service · Frontend / GIS</div>
+      <h4>NPS Park Tiles team · <em>cartography + dashboards</em></h4>
+      <p>On the team that built NPS Park Tiles. Custom park mapping projects: wildfire perimeters, endangered-species habitat, visitor-management decision support. <b>Where I first learned to translate ambiguous requirements into shipped systems.</b></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY THIS ROLE -->
+<section class="std">
+  <div class="section-label">
+    <span class="num">05</span>
+    <span>Why this role specifically</span>
+    <span class="line"></span>
+  </div>
+
+  <h2>This <em>isn't</em> a generic application.</h2>
+
+  <div class="body-letter" style="padding: 0;">
+    <p>
+      A few reasons, in order of weight.
+    </p>
+    <p>
+      First, <b>the work itself.</b> Customer-master initiatives at the
+      enterprise scale Trimble operates at are one of the most consequential
+      and least glamorous flavors of data work. The orgs that get it right
+      unlock a Customer 360. The orgs that get it wrong end up with two
+      sources of truth, a stewardship escalation backlog, and downstream
+      systems quietly diverging. <span class="hl">The work I want to do for
+      the next five years is exactly this work.</span>
+    </p>
+    <p>
+      Second, <b>the build-not-buy clarity.</b> The JD is explicit: this
+      role does not define governance policy — it translates governance
+      into production-grade system capabilities. That's the cleanest scoping
+      I've seen on an MDM leadership role in a long time. Most orgs try
+      to fold the policy and the implementation into the same seat and
+      get neither right.
+    </p>
+    <p>
+      Third, <b>Trimble specifically.</b> Real-world impact across
+      construction, geospatial, and transportation isn't marketing copy
+      for me. I started at the National Park Service doing cartography for
+      Park Tiles. I came up in geospatial-adjacent companies (Teren, NPS).
+      I live in Boulder, drive past Westminster on the way to the airport.
+      The mission isn't abstract.
+    </p>
+    <p>
+      Fourth, <b>logistics.</b> I'm available full-time. My Upstream
+      advisor role is structured to step back to a pure advisory commitment
+      for the right full-time seat — which this is. 25 minutes from your
+      Westminster office; comfortable onsite, hybrid, or remote.
+    </p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="cta-card">
+    <h2>Want to see the <em>graph identity model</em> in person?</h2>
+    <p>
+      Happy to walk through the Whirlpool engagement on a call — the
+      tiered-confidence model, the survivorship rules, the stewardship
+      operating framework, and how I'd translate it to an MDM-platform
+      runtime at Trimble's scale. Give me 30 minutes.
+    </p>
+    <div class="cta-buttons">
+      <a href="./katrina-engelsted-trimble-resume.pdf" target="_blank" rel="noopener" class="btn primary">Download résumé (PDF)</a>
+      <a href="./index.html#contact" class="btn">Get in touch</a>
+      <a href="./index.html" class="btn">Full résumé site</a>
+      <a href="https://linkedin.com/in/katrinae" target="_blank" rel="noopener" class="btn">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>katrina@engelsted.co · Boulder, CO · 25 min from Westminster</span>
+  <span>For Trimble · Mgr, Customer Master Platform · Made with <span class="heart">♥</span></span>
+</footer>
+
+</body>
+</html>
