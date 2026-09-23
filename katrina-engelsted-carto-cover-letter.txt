@@ -1,0 +1,18 @@
+Dear CARTO Hiring Team,
+
+I'm excited to apply for the Customer Success Engineer role. My career sits almost exactly at the intersection CARTO's mission describes: geospatial analysis and the technical customer-success work of turning that analysis into decisions people actually act on. I hold a BA in Geography with a GIS concentration, Honors, and a spatial-statistics thesis, and nearly everything I've done professionally since has been some version of "take complex geospatial or technical data and make it useful to the person who has to decide something because of it."
+
+At Teren, a geospatial-risk company, I worked with machine-learning models built from drone and satellite imagery to assess environmental and infrastructure risk, partnering daily with institutional customers on technical evaluations. At the National Park Service, I built mapping applications for non-GIS field staff. Location data as decision-support, not just a technical exercise, has been a through-line for me since long before it was a job requirement.
+
+The enterprise customer-success side of this role is just as familiar. As a Senior Technical Consultant at Lytics, I owned a complex enterprise engagement for Whirlpool end-to-end — tens of millions of records — using SQL, BigQuery, Python, and APIs to validate data, and translating findings into recommendations that both technical and executive stakeholders could act on. As a Solutions Engineering Manager at Homebot, I led a customer-facing technical team and worked directly with customers to make technical concepts usable. In both roles, I was the person building trust through curiosity and honest, well-reasoned tradeoffs rather than a scripted pitch.
+
+I also bring direct, hands-on experience with the AI-and-workflow piece of this role. In my current work advising an early-stage climate-technology startup, I build AI-agent workflows and RAG pipelines specifically to decrease time to value for end users — the same instinct CARTO is asking for here, just applied to a different kind of platform.
+
+I'd welcome the opportunity to bring that combination of geospatial expertise, enterprise technical customer success, and applied AI fluency to CARTO's Customer Success team, and to talk more about how I could help your most strategic customers get measurable value out of the platform.
+
+Thank you for considering my application. I'd love the opportunity to talk.
+
+Warmly,
+Katrina Engelsted
+Boulder, Colorado
+katrina@engelsted.co · 774-239-8699 · linkedin.com/in/katrinae
