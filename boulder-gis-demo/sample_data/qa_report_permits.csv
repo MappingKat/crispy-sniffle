@@ -1,0 +1,13 @@
+record_id,check,severity,field,value,message
+PMT2026-00003,duplicate_id,error,PERMIT_NUM,PMT2026-00003,ID appears 2 times
+PMT2026-00003,duplicate_id,error,PERMIT_NUM,PMT2026-00003,ID appears 2 times
+PMT2026-00006,missing_geometry,error,SHAPE,,Record has no location
+PMT2026-00008,outside_boundary,error,SHAPE,"-104.99000,39.74000",Point falls outside the Boulder bounding box
+PMT2026-00010,missing_required,error,ADDRESS,,ADDRESS is blank
+PMT2026-00012,invalid_domain,error,STATUS,issued ,'issued ' is not an allowed value
+PMT2026-00014,date_order,error,ISSUED_DATE,2025-12-01,ISSUED_DATE is before APPLIED_DATE
+PMT2026-00016,future_date,error,FINALED_DATE,2027-03-15,Date is in the future
+PMT2026-00018,out_of_range,warning,VALUATION,-500,Expected between 0 and 50000000
+PMT2026-00020,bad_date,error,APPLIED_DATE,13/45/2026,Date cannot be read
+PMT2026-00021,stacked_point,warning,SHAPE,"-105.21236,40.02147",Another record shares this exact location
+PMT2026-00022,stacked_point,warning,SHAPE,"-105.21236,40.02147",Another record shares this exact location

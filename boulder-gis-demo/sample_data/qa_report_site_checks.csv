@@ -1,0 +1,5 @@
+record_id,check,severity,field,value,message
+{SC-0002},missing_required,error,inspector,,inspector is blank
+{SC-0004},invalid_domain,error,site_status,Active,'Active' is not an allowed value
+{SC-0007},outside_boundary,error,SHAPE,"-104.98990,39.74010",Point falls outside the Boulder bounding box
+{SC-0007},future_date,error,visit_date,2027-01-01,Date is in the future

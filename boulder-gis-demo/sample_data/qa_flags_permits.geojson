@@ -1,0 +1,181 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.233157,
+          39.983967
+        ]
+      },
+      "properties": {
+        "PERMIT_NUM": "PMT2026-00003",
+        "qa_errors": 2,
+        "qa_warnings": 0,
+        "qa_checks": "duplicate_id"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.255321,
+          40.04529
+        ]
+      },
+      "properties": {
+        "PERMIT_NUM": "PMT2026-00003",
+        "qa_errors": 2,
+        "qa_warnings": 0,
+        "qa_checks": "duplicate_id"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.99,
+          39.74
+        ]
+      },
+      "properties": {
+        "PERMIT_NUM": "PMT2026-00008",
+        "qa_errors": 1,
+        "qa_warnings": 0,
+        "qa_checks": "outside_boundary"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.233764,
+          40.034499
+        ]
+      },
+      "properties": {
+        "PERMIT_NUM": "PMT2026-00010",
+        "qa_errors": 1,
+        "qa_warnings": 0,
+        "qa_checks": "missing_required"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.206655,
+          40.019721
+        ]
+      },
+      "properties": {
+        "PERMIT_NUM": "PMT2026-00012",
+        "qa_errors": 1,
+        "qa_warnings": 0,
+        "qa_checks": "invalid_domain"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.241203,
+          40.02713
+        ]
+      },
+      "properties": {
+        "PERMIT_NUM": "PMT2026-00014",
+        "qa_errors": 1,
+        "qa_warnings": 0,
+        "qa_checks": "date_order"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.229257,
+          39.98498
+        ]
+      },
+      "properties": {
+        "PERMIT_NUM": "PMT2026-00016",
+        "qa_errors": 1,
+        "qa_warnings": 0,
+        "qa_checks": "future_date"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.229247,
+          40.056437
+        ]
+      },
+      "properties": {
+        "PERMIT_NUM": "PMT2026-00018",
+        "qa_errors": 0,
+        "qa_warnings": 1,
+        "qa_checks": "out_of_range"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.203921,
+          40.022261
+        ]
+      },
+      "properties": {
+        "PERMIT_NUM": "PMT2026-00020",
+        "qa_errors": 1,
+        "qa_warnings": 0,
+        "qa_checks": "bad_date"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.212364,
+          40.021472
+        ]
+      },
+      "properties": {
+        "PERMIT_NUM": "PMT2026-00021",
+        "qa_errors": 0,
+        "qa_warnings": 1,
+        "qa_checks": "stacked_point"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.212364,
+          40.021472
+        ]
+      },
+      "properties": {
+        "PERMIT_NUM": "PMT2026-00022",
+        "qa_errors": 0,
+        "qa_warnings": 1,
+        "qa_checks": "stacked_point"
+      }
+    }
+  ]
+}

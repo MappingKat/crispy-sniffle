@@ -1,0 +1,18 @@
+{
+  "_note": "Field names are placeholders. Match them to the Boulder construction permits data dictionary before running on real data.",
+  "source": "../sample_data/sample_permits.geojson",
+  "id_field": "PERMIT_NUM",
+  "bbox": [-105.31, 39.95, -105.17, 40.10],
+  "required_fields": ["PERMIT_NUM", "PERMIT_TYPE", "STATUS", "ADDRESS", "APPLIED_DATE"],
+  "domains": {
+    "STATUS": ["Applied", "In Review", "Issued", "Finaled", "Expired", "Withdrawn"],
+    "PERMIT_TYPE": ["Single Family Detached Dwelling Building", "Accessory Building", "Multifamily Building",
+                    "Non-Residential Building", "Demolition", "Electrical", "Mechanical", "Plumbing",
+                    "Roofing Replacement", "Fence and Wall", "Sign", "Right-of-Way"]
+  },
+  "ranges": {
+    "VALUATION": [0, 50000000]
+  },
+  "date_fields": ["APPLIED_DATE", "ISSUED_DATE", "FINALED_DATE"],
+  "date_order": [["APPLIED_DATE", "ISSUED_DATE"], ["ISSUED_DATE", "FINALED_DATE"]]
+}
