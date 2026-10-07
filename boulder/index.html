@@ -92,6 +92,25 @@
   }
 
   /* LETTER */
+  /* THESIS GALLERY */
+  .gallery { padding: 0 5vw 4vh; max-width: 1100px; }
+  .gallery-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .gallery figure {
+    margin: 0; border: 1.5px solid var(--ink); border-radius: 8px; overflow: hidden;
+    box-shadow: 5px 5px 0 var(--amber); background: #fff;
+  }
+  .gallery img { display: block; width: 100%; height: 230px; object-fit: contain; background: #fff; }
+  .gallery figcaption {
+    font-family: 'DM Mono', monospace; font-size: 9.5px; letter-spacing: 0.5px;
+    color: var(--ink-soft); padding: 10px 14px; border-top: 1px solid var(--ink);
+    line-height: 1.4;
+  }
+  @media (max-width: 900px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
+
   .body-letter { max-width: 760px; padding: 0 5vw 4vh; }
   .body-letter p {
     font-size: clamp(16px, 1.6vw, 19px);
@@ -296,6 +315,24 @@
     <span class="stamp">I'd like to bring both back together.</span>
   </h1>
 </header>
+
+<!-- THESIS GALLERY -->
+<div class="gallery">
+  <div class="gallery-grid">
+    <figure>
+      <img src="../images/kriging_13014215633.jpg" alt="Ordinary kriging prediction, quantile, standard error, and probability maps of the continental US, from Katrina's honors thesis">
+      <figcaption>Ordinary kriging &mdash; prediction, uncertainty, and probability surfaces.</figcaption>
+    </figure>
+    <figure>
+      <img src="../images/interpolation_13014215353.jpg" alt="IDW temperature interpolation maps of the continental US, from Katrina's honors thesis">
+      <figcaption>IDW interpolation &mdash; default vs. manipulated temperature surfaces.</figcaption>
+    </figure>
+    <figure>
+      <img src="../images/local-moran.png" alt="Local Moran's I index and Z score maps of WWOOF host farm locations across the continental US, from Katrina's honors thesis">
+      <figcaption>Local Moran's I &mdash; spatial clustering of WWOOF host farms.</figcaption>
+    </figure>
+  </div>
+</div>
 
 <!-- LETTER -->
 <section class="body-letter" style="padding-top: 0;">
