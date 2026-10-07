@@ -1,0 +1,16 @@
+{
+  "_note": "Rules for the Field Maps / Survey123 'Permit Site Check' layer. Field names match the XLSForm in ../survey123.",
+  "source": "../sample_data/sample_site_checks.geojson",
+  "id_field": "globalid",
+  "bbox": [-105.31, 39.95, -105.17, 40.10],
+  "required_fields": ["permit_num", "visit_date", "inspector", "site_status"],
+  "domains": {
+    "site_status": ["active_construction", "not_started", "complete", "no_access"],
+    "permit_card_posted": ["yes", "no", "na"],
+    "erosion_control": ["in_place", "deficient", "not_required"],
+    "row_obstruction": ["yes", "no"]
+  },
+  "ranges": {},
+  "date_fields": ["visit_date"],
+  "date_order": []
+}

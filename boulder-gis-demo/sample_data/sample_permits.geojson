@@ -1,0 +1,1199 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.276137,
+     40.045702
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00001",
+    "PERMIT_TYPE": "Accessory Building",
+    "STATUS": "Finaled",
+    "ADDRESS": "2487 Pearl St",
+    "APPLIED_DATE": "2026-03-05",
+    "ISSUED_DATE": "2026-08-21",
+    "FINALED_DATE": null,
+    "VALUATION": 534084
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.246546,
+     39.999253
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00002",
+    "PERMIT_TYPE": "Demolition",
+    "STATUS": "Issued",
+    "ADDRESS": "3486 Broadway",
+    "APPLIED_DATE": "2026-02-02",
+    "ISSUED_DATE": "2026-07-14",
+    "FINALED_DATE": null,
+    "VALUATION": 236083
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.233157,
+     39.983967
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00003",
+    "PERMIT_TYPE": "Roofing Replacement",
+    "STATUS": "Issued",
+    "ADDRESS": "2380 Arapahoe Ave",
+    "APPLIED_DATE": "2026-06-21",
+    "ISSUED_DATE": "2026-07-19",
+    "FINALED_DATE": null,
+    "VALUATION": 305677
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.255321,
+     40.04529
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00003",
+    "PERMIT_TYPE": "Electrical",
+    "STATUS": "Issued",
+    "ADDRESS": "2482 Baseline Rd",
+    "APPLIED_DATE": "2026-04-05",
+    "ISSUED_DATE": "2026-07-19",
+    "FINALED_DATE": null,
+    "VALUATION": 392487
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.275232,
+     39.996477
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00005",
+    "PERMIT_TYPE": "Demolition",
+    "STATUS": "Finaled",
+    "ADDRESS": "2007 28th St",
+    "APPLIED_DATE": "2026-01-18",
+    "ISSUED_DATE": "2026-07-19",
+    "FINALED_DATE": null,
+    "VALUATION": 381146
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": null,
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00006",
+    "PERMIT_TYPE": "Mechanical",
+    "STATUS": "In Review",
+    "ADDRESS": "2127 Table Mesa Dr",
+    "APPLIED_DATE": "2026-03-08",
+    "ISSUED_DATE": "2026-07-23",
+    "FINALED_DATE": null,
+    "VALUATION": 766878
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.239045,
+     39.993197
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00007",
+    "PERMIT_TYPE": "Fence and Wall",
+    "STATUS": "Issued",
+    "ADDRESS": "3922 28th St",
+    "APPLIED_DATE": "2026-04-10",
+    "ISSUED_DATE": "2026-07-04",
+    "FINALED_DATE": null,
+    "VALUATION": 444182
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -104.99,
+     39.74
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00008",
+    "PERMIT_TYPE": "Fence and Wall",
+    "STATUS": "Finaled",
+    "ADDRESS": "2947 Table Mesa Dr",
+    "APPLIED_DATE": "2026-01-22",
+    "ISSUED_DATE": "2026-07-25",
+    "FINALED_DATE": null,
+    "VALUATION": 625241
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.212803,
+     40.055574
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00009",
+    "PERMIT_TYPE": "Sign",
+    "STATUS": "In Review",
+    "ADDRESS": "2820 Broadway",
+    "APPLIED_DATE": "2026-04-19",
+    "ISSUED_DATE": "2026-08-03",
+    "FINALED_DATE": null,
+    "VALUATION": 65616
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.233764,
+     40.034499
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00010",
+    "PERMIT_TYPE": "Sign",
+    "STATUS": "Finaled",
+    "ADDRESS": "",
+    "APPLIED_DATE": "2026-06-23",
+    "ISSUED_DATE": "2026-08-21",
+    "FINALED_DATE": null,
+    "VALUATION": 703133
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.266556,
+     39.989368
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00011",
+    "PERMIT_TYPE": "Single Family Detached Dwelling Building",
+    "STATUS": "Issued",
+    "ADDRESS": "3246 Folsom St",
+    "APPLIED_DATE": "2026-03-01",
+    "ISSUED_DATE": "2026-08-12",
+    "FINALED_DATE": null,
+    "VALUATION": 137623
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.206655,
+     40.019721
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00012",
+    "PERMIT_TYPE": "Electrical",
+    "STATUS": "issued ",
+    "ADDRESS": "1745 Folsom St",
+    "APPLIED_DATE": "2026-06-08",
+    "ISSUED_DATE": "2026-08-13",
+    "FINALED_DATE": null,
+    "VALUATION": 145577
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.246776,
+     40.008702
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00013",
+    "PERMIT_TYPE": "Demolition",
+    "STATUS": "Issued",
+    "ADDRESS": "718 Broadway",
+    "APPLIED_DATE": "2026-04-28",
+    "ISSUED_DATE": "2026-08-23",
+    "FINALED_DATE": null,
+    "VALUATION": 186777
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.241203,
+     40.02713
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00014",
+    "PERMIT_TYPE": "Mechanical",
+    "STATUS": "Finaled",
+    "ADDRESS": "116 Arapahoe Ave",
+    "APPLIED_DATE": "2026-02-08",
+    "ISSUED_DATE": "2025-12-01",
+    "FINALED_DATE": null,
+    "VALUATION": 441297
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.224761,
+     40.021239
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00015",
+    "PERMIT_TYPE": "Single Family Detached Dwelling Building",
+    "STATUS": "Finaled",
+    "ADDRESS": "3784 Iris Ave",
+    "APPLIED_DATE": "2026-05-12",
+    "ISSUED_DATE": "2026-08-05",
+    "FINALED_DATE": null,
+    "VALUATION": 419406
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.229257,
+     39.98498
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00016",
+    "PERMIT_TYPE": "Accessory Building",
+    "STATUS": "Issued",
+    "ADDRESS": "1904 Arapahoe Ave",
+    "APPLIED_DATE": "2026-04-13",
+    "ISSUED_DATE": "2026-07-16",
+    "FINALED_DATE": "2027-03-15",
+    "VALUATION": 117268
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.279981,
+     39.992101
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00017",
+    "PERMIT_TYPE": "Accessory Building",
+    "STATUS": "Finaled",
+    "ADDRESS": "2613 Pearl St",
+    "APPLIED_DATE": "2026-03-20",
+    "ISSUED_DATE": "2026-07-04",
+    "FINALED_DATE": null,
+    "VALUATION": 75731
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.229247,
+     40.056437
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00018",
+    "PERMIT_TYPE": "Fence and Wall",
+    "STATUS": "Finaled",
+    "ADDRESS": "603 Broadway",
+    "APPLIED_DATE": "2026-02-20",
+    "ISSUED_DATE": "2026-08-05",
+    "FINALED_DATE": null,
+    "VALUATION": -500
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.255052,
+     39.991529
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00019",
+    "PERMIT_TYPE": "Fence and Wall",
+    "STATUS": "In Review",
+    "ADDRESS": "1184 28th St",
+    "APPLIED_DATE": "2026-04-15",
+    "ISSUED_DATE": "2026-08-16",
+    "FINALED_DATE": null,
+    "VALUATION": 871117
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.203921,
+     40.022261
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00020",
+    "PERMIT_TYPE": "Electrical",
+    "STATUS": "In Review",
+    "ADDRESS": "2324 Pearl St",
+    "APPLIED_DATE": "13/45/2026",
+    "ISSUED_DATE": "2026-07-07",
+    "FINALED_DATE": null,
+    "VALUATION": 796970
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.212364,
+     40.021472
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00021",
+    "PERMIT_TYPE": "Electrical",
+    "STATUS": "Finaled",
+    "ADDRESS": "3261 Baseline Rd",
+    "APPLIED_DATE": "2026-05-10",
+    "ISSUED_DATE": "2026-07-23",
+    "FINALED_DATE": null,
+    "VALUATION": 560463
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.212364,
+     40.021472
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00022",
+    "PERMIT_TYPE": "Roofing Replacement",
+    "STATUS": "Issued",
+    "ADDRESS": "3451 Iris Ave",
+    "APPLIED_DATE": "2026-05-25",
+    "ISSUED_DATE": "2026-08-21",
+    "FINALED_DATE": null,
+    "VALUATION": 777813
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.22152,
+     40.059168
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00023",
+    "PERMIT_TYPE": "Mechanical",
+    "STATUS": "Finaled",
+    "ADDRESS": "1161 Baseline Rd",
+    "APPLIED_DATE": "2026-02-07",
+    "ISSUED_DATE": "2026-08-12",
+    "FINALED_DATE": null,
+    "VALUATION": 728161
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.205038,
+     40.059043
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00024",
+    "PERMIT_TYPE": "Fence and Wall",
+    "STATUS": "Issued",
+    "ADDRESS": "1003 Broadway",
+    "APPLIED_DATE": "2026-05-12",
+    "ISSUED_DATE": "2026-08-26",
+    "FINALED_DATE": null,
+    "VALUATION": 239865
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.241388,
+     40.05882
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00025",
+    "PERMIT_TYPE": "Single Family Detached Dwelling Building",
+    "STATUS": "Finaled",
+    "ADDRESS": "3824 Table Mesa Dr",
+    "APPLIED_DATE": "2026-04-07",
+    "ISSUED_DATE": "2026-08-07",
+    "FINALED_DATE": null,
+    "VALUATION": 840487
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.217416,
+     40.040011
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00026",
+    "PERMIT_TYPE": "Sign",
+    "STATUS": "Issued",
+    "ADDRESS": "1877 Table Mesa Dr",
+    "APPLIED_DATE": "2026-06-03",
+    "ISSUED_DATE": "2026-07-13",
+    "FINALED_DATE": null,
+    "VALUATION": 92963
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.220532,
+     39.986794
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00027",
+    "PERMIT_TYPE": "Electrical",
+    "STATUS": "Issued",
+    "ADDRESS": "620 Pearl St",
+    "APPLIED_DATE": "2026-06-13",
+    "ISSUED_DATE": "2026-08-13",
+    "FINALED_DATE": null,
+    "VALUATION": 160492
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.213879,
+     40.058424
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00028",
+    "PERMIT_TYPE": "Fence and Wall",
+    "STATUS": "Issued",
+    "ADDRESS": "2347 Arapahoe Ave",
+    "APPLIED_DATE": "2026-05-15",
+    "ISSUED_DATE": "2026-07-20",
+    "FINALED_DATE": null,
+    "VALUATION": 24436
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.22004,
+     39.99114
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00029",
+    "PERMIT_TYPE": "Roofing Replacement",
+    "STATUS": "Issued",
+    "ADDRESS": "214 Folsom St",
+    "APPLIED_DATE": "2026-01-26",
+    "ISSUED_DATE": "2026-07-17",
+    "FINALED_DATE": null,
+    "VALUATION": 225115
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.233085,
+     40.000749
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00030",
+    "PERMIT_TYPE": "Demolition",
+    "STATUS": "Issued",
+    "ADDRESS": "349 Table Mesa Dr",
+    "APPLIED_DATE": "2026-03-17",
+    "ISSUED_DATE": "2026-07-25",
+    "FINALED_DATE": null,
+    "VALUATION": 482416
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.206582,
+     40.020132
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00031",
+    "PERMIT_TYPE": "Electrical",
+    "STATUS": "In Review",
+    "ADDRESS": "2191 Pearl St",
+    "APPLIED_DATE": "2026-06-19",
+    "ISSUED_DATE": "2026-08-27",
+    "FINALED_DATE": null,
+    "VALUATION": 463504
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.216066,
+     39.993788
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00032",
+    "PERMIT_TYPE": "Sign",
+    "STATUS": "In Review",
+    "ADDRESS": "3070 Broadway",
+    "APPLIED_DATE": "2026-02-20",
+    "ISSUED_DATE": "2026-07-25",
+    "FINALED_DATE": null,
+    "VALUATION": 585506
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.217881,
+     40.050658
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00033",
+    "PERMIT_TYPE": "Single Family Detached Dwelling Building",
+    "STATUS": "Issued",
+    "ADDRESS": "883 Folsom St",
+    "APPLIED_DATE": "2026-01-11",
+    "ISSUED_DATE": "2026-08-26",
+    "FINALED_DATE": null,
+    "VALUATION": 46248
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.277771,
+     40.051521
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00034",
+    "PERMIT_TYPE": "Accessory Building",
+    "STATUS": "Finaled",
+    "ADDRESS": "1433 Baseline Rd",
+    "APPLIED_DATE": "2026-01-17",
+    "ISSUED_DATE": "2026-08-18",
+    "FINALED_DATE": null,
+    "VALUATION": 728381
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.20468,
+     40.035937
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00035",
+    "PERMIT_TYPE": "Mechanical",
+    "STATUS": "In Review",
+    "ADDRESS": "3756 Baseline Rd",
+    "APPLIED_DATE": "2026-03-15",
+    "ISSUED_DATE": "2026-08-17",
+    "FINALED_DATE": null,
+    "VALUATION": 882803
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.248611,
+     40.005278
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00036",
+    "PERMIT_TYPE": "Roofing Replacement",
+    "STATUS": "Finaled",
+    "ADDRESS": "399 Baseline Rd",
+    "APPLIED_DATE": "2026-04-05",
+    "ISSUED_DATE": "2026-08-04",
+    "FINALED_DATE": null,
+    "VALUATION": 703992
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.267644,
+     40.03729
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00037",
+    "PERMIT_TYPE": "Fence and Wall",
+    "STATUS": "Issued",
+    "ADDRESS": "1136 Arapahoe Ave",
+    "APPLIED_DATE": "2026-03-26",
+    "ISSUED_DATE": "2026-07-25",
+    "FINALED_DATE": null,
+    "VALUATION": 492456
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.209205,
+     39.993024
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00038",
+    "PERMIT_TYPE": "Roofing Replacement",
+    "STATUS": "Issued",
+    "ADDRESS": "2993 Iris Ave",
+    "APPLIED_DATE": "2026-02-24",
+    "ISSUED_DATE": "2026-07-13",
+    "FINALED_DATE": null,
+    "VALUATION": 542651
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.251471,
+     39.987376
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00039",
+    "PERMIT_TYPE": "Fence and Wall",
+    "STATUS": "Issued",
+    "ADDRESS": "1484 28th St",
+    "APPLIED_DATE": "2026-04-11",
+    "ISSUED_DATE": "2026-08-07",
+    "FINALED_DATE": null,
+    "VALUATION": 463853
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.238605,
+     40.003636
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00040",
+    "PERMIT_TYPE": "Accessory Building",
+    "STATUS": "Issued",
+    "ADDRESS": "3862 Baseline Rd",
+    "APPLIED_DATE": "2026-06-01",
+    "ISSUED_DATE": "2026-08-11",
+    "FINALED_DATE": null,
+    "VALUATION": 111869
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.207528,
+     39.994524
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00041",
+    "PERMIT_TYPE": "Electrical",
+    "STATUS": "Finaled",
+    "ADDRESS": "3579 Folsom St",
+    "APPLIED_DATE": "2026-01-09",
+    "ISSUED_DATE": "2026-08-02",
+    "FINALED_DATE": null,
+    "VALUATION": 427667
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.253836,
+     40.002325
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00042",
+    "PERMIT_TYPE": "Electrical",
+    "STATUS": "Finaled",
+    "ADDRESS": "3767 Broadway",
+    "APPLIED_DATE": "2026-02-18",
+    "ISSUED_DATE": "2026-08-23",
+    "FINALED_DATE": null,
+    "VALUATION": 283986
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.259156,
+     40.028654
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00043",
+    "PERMIT_TYPE": "Roofing Replacement",
+    "STATUS": "Issued",
+    "ADDRESS": "1183 Broadway",
+    "APPLIED_DATE": "2026-01-21",
+    "ISSUED_DATE": "2026-07-26",
+    "FINALED_DATE": null,
+    "VALUATION": 477816
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.230264,
+     39.983456
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00044",
+    "PERMIT_TYPE": "Roofing Replacement",
+    "STATUS": "Issued",
+    "ADDRESS": "761 Folsom St",
+    "APPLIED_DATE": "2026-01-11",
+    "ISSUED_DATE": "2026-08-09",
+    "FINALED_DATE": null,
+    "VALUATION": 54826
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.2556,
+     40.04076
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00045",
+    "PERMIT_TYPE": "Mechanical",
+    "STATUS": "Finaled",
+    "ADDRESS": "2148 Arapahoe Ave",
+    "APPLIED_DATE": "2026-02-07",
+    "ISSUED_DATE": "2026-08-21",
+    "FINALED_DATE": null,
+    "VALUATION": 285663
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.277044,
+     39.981475
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00046",
+    "PERMIT_TYPE": "Roofing Replacement",
+    "STATUS": "In Review",
+    "ADDRESS": "2044 Baseline Rd",
+    "APPLIED_DATE": "2026-03-26",
+    "ISSUED_DATE": "2026-07-09",
+    "FINALED_DATE": null,
+    "VALUATION": 470771
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.2404,
+     40.046769
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00047",
+    "PERMIT_TYPE": "Demolition",
+    "STATUS": "In Review",
+    "ADDRESS": "1360 Baseline Rd",
+    "APPLIED_DATE": "2026-01-22",
+    "ISSUED_DATE": "2026-08-22",
+    "FINALED_DATE": null,
+    "VALUATION": 242717
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.200845,
+     40.058551
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00048",
+    "PERMIT_TYPE": "Electrical",
+    "STATUS": "Issued",
+    "ADDRESS": "389 Folsom St",
+    "APPLIED_DATE": "2026-03-07",
+    "ISSUED_DATE": "2026-07-13",
+    "FINALED_DATE": null,
+    "VALUATION": 453664
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.212698,
+     40.049643
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00049",
+    "PERMIT_TYPE": "Mechanical",
+    "STATUS": "In Review",
+    "ADDRESS": "1092 Folsom St",
+    "APPLIED_DATE": "2026-02-02",
+    "ISSUED_DATE": "2026-07-22",
+    "FINALED_DATE": null,
+    "VALUATION": 49434
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.244334,
+     40.001059
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00050",
+    "PERMIT_TYPE": "Fence and Wall",
+    "STATUS": "In Review",
+    "ADDRESS": "1425 Baseline Rd",
+    "APPLIED_DATE": "2026-04-06",
+    "ISSUED_DATE": "2026-07-09",
+    "FINALED_DATE": null,
+    "VALUATION": 38120
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.279914,
+     40.01053
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00051",
+    "PERMIT_TYPE": "Sign",
+    "STATUS": "Finaled",
+    "ADDRESS": "2159 Baseline Rd",
+    "APPLIED_DATE": "2026-03-07",
+    "ISSUED_DATE": "2026-08-06",
+    "FINALED_DATE": null,
+    "VALUATION": 262234
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.258867,
+     39.98718
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00052",
+    "PERMIT_TYPE": "Demolition",
+    "STATUS": "In Review",
+    "ADDRESS": "270 Iris Ave",
+    "APPLIED_DATE": "2026-05-25",
+    "ISSUED_DATE": "2026-07-03",
+    "FINALED_DATE": null,
+    "VALUATION": 25586
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.233153,
+     40.022335
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00053",
+    "PERMIT_TYPE": "Electrical",
+    "STATUS": "In Review",
+    "ADDRESS": "3756 Iris Ave",
+    "APPLIED_DATE": "2026-03-10",
+    "ISSUED_DATE": "2026-07-03",
+    "FINALED_DATE": null,
+    "VALUATION": 803438
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.257266,
+     40.029497
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00054",
+    "PERMIT_TYPE": "Electrical",
+    "STATUS": "Issued",
+    "ADDRESS": "3478 Iris Ave",
+    "APPLIED_DATE": "2026-03-24",
+    "ISSUED_DATE": "2026-08-05",
+    "FINALED_DATE": null,
+    "VALUATION": 771499
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.219771,
+     40.025478
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00055",
+    "PERMIT_TYPE": "Single Family Detached Dwelling Building",
+    "STATUS": "In Review",
+    "ADDRESS": "2492 Baseline Rd",
+    "APPLIED_DATE": "2026-06-26",
+    "ISSUED_DATE": "2026-07-17",
+    "FINALED_DATE": null,
+    "VALUATION": 91225
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.251143,
+     39.988393
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00056",
+    "PERMIT_TYPE": "Sign",
+    "STATUS": "In Review",
+    "ADDRESS": "307 Pearl St",
+    "APPLIED_DATE": "2026-01-02",
+    "ISSUED_DATE": "2026-07-21",
+    "FINALED_DATE": null,
+    "VALUATION": 658646
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.258897,
+     40.016556
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00057",
+    "PERMIT_TYPE": "Accessory Building",
+    "STATUS": "In Review",
+    "ADDRESS": "3919 Broadway",
+    "APPLIED_DATE": "2026-05-22",
+    "ISSUED_DATE": "2026-07-16",
+    "FINALED_DATE": null,
+    "VALUATION": 693325
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.215262,
+     40.047691
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00058",
+    "PERMIT_TYPE": "Roofing Replacement",
+    "STATUS": "In Review",
+    "ADDRESS": "3198 Baseline Rd",
+    "APPLIED_DATE": "2026-05-03",
+    "ISSUED_DATE": "2026-08-09",
+    "FINALED_DATE": null,
+    "VALUATION": 243944
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.212357,
+     39.986139
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00059",
+    "PERMIT_TYPE": "Mechanical",
+    "STATUS": "Issued",
+    "ADDRESS": "2627 Baseline Rd",
+    "APPLIED_DATE": "2026-06-21",
+    "ISSUED_DATE": "2026-08-16",
+    "FINALED_DATE": null,
+    "VALUATION": 83235
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.227877,
+     40.035431
+    ]
+   },
+   "properties": {
+    "PERMIT_NUM": "PMT2026-00060",
+    "PERMIT_TYPE": "Electrical",
+    "STATUS": "Issued",
+    "ADDRESS": "2075 Pearl St",
+    "APPLIED_DATE": "2026-05-05",
+    "ISSUED_DATE": "2026-08-09",
+    "FINALED_DATE": null,
+    "VALUATION": 511396
+   }
+  }
+ ]
+}

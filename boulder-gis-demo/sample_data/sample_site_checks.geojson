@@ -1,0 +1,385 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.276037,
+     40.045802
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0000}",
+    "permit_num": "PMT2026-00001",
+    "visit_date": "2026-09-20",
+    "inspector": "jdoe",
+    "site_status": "complete",
+    "permit_card_posted": "yes",
+    "erosion_control": "not_required",
+    "row_obstruction": "yes"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.246446,
+     39.999353
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0001}",
+    "permit_num": "PMT2026-00002",
+    "visit_date": "2026-09-21",
+    "inspector": "jdoe",
+    "site_status": "not_started",
+    "permit_card_posted": "no",
+    "erosion_control": "deficient",
+    "row_obstruction": "no"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.233057,
+     39.984067
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0002}",
+    "permit_num": "PMT2026-00003",
+    "visit_date": "2026-09-22",
+    "inspector": null,
+    "site_status": "active_construction",
+    "permit_card_posted": "yes",
+    "erosion_control": "deficient",
+    "row_obstruction": "yes"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.255221,
+     40.04539
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0003}",
+    "permit_num": "PMT2026-00003",
+    "visit_date": "2026-09-23",
+    "inspector": "jdoe",
+    "site_status": "active_construction",
+    "permit_card_posted": "no",
+    "erosion_control": "deficient",
+    "row_obstruction": "yes"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.275132,
+     39.996577
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0004}",
+    "permit_num": "PMT2026-00005",
+    "visit_date": "2026-09-24",
+    "inspector": "jdoe",
+    "site_status": "Active",
+    "permit_card_posted": "no",
+    "erosion_control": "in_place",
+    "row_obstruction": "yes"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.238945,
+     39.993297
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0006}",
+    "permit_num": "PMT2026-00007",
+    "visit_date": "2026-09-26",
+    "inspector": "kengelsted",
+    "site_status": "complete",
+    "permit_card_posted": "yes",
+    "erosion_control": "in_place",
+    "row_obstruction": "no"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -104.9899,
+     39.7401
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0007}",
+    "permit_num": "PMT2026-00008",
+    "visit_date": "2027-01-01",
+    "inspector": "jdoe",
+    "site_status": "active_construction",
+    "permit_card_posted": "no",
+    "erosion_control": "in_place",
+    "row_obstruction": "no"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.212703,
+     40.055674
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0008}",
+    "permit_num": "PMT2026-00009",
+    "visit_date": "2026-09-28",
+    "inspector": "kengelsted",
+    "site_status": "not_started",
+    "permit_card_posted": "no",
+    "erosion_control": "deficient",
+    "row_obstruction": "yes"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.233664,
+     40.034599
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0009}",
+    "permit_num": "PMT2026-00010",
+    "visit_date": "2026-09-20",
+    "inspector": "kengelsted",
+    "site_status": "active_construction",
+    "permit_card_posted": "no",
+    "erosion_control": "not_required",
+    "row_obstruction": "no"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.266456,
+     39.989468
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0010}",
+    "permit_num": "PMT2026-00011",
+    "visit_date": "2026-09-21",
+    "inspector": "jdoe",
+    "site_status": "not_started",
+    "permit_card_posted": "yes",
+    "erosion_control": "deficient",
+    "row_obstruction": "no"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.206555,
+     40.019821
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0011}",
+    "permit_num": "PMT2026-00012",
+    "visit_date": "2026-09-22",
+    "inspector": "jdoe",
+    "site_status": "not_started",
+    "permit_card_posted": "yes",
+    "erosion_control": "deficient",
+    "row_obstruction": "yes"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.246676,
+     40.008802
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0012}",
+    "permit_num": "PMT2026-00013",
+    "visit_date": "2026-09-23",
+    "inspector": "jdoe",
+    "site_status": "not_started",
+    "permit_card_posted": "no",
+    "erosion_control": "in_place",
+    "row_obstruction": "yes"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.241103,
+     40.02723
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0013}",
+    "permit_num": "PMT2026-00014",
+    "visit_date": "2026-09-24",
+    "inspector": "kengelsted",
+    "site_status": "complete",
+    "permit_card_posted": "no",
+    "erosion_control": "deficient",
+    "row_obstruction": "no"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.224661,
+     40.021339
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0014}",
+    "permit_num": "PMT2026-00015",
+    "visit_date": "2026-09-25",
+    "inspector": "kengelsted",
+    "site_status": "not_started",
+    "permit_card_posted": "no",
+    "erosion_control": "not_required",
+    "row_obstruction": "yes"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.229157,
+     39.98508
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0015}",
+    "permit_num": "PMT2026-00016",
+    "visit_date": "2026-09-26",
+    "inspector": "jdoe",
+    "site_status": "not_started",
+    "permit_card_posted": "no",
+    "erosion_control": "in_place",
+    "row_obstruction": "no"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.279881,
+     39.992201
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0016}",
+    "permit_num": "PMT2026-00017",
+    "visit_date": "2026-09-27",
+    "inspector": "kengelsted",
+    "site_status": "active_construction",
+    "permit_card_posted": "no",
+    "erosion_control": "not_required",
+    "row_obstruction": "yes"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.229147,
+     40.056537
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0017}",
+    "permit_num": "PMT2026-00018",
+    "visit_date": "2026-09-28",
+    "inspector": "kengelsted",
+    "site_status": "not_started",
+    "permit_card_posted": "no",
+    "erosion_control": "not_required",
+    "row_obstruction": "no"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.254952,
+     39.991629
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0018}",
+    "permit_num": "PMT2026-00019",
+    "visit_date": "2026-09-20",
+    "inspector": "kengelsted",
+    "site_status": "not_started",
+    "permit_card_posted": "no",
+    "erosion_control": "in_place",
+    "row_obstruction": "no"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.203821,
+     40.022361
+    ]
+   },
+   "properties": {
+    "globalid": "{SC-0019}",
+    "permit_num": "PMT2026-00020",
+    "visit_date": "2026-09-21",
+    "inspector": "kengelsted",
+    "site_status": "complete",
+    "permit_card_posted": "yes",
+    "erosion_control": "in_place",
+    "row_obstruction": "no"
+   }
+  }
+ ]
+}
