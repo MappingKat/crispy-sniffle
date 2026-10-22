@@ -101,17 +101,29 @@ h1 { font-size: clamp(28px, 5vw, 42px); letter-spacing: 0.3px; }
 @media (max-width: 860px) { .map-panel { position: static; } }
 .map-panel h2 { font-size: 15px; letter-spacing: 0.5px; margin-bottom: 2px; }
 .map-note { font-size: 12px; color: var(--ink-soft); margin-bottom: 10px; }
-svg.map { width: 100%; height: auto; display: block; }
-.town-zone { fill: var(--surface-2); stroke: var(--line); stroke-width: 1.5; }
-.town-label {
-  font-family: var(--font-display); font-size: 15px; font-weight: 600; fill: var(--ink-soft);
-  letter-spacing: 0.5px; text-transform: uppercase;
+
+#leafletMap {
+  width: 100%; height: 420px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--surface-2);
 }
-.road { stroke: var(--line); stroke-width: 2; stroke-dasharray: 1 6; stroke-linecap: round; fill: none; }
-.pin { cursor: pointer; transition: transform 0.15s; }
-.pin:hover, .pin.active { transform: scale(1.35); }
-.pin circle.ring { fill: var(--surface); stroke-width: 2; }
-.pin.dim { opacity: 0.18; }
+@media (max-width: 860px) { #leafletMap { height: 320px; } }
+
+.map-pin {
+  width: 22px; height: 22px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+  border: 2px solid var(--surface); box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+  transition: transform 0.15s;
+}
+.map-pin.dim { opacity: 0.25; }
+.map-pin.active { transform: rotate(-45deg) scale(1.3); }
+
+.leaflet-popup-content-wrapper {
+  background: var(--surface); color: var(--ink); border-radius: 8px;
+  font-family: var(--font-body);
+}
+.leaflet-popup-tip { background: var(--surface); }
+.map-popup-name { font-family: var(--font-display); font-weight: 600; font-size: 15px; margin-bottom: 3px; }
+.map-popup-addr { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); margin-bottom: 6px; }
+.map-popup-link { font-size: 12.5px; color: var(--focus); font-weight: 600; text-decoration: none; }
 
 /* LEGEND */
 .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
@@ -182,6 +194,7 @@ footer.page-foot {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 </head>
 <body>
 
@@ -197,33 +210,8 @@ footer.page-foot {
 
     <div class="map-panel">
       <h2>Where things are</h2>
-      <p class="map-note">Schematic layout, not to scale — towns are placed in their real relative position. Use "Directions" on a card for an exact route.</p>
-      <svg class="map" viewBox="0 0 1000 760" role="img" aria-label="Schematic map of five towns with pinned venues">
-        <!-- town zones -->
-        <rect class="town-zone" x="40" y="40" width="300" height="300" rx="16"/>
-        <text class="town-label" x="60" y="70">Boulder</text>
-
-        <rect class="town-zone" x="360" y="260" width="160" height="150" rx="14"/>
-        <text class="town-label" x="374" y="286">Superior</text>
-
-        <rect class="town-zone" x="540" y="230" width="190" height="190" rx="14"/>
-        <text class="town-label" x="556" y="256">Louisville</text>
-
-        <rect class="town-zone" x="750" y="220" width="210" height="200" rx="14"/>
-        <text class="town-label" x="766" y="246">Lafayette</text>
-
-        <rect class="town-zone" x="400" y="450" width="480" height="260" rx="16"/>
-        <text class="town-label" x="420" y="480">Broomfield</text>
-
-        <!-- rough connecting roads -->
-        <path class="road" d="M 260 320 L 420 340"/>
-        <path class="road" d="M 500 330 L 560 320"/>
-        <path class="road" d="M 710 310 L 770 300"/>
-        <path class="road" d="M 470 410 L 560 450"/>
-        <path class="road" d="M 780 420 L 720 450"/>
-
-        <g id="pins"></g>
-      </svg>
+      <p class="map-note">Drag to pan, scroll or pinch to zoom. Pin position is approximate for a few venues — use "Directions" on a card for the exact route.</p>
+      <div id="leafletMap"></div>
 
       <div class="legend" id="legend"></div>
     </div>
@@ -241,6 +229,7 @@ footer.page-foot {
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 const ICONS = {
   library: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a1 1 0 0 1 1-1h5v16H5a1 1 0 0 1-1-1Z"/><path d="M10 4h9a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-9"/><path d="M14 8h3M14 11h3"/></svg>',
@@ -260,39 +249,41 @@ const CATEGORIES = [
 
 const TOWNS = ['Boulder', 'Superior', 'Louisville', 'Lafayette', 'Broomfield'];
 
-// mapX/mapY are schematic coordinates inside the 1000x760 viewBox, not real lat/lng.
+// lat/lng: 4 venues geocoded from a confirmed source; the rest are reasonable
+// estimates within the right block/neighborhood, not rooftop-precise. Use each
+// card's "Directions" link (built from the verified street address) for routing.
 const VENUES = [
   // LIBRARIES
-  { id:'lib-reynolds', cat:'library', town:'Boulder', name:'Boulder Public Library — George Reynolds Branch', addr:'3595 Table Mesa Drive, Boulder, CO 80305', phone:'303-441-3100', hours:'Mon–Thu 9am–7pm · Fri 9am–5pm · Sat 10am–5pm · Sun 12–5pm', note:'South Boulder branch, near the rec center. A 2024 notice mentioned a temporary Tuesday change — worth a quick confirm.', warn:false, mapX:120, mapY:280 },
-  { id:'lib-louisville', cat:'library', town:'Louisville', name:'Louisville Public Library', addr:'951 Spruce Street, Louisville, CO 80027', phone:'303-335-4849', hours:'Mon–Thu 10am–8pm · Fri–Sat 10am–5pm · Sun 1–5pm', note:'Superior has no library of its own — residents use this branch.', warn:false, mapX:600, mapY:280 },
-  { id:'lib-lafayette', cat:'library', town:'Lafayette', name:'Lafayette Public Library', addr:'775 W Baseline Rd, Lafayette, CO 80026', phone:'303-665-5200', hours:'Hours not confirmed — call ahead', note:'Every source pointed back to "check the website" rather than listing hours directly.', warn:true, mapX:830, mapY:270 },
-  { id:'lib-broomfield', cat:'library', town:'Broomfield', name:'Mamie Doud Eisenhower Public Library', addr:'3 Community Park Road, Broomfield, CO 80020', phone:'720-887-2300', hours:'Mon–Wed 9am–9pm · Fri–Sat 9am–5pm · Sun 1–5pm', note:'Thursday hours weren’t confirmed; likely similar to Mon–Wed.', warn:false, mapX:560, mapY:560 },
+  { id:'lib-reynolds', cat:'library', town:'Boulder', name:'Boulder Public Library — George Reynolds Branch', addr:'3595 Table Mesa Drive, Boulder, CO 80305', phone:'303-441-3100', hours:'Mon–Thu 9am–7pm · Fri 9am–5pm · Sat 10am–5pm · Sun 12–5pm', note:'South Boulder branch, near the rec center. A 2024 notice mentioned a temporary Tuesday change — worth a quick confirm.', warn:false, lat:39.984452, lng:-105.25262 },
+  { id:'lib-louisville', cat:'library', town:'Louisville', name:'Louisville Public Library', addr:'951 Spruce Street, Louisville, CO 80027', phone:'303-335-4849', hours:'Mon–Thu 10am–8pm · Fri–Sat 10am–5pm · Sun 1–5pm', note:'Superior has no library of its own — residents use this branch.', warn:false, lat:39.9748, lng:-105.1309 },
+  { id:'lib-lafayette', cat:'library', town:'Lafayette', name:'Lafayette Public Library', addr:'775 W Baseline Rd, Lafayette, CO 80026', phone:'303-665-5200', hours:'Hours not confirmed — call ahead', note:'Every source pointed back to "check the website" rather than listing hours directly.', warn:true, lat:39.9975, lng:-105.1015 },
+  { id:'lib-broomfield', cat:'library', town:'Broomfield', name:'Mamie Doud Eisenhower Public Library', addr:'3 Community Park Road, Broomfield, CO 80020', phone:'720-887-2300', hours:'Mon–Wed 9am–9pm · Fri–Sat 9am–5pm · Sun 1–5pm', note:'Thursday hours weren’t confirmed; likely similar to Mon–Wed.', warn:false, lat:39.917598, lng:-105.068984 },
 
   // PLAYGROUNDS
-  { id:'pg-harlow', cat:'playground', town:'Boulder', name:'Harlow Platts Community Park', addr:'Near 1360 Gillaspie Dr, Boulder, CO 80305', phone:'', hours:'Dawn–dusk', note:'Right next to South Boulder Rec Center — also has Viele Lake loop path and a shelter.', warn:false, mapX:150, mapY:310 },
-  { id:'pg-martin', cat:'playground', town:'Boulder', name:'Martin Park', addr:'Near S 36th St & Eastman Ave, Boulder, CO 80305', phone:'', hours:'Dawn–dusk', note:'Martin Acres neighborhood — creek access and a little free library on-site.', warn:false, mapX:220, mapY:250 },
-  { id:'pg-superior', cat:'playground', town:'Superior', name:'Superior Community Park', addr:'1350 Coalton Road, Superior, CO 80027', phone:'', hours:'Dawn–dusk', note:'Freshly renovated in 2026: inclusive/ADA play structures, a toddler play train, zipline.', warn:false, mapX:420, mapY:330 },
-  { id:'pg-louisville', cat:'playground', town:'Louisville', name:'Louisville Community Park', addr:'955 Bella Vista Dr, Louisville, CO 80027', phone:'', hours:'6am–10pm daily', note:'Seasonal splash pad, pond, picnic shelter, restrooms.', warn:false, mapX:580, mapY:330 },
-  { id:'pg-brand', cat:'playground', town:'Louisville', name:'Annette A. Brand Park', addr:'Plum Circle & Azure Way, Louisville, CO 80027', phone:'', hours:'Dawn–dusk', note:'Quieter option — basketball court and trail access too.', warn:false, mapX:640, mapY:380 },
-  { id:'pg-waneka', cat:'playground', town:'Lafayette', name:'Waneka Lake Park', addr:'1600 Caria Drive, Lafayette, CO 80026', phone:'', hours:'Dawn–dusk', note:'Baby swings, restrooms in the boathouse, lake-loop trail. Little shade in the open areas.', warn:false, mapX:830, mapY:340 },
-  { id:'pg-broomfield', cat:'playground', town:'Broomfield', name:'Broomfield Community Park', addr:'Off Spader Way, Broomfield, CO 80020', phone:'', hours:'Dawn–dusk', note:'Better suited to older kids — high slides and monkey bars rather than toddler equipment.', warn:false, mapX:520, mapY:600 },
+  { id:'pg-harlow', cat:'playground', town:'Boulder', name:'Harlow Platts Community Park', addr:'Near 1360 Gillaspie Dr, Boulder, CO 80305', phone:'', hours:'Dawn–dusk', note:'Right next to South Boulder Rec Center — also has Viele Lake loop path and a shelter.', warn:false, lat:39.971, lng:-105.248 },
+  { id:'pg-martin', cat:'playground', town:'Boulder', name:'Martin Park', addr:'Near S 36th St & Eastman Ave, Boulder, CO 80305', phone:'', hours:'Dawn–dusk', note:'Martin Acres neighborhood — creek access and a little free library on-site.', warn:false, lat:39.978, lng:-105.251 },
+  { id:'pg-superior', cat:'playground', town:'Superior', name:'Superior Community Park', addr:'1350 Coalton Road, Superior, CO 80027', phone:'', hours:'Dawn–dusk', note:'Freshly renovated in 2026: inclusive/ADA play structures, a toddler play train, zipline.', warn:false, lat:39.9403, lng:-105.154 },
+  { id:'pg-louisville', cat:'playground', town:'Louisville', name:'Louisville Community Park', addr:'955 Bella Vista Dr, Louisville, CO 80027', phone:'', hours:'6am–10pm daily', note:'Seasonal splash pad, pond, picnic shelter, restrooms.', warn:false, lat:39.9645, lng:-105.1462 },
+  { id:'pg-brand', cat:'playground', town:'Louisville', name:'Annette A. Brand Park', addr:'Plum Circle & Azure Way, Louisville, CO 80027', phone:'', hours:'Dawn–dusk', note:'Quieter option — basketball court and trail access too.', warn:false, lat:39.9581, lng:-105.1511 },
+  { id:'pg-waneka', cat:'playground', town:'Lafayette', name:'Waneka Lake Park', addr:'1600 Caria Drive, Lafayette, CO 80026', phone:'', hours:'Dawn–dusk', note:'Baby swings, restrooms in the boathouse, lake-loop trail. Little shade in the open areas.', warn:false, lat:39.9885, lng:-105.0945 },
+  { id:'pg-broomfield', cat:'playground', town:'Broomfield', name:'Broomfield Community Park', addr:'Off Spader Way, Broomfield, CO 80020', phone:'', hours:'Dawn–dusk', note:'Better suited to older kids — high slides and monkey bars rather than toddler equipment.', warn:false, lat:39.9168, lng:-105.0683 },
 
   // GYMNASTICS
-  { id:'gym-cats', cat:'gym', town:'Boulder', name:'CATS Gymnastics', addr:'2400 30th St, Boulder, CO 80301', phone:'(303) 939-9699', hours:'Open gym / Tumbling Tots — historically Fri & Sun mornings, ~9:30–11am', note:'Sources disagree on which mornings are still active (it may have shrunk to Sunday-only). Call to confirm before driving over.', warn:true, mapX:280, mapY:120 },
+  { id:'gym-cats', cat:'gym', town:'Boulder', name:'CATS Gymnastics', addr:'2400 30th St, Boulder, CO 80301', phone:'(303) 939-9699', hours:'Open gym / Tumbling Tots — historically Fri & Sun mornings, ~9:30–11am', note:'Sources disagree on which mornings are still active (it may have shrunk to Sunday-only). Call to confirm before driving over.', warn:true, lat:40.0145, lng:-105.2507 },
 
   // REC CENTERS
-  { id:'rec-southboulder', cat:'rec', town:'Boulder', name:'South Boulder Recreation Center', addr:'1360 Gillaspie Drive, Boulder, CO 80305', phone:'303-441-3448', hours:'Unconfirmed — see note', note:'A fall 2025 notice said this center was closed for maintenance repairs. Status since then is unconfirmed — call before visiting.', warn:true, mapX:150, mapY:330 },
-  { id:'rec-louisville', cat:'rec', town:'Louisville', name:'Louisville Recreation & Senior Center', addr:'900 West Via Appia, Louisville, CO 80027', phone:'(303) 666-7400', hours:'Hours vary by season — call or check site', note:'', warn:false, mapX:640, mapY:300 },
-  { id:'rec-superior', cat:'rec', town:'Superior', name:'Superior Community Center', addr:'1500 Coalton Road, Superior, CO 80027', phone:'(303) 554-9005', hours:'Weekdays/Sat 8am–8pm · Sun 12–6pm (as of late 2025)', note:'Right next to Superior Community Park.', warn:false, mapX:400, mapY:360 },
-  { id:'rec-lafayette', cat:'rec', town:'Lafayette', name:'Bob L. Burger Recreation Center', addr:'111 W Baseline Rd, Lafayette, CO 80026', phone:'303-665-0469', hours:'Call to confirm', note:'', warn:false, mapX:800, mapY:380 },
-  { id:'rec-broomfield', cat:'rec', town:'Broomfield', name:'Paul Derda Recreation Center', addr:'13201 Lowell Blvd, Broomfield, CO 80020', phone:'303-460-6900', hours:'Mon–Thu 5am–10pm · Fri 5am–6:30/8pm (sources differ) · Sat 7am–8pm · Sun 8am–6pm', note:'', warn:false, mapX:600, mapY:630 },
+  { id:'rec-southboulder', cat:'rec', town:'Boulder', name:'South Boulder Recreation Center', addr:'1360 Gillaspie Drive, Boulder, CO 80305', phone:'303-441-3448', hours:'Unconfirmed — see note', note:'A fall 2025 notice said this center was closed for maintenance repairs. Status since then is unconfirmed — call before visiting.', warn:true, lat:39.971, lng:-105.248 },
+  { id:'rec-louisville', cat:'rec', town:'Louisville', name:'Louisville Recreation & Senior Center', addr:'900 West Via Appia, Louisville, CO 80027', phone:'(303) 666-7400', hours:'Hours vary by season — call or check site', note:'', warn:false, lat:39.9638, lng:-105.1445 },
+  { id:'rec-superior', cat:'rec', town:'Superior', name:'Superior Community Center', addr:'1500 Coalton Road, Superior, CO 80027', phone:'(303) 554-9005', hours:'Weekdays/Sat 8am–8pm · Sun 12–6pm (as of late 2025)', note:'Right next to Superior Community Park.', warn:false, lat:39.9402, lng:-105.1559 },
+  { id:'rec-lafayette', cat:'rec', town:'Lafayette', name:'Bob L. Burger Recreation Center', addr:'111 W Baseline Rd, Lafayette, CO 80026', phone:'303-665-0469', hours:'Call to confirm', note:'', warn:false, lat:40.001221, lng:-105.091786 },
+  { id:'rec-broomfield', cat:'rec', town:'Broomfield', name:'Paul Derda Recreation Center', addr:'13201 Lowell Blvd, Broomfield, CO 80020', phone:'303-460-6900', hours:'Mon–Thu 5am–10pm · Fri 5am–6:30/8pm (sources differ) · Sat 7am–8pm · Sun 8am–6pm', note:'', warn:false, lat:39.934862, lng:-105.036248 },
 
   // KID-FRIENDLY EATS
-  { id:'cafe-junkyard', cat:'cafe', town:'Boulder', name:'Junkyard Social Club', addr:'2525 Frontier Ave, Unit A, Boulder, CO 80301', phone:'', hours:'Reported closed Mondays, ~10am–6pm Tue–Sun (unconfirmed)', note:'Indoor + outdoor play area built from scrapyard materials — an old VW bug, a school bus, a two-story structure.', warn:true, mapX:250, mapY:80 },
-  { id:'cafe-luckypie', cat:'cafe', town:'Louisville', name:'Lucky Pie Pizza & Taphouse', addr:'637 Front St, Louisville, CO 80027', phone:'(303) 666-5743', hours:'Hours vary by source — call ahead', note:'Big sunny patio and lawn, roomy dining area.', warn:true, mapX:570, mapY:350 },
-  { id:'cafe-cec', cat:'cafe', town:'Superior', name:'Chuck E. Cheese', addr:'305 Marshall Rd, Superior, CO 80027', phone:'', hours:'Call or check app for hours', note:'', warn:false, mapX:440, mapY:300 },
-  { id:'cafe-post', cat:'cafe', town:'Lafayette', name:'The Post Brewing Co.', addr:'105 W Emma St, Lafayette, CO 80026', phone:'', hours:'Call for hours', note:'Brewery, but the big patio — fire pit, cornhole, bench seating — is genuinely kid-friendly.', warn:false, mapX:790, mapY:230 },
-  { id:'cafe-sweetplay', cat:'cafe', town:'Broomfield', name:'SweetPlay', addr:'1 West FlatIron Crossing Dr, Suite 2132, Broomfield, CO 80021', phone:'', hours:'Mon–Thu 10am–8pm · Fri–Sat 9am–8pm · Sun 10am–7pm (unconfirmed)', note:'10,000 sq ft indoor play venue — ball pit obstacle course, zipline, cafe, candy store.', warn:true, mapX:460, mapY:490 },
+  { id:'cafe-junkyard', cat:'cafe', town:'Boulder', name:'Junkyard Social Club', addr:'2525 Frontier Ave, Unit A, Boulder, CO 80301', phone:'', hours:'Reported closed Mondays, ~10am–6pm Tue–Sun (unconfirmed)', note:'Indoor + outdoor play area built from scrapyard materials — an old VW bug, a school bus, a two-story structure.', warn:true, lat:40.0199, lng:-105.2515 },
+  { id:'cafe-luckypie', cat:'cafe', town:'Louisville', name:'Lucky Pie Pizza & Taphouse', addr:'637 Front St, Louisville, CO 80027', phone:'(303) 666-5743', hours:'Hours vary by source — call ahead', note:'Big sunny patio and lawn, roomy dining area.', warn:true, lat:39.9745, lng:-105.1305 },
+  { id:'cafe-cec', cat:'cafe', town:'Superior', name:'Chuck E. Cheese', addr:'305 Marshall Rd, Superior, CO 80027', phone:'', hours:'Call or check app for hours', note:'', warn:false, lat:39.9478, lng:-105.1626 },
+  { id:'cafe-post', cat:'cafe', town:'Lafayette', name:'The Post Brewing Co.', addr:'105 W Emma St, Lafayette, CO 80026', phone:'', hours:'Call for hours', note:'Brewery, but the big patio — fire pit, cornhole, bench seating — is genuinely kid-friendly.', warn:false, lat:39.9959, lng:-105.0898 },
+  { id:'cafe-sweetplay', cat:'cafe', town:'Broomfield', name:'SweetPlay', addr:'1 West FlatIron Crossing Dr, Suite 2132, Broomfield, CO 80021', phone:'', hours:'Mon–Thu 10am–8pm · Fri–Sat 9am–8pm · Sun 10am–7pm (unconfirmed)', note:'10,000 sq ft indoor play venue — ball pit obstacle course, zipline, cafe, candy store.', warn:true, lat:39.9331, lng:-105.1331 },
 ];
 
 let activeCats = new Set(CATEGORIES.map(c => c.id));
@@ -339,18 +330,42 @@ function buildFilters() {
 function catColor(id) { return CATEGORIES.find(c => c.id === id).color; }
 function catLabel(id) { return CATEGORIES.find(c => c.id === id).label; }
 
-function buildPins() {
-  const g = document.getElementById('pins');
-  g.innerHTML = VENUES.map(v => `
-    <g class="pin" tabindex="0" role="button" aria-label="${esc(v.name)}" data-id="${v.id}" transform="translate(${v.mapX},${v.mapY})">
-      <circle class="ring" r="9" stroke="${catColor(v.cat)}"></circle>
-      <circle r="4.5" fill="${catColor(v.cat)}"></circle>
-    </g>
-  `).join('');
-  g.querySelectorAll('.pin').forEach(p => {
-    const go = () => { highlighted = p.dataset.id; render(); document.getElementById('card-' + p.dataset.id)?.scrollIntoView({behavior:'smooth', block:'center'}); };
-    p.addEventListener('click', go);
-    p.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+let leafletMap = null;
+const markers = {};
+
+function pinDivIcon(v, active, dim) {
+  const cls = 'map-pin' + (active ? ' active' : '') + (dim ? ' dim' : '');
+  return L.divIcon({
+    className: '',
+    html: `<div class="${cls}" style="background:${catColor(v.cat)}"></div>`,
+    iconSize: [22, 22],
+    iconAnchor: [11, 22],
+    popupAnchor: [0, -22],
+  });
+}
+
+function buildMap() {
+  leafletMap = L.map('leafletMap', { scrollWheelZoom: true }).setView([39.975, -105.17], 11);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+  }).addTo(leafletMap);
+
+  VENUES.forEach(v => {
+    const marker = L.marker([v.lat, v.lng], { icon: pinDivIcon(v, false), title: v.name, keyboard: true });
+    marker.bindPopup(`
+      <div class="map-popup-name">${esc(v.name)}</div>
+      <div class="map-popup-addr">${esc(v.addr)}</div>
+      <a class="map-popup-link" href="${directionsUrl(v.addr)}" target="_blank" rel="noopener">Get directions &rarr;</a>
+    `);
+    marker.on('click', () => {
+      highlighted = v.id;
+      render();
+      document.getElementById('card-' + v.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    marker.addTo(leafletMap);
+    markers[v.id] = marker;
   });
 }
 
@@ -377,9 +392,10 @@ function render() {
   const visible = VENUES.filter(v => activeCats.has(v.cat) && activeTowns.has(v.town));
   const visibleIds = new Set(visible.map(v => v.id));
 
-  document.querySelectorAll('#pins .pin').forEach(p => {
-    p.classList.toggle('dim', !visibleIds.has(p.dataset.id));
-    p.classList.toggle('active', p.dataset.id === highlighted);
+  VENUES.forEach(v => {
+    const marker = markers[v.id];
+    if (!marker) return;
+    marker.setIcon(pinDivIcon(v, v.id === highlighted, !visibleIds.has(v.id)));
   });
 
   document.getElementById('count').textContent = visible.length + (visible.length === 1 ? ' place' : ' places') + ' shown';
@@ -416,7 +432,13 @@ function render() {
 
 buildLegend();
 buildFilters();
-buildPins();
+try {
+  buildMap();
+} catch (e) {
+  console.error('Map failed to load:', e);
+  document.getElementById('leafletMap').innerHTML =
+    '<div class="empty">Map couldn’t load. Use "Directions" on each place below instead.</div>';
+}
 render();
 </script>
 </body>
